@@ -23,7 +23,7 @@ export const ArtistPost = () => async (dispatch) => {
 		console.log(error)
 	}
 };
-export const fetchComment = () => async (dispatch) => {
+export const fetchComment = (id) => async (dispatch) => {
 	try {
 		dispatch({
 			type: 'GET_COMMENT',
@@ -32,7 +32,7 @@ export const fetchComment = () => async (dispatch) => {
 			},
 		});
 
-		const { data } = await axios.get(Comment_url);
+		const { data } = await axios.get(`${Comment_url}/?id=${id}`);
 		dispatch({
 			type: 'GET_COMMENT',
 			payload: {
@@ -43,7 +43,7 @@ export const fetchComment = () => async (dispatch) => {
 		console.log(error)
 	}
 };
-export const fetchLike = () => async (dispatch) => {
+export const fetchLike = (id,user) => async (dispatch) => {
 	try {
 		dispatch({
 			type: 'GET_LIKE',
@@ -52,7 +52,7 @@ export const fetchLike = () => async (dispatch) => {
 			},
 		});
 
-		const { data } = await axios.get(like_url);
+		const { data } = await axios.get(`${like_url}/?postId=${id}&&userId=${user}`);
 		dispatch({
 			type: 'GET_LIKE',
 			payload: {
