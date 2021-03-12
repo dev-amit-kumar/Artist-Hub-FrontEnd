@@ -44,27 +44,77 @@
     "comments":[
         {
             "id":1,
-            "comment":"nice pic"
+            "user":"mukul",
+            "comment":"nice pic",
+            "date":"20-02-2020"
         },
         {
             "id":2,
-            "comment":"nice"
+            "user":"rahul",
+            "comment":"nice kahckskda pic",
+            "date":"20-02-2020"
         },
         {
             "id":3,
-            "comment":"great pic"
+            "user":"amit",
+            "comment":"nice xsacscsvsvvspic",
+            "date":"20-02-2020"
         },
         {
             "id":4,
-            "comment":"nice&lovely"
+            "user":"rohith",
+            "comment":"nasdsadadasce pic",
+            "date":"20-02-2020"
         },
         {
             "id":1,
-            "comment":"awesome"
+            "user":"suvinay",
+            "comment":"nice ohhhhhhhhh",
+            "date":"20-02-2020"
         },
         {
             "id":4,
-            "comment":"nice pic"
+            "user":"mukul",
+            "comment":"loooooo pic",
+            "date":"20-02-2020"
         }
-    ]
+    ],
+    "likes":[
+      {
+          "postId":1,
+          "userId":"mukul",
+          "comment":"nice pic",
+          "date":"20-02-2020"
+      },
+      {
+          "postId":2,
+          "userId":"rahul",
+          "comment":"nice kahckskda pic",
+          "date":"20-02-2020"
+      },
+      {
+          "postId":3,
+          "userId":"amit",
+          "comment":"nice xsacscsvsvvspic",
+          "date":"20-02-2020"
+      },
+      {
+          "postId":4,
+          "userId":"rohith",
+          "comment":"nasdsadadasce pic",
+          "date":"20-02-2020"
+      },
+      {
+          "postId":1,
+          "userId":"suvinay",
+          "comment":"nice ohhhhhhhhh",
+          "date":"20-02-2020"
+      },
+      {
+          "postId":4,
+          "userId":"mukul",
+          "comment":"loooooo pic",
+          "date":"20-02-2020"
+      }
+  ]
   }

@@ -12,8 +12,9 @@ const Comment=(props)=>{
             return data.map((val,idx)=>{
                 if(props.PostId==val.id){
                 return(
-                    <div>
-                        <p>{val.comment}</p>
+                    <div key={idx} className="d-flex flex-row justify-content-between">
+                        <p>{`${val.user}-${val.comment}`}</p>
+                        <p className="text-muted">{val.date}</p>
                     </div>
                 )
             }
