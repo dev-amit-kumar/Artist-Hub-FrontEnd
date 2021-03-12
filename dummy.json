@@ -6,7 +6,9 @@
         "location":"uttar pradesh",
         "picture":"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*",
         "likes":"178",
-        "rating":"7.2"
+        "rating":"7.2",
+        "occasion":"marriage",
+        "liked":"true"
       },
       {
         "id": 2,
@@ -14,7 +16,9 @@
         "location":"uttarakhand",
         "picture":"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-royalty-free-image-506756303-1560962726.jpg?crop=0.672xw:1.00xh;0.166xw,0&resize=640:*",
         "likes":"178",
-        "rating":"7.2"
+        "rating":"7.2",
+        "occasion":"marriage",
+        "liked":"true"
       },
       {
         "id": 3,
@@ -22,7 +26,9 @@
         "location":"telangana",
         "picture":"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/smartest-dog-breeds-1553287693.jpg?crop=0.673xw:1.00xh;0.167xw,0&resize=640:*",
         "likes":"178",
-        "rating":"7.2"
+        "rating":"7.2",
+        "occasion":"marriage",
+        "liked":"false"
       },
       {
         "id": 4,
@@ -30,7 +36,9 @@
         "location":"uttar pradesh",
         "picture":"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*",
         "likes":"178",
-        "rating":"7.2"
+        "rating":"7.2",
+        "occasion":"marriage",
+        "liked":"false"
       }
     ],
     "comments":[

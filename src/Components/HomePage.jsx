@@ -1,22 +1,25 @@
-import {useEffect,useState} from "react";
+import {useEffect} from "react";
+import { connect } from "react-redux";
 import CardView from "./Common/CardView";
-const url = "http://localhost:3000/categories"
-const HomePage=()=>{
-    const [dummy,setDummy] = useState("");
+import {ArtistPost} from "../Redux/Action/CardView"
+const HomePage=(props)=>{
     useEffect(()=>{
-        fetch(url,{
-            method:"GET"
-        })
-        .then((res)=>res.json())
-        .then((data)=>setDummy(data))
+        props.ArtistPost();
     },[])
     return(
-        <div>
-             {dummy && dummy.map((value, idx) => {
-                return <CardView data={value} key={idx}/>
-            })}
+        <div className="d-flex  justify-content-center">
+            <div className="d-flex flex-column">
+                {props.PostData && props.PostData.map((value, idx) => {
+                    return <CardView data={value} key={idx}/>
+                })}
+            </div>
         </div>
     )
 }
-export default HomePage;
+const mapStateToProps = (state) => {
+	return {
+		PostData: state.ArtistPost.PostData,
+	};
+};
+export default connect(mapStateToProps,{ArtistPost})(HomePage);
  
