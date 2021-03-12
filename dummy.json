@@ -1,0 +1,125 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "mukul",
+      "location": "uttar pradesh",
+      "picture": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*",
+      "likes": "178",
+      "rating": "7.2",
+      "occasion": "marriage",
+      "liked": "true"
+    },
+    {
+      "id": 2,
+      "name": "amit",
+      "location": "uttarakhand",
+      "picture": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-royalty-free-image-506756303-1560962726.jpg?crop=0.672xw:1.00xh;0.166xw,0&resize=640:*",
+      "likes": "178",
+      "rating": "7.2",
+      "occasion": "marriage",
+      "liked": "true"
+    },
+    {
+      "id": 3,
+      "name": "rohith",
+      "location": "telangana",
+      "picture": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/smartest-dog-breeds-1553287693.jpg?crop=0.673xw:1.00xh;0.167xw,0&resize=640:*",
+      "likes": "178",
+      "rating": "7.2",
+      "occasion": "marriage",
+      "liked": "false"
+    },
+    {
+      "id": 4,
+      "name": "mukul",
+      "location": "uttar pradesh",
+      "picture": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*",
+      "likes": "178",
+      "rating": "7.2",
+      "occasion": "marriage",
+      "liked": "false"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "user": "mukul",
+      "comment": "nice pic",
+      "date": "20-02-2020"
+    },
+    {
+      "id": 2,
+      "user": "rahul",
+      "comment": "nice kahckskda pic",
+      "date": "20-02-2020"
+    },
+    {
+      "id": 3,
+      "user": "amit",
+      "comment": "nice xsacscsvsvvspic",
+      "date": "20-02-2020"
+    },
+    {
+      "id": 4,
+      "user": "rohith",
+      "comment": "nasdsadadasce pic",
+      "date": "20-02-2020"
+    },
+    {
+      "id": 1,
+      "user": "suvinay",
+      "comment": "nice ohhhhhhhhh",
+      "date": "20-02-2020"
+    },
+    {
+      "id": 4,
+      "user": "mukul",
+      "comment": "loooooo pic",
+      "date": "20-02-2020"
+    }
+  ],
+  "likes": [
+    {
+      "postId": 1,
+      "userId": "mukul",
+      "comment": "nice pic",
+      "date": "20-02-2020"
+    },
+    {
+      "postId": 2,
+      "userId": "rahul",
+      "comment": "nice kahckskda pic",
+      "date": "20-02-2020"
+    },
+    {
+      "postId": 3,
+      "userId": "amit",
+      "comment": "nice xsacscsvsvvspic",
+      "date": "20-02-2020"
+    },
+    {
+      "postId": 4,
+      "userId": "rohith",
+      "comment": "nasdsadadasce pic",
+      "date": "20-02-2020"
+    },
+    {
+      "postId": 1,
+      "userId": "suvinay",
+      "comment": "nice ohhhhhhhhh",
+      "date": "20-02-2020"
+    },
+    {
+      "postId": 4,
+      "userId": "mukul",
+      "comment": "loooooo pic",
+      "date": "20-02-2020"
+    }
+  ],
+  "auth": {
+    "email": "mukulp0783@gmail.com",
+    "password": "123457",
+    "name": "Mukul Prasad"
+  }
+}
