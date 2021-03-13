@@ -4,7 +4,7 @@ import {fetchComment} from "../../../Redux/Action/CardView"
 
 const Comment=(props)=>{
     useEffect(()=>{
-        props.fetchComment()
+        props.fetchComment(props.PostId)
     },[])
     const renderComment=(data)=>{
         console.log(data)

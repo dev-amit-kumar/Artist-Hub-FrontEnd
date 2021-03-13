@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Comment from "../Common/cardView/comment";
 import Like from "./cardView/like";
+import Picture from "./cardView/Picture";
 const CardView = (props)=>{
-    const [commentId,setCommentId]=useState("")
+    const [commentId,setCommentId]=useState()
     const setComment=(event)=>{
         setCommentId(event.target.id)
     }
@@ -29,7 +30,7 @@ const CardView = (props)=>{
                     </select>
                 </div>
             <div className="card-body">
-                <img className="card-img-top" src={props.data.picture} alt="Card image cap"/>
+                <Picture PostId={props.data.id}/>
             </div>
             <div className="card-footer d-flex flex-row justify-content-between">
                 <div className="d-flex flex-row">
