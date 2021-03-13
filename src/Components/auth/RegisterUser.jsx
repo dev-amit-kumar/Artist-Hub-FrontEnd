@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
-const url = 'http://localhost:3000/auth';
+const url = 'https://artist-hub-api.herokuapp.com/auth';
 
 const SignupForm = (props) => {
 	const [R_email, setREmail] = useState('');
@@ -18,7 +18,7 @@ const SignupForm = (props) => {
 			password: R_password,
 			name: name,
 		};
-		axios.post(`${url}/registeruser`, data).then((reply) => {
+		axios.post(`${url}/registerUser`, data).then((reply) => {
 			if (reply.data.status === 400) {
 				setRMsg('');
 				setRError(reply.data.error);
