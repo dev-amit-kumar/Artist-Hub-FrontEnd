@@ -1,15 +1,11 @@
 import { combineReducers } from 'redux';
 import ArtistPost from "./ArtistPost";
-import CommentReducer from "./CommentReducer";
-import LikeReducer from "./LikeReducer";
-import PictureReducer from "./PictureReducer";
 import ArtistReducer from "./ArtistReducer";
+import AllData  from "./AllData"
 const rootReducer = combineReducers({
     ArtistPost,
-    CommentReducer,
-    LikeReducer,
-    PictureReducer,
-    ArtistReducer
+    ArtistReducer,
+    AllData
 });
 
 export default rootReducer;

@@ -1,34 +1,20 @@
-import { useEffect } from "react";
-import { connect } from "react-redux";
-import {fetchPicture} from "../../../Redux/Action/CardView"
-
 const Picture=(props)=>{
-    useEffect(()=>{
-        props.fetchPicture(props.PostId)
-    },[])
     const renderPicture=(data)=>{
-        if(data!=null){
-            console.log(data,"data")
-            console.log(data[0],"data array")
-            if(data.postId==props.PostId){
-                return(
-                    <div>
-                        <img src={data[0].file_path} alt="picture"/>
-                        <h1>{data[0].date}</h1>
-                    </div>
+        if(data){
+            if(data.data[0]){
+                    return(
+                        <div>
+                            <img style={{width:"20vw",height:"20vh"}} src={data.data[0].file_path} alt="post pic"/>
+                        </div>
                     )
-                }
             }
+        }
     }
     return(
         <div>
-            {renderPicture(props.PictureData)}
+            {renderPicture(props.data)}
         </div>
     )
 }
-const mapStateToProps=(state)=>{
-    return{
-        PictureData:state.PictureReducer.PictureData
-    }
-}
-export default connect(mapStateToProps,{fetchPicture})(Picture);
+
+export default Picture;

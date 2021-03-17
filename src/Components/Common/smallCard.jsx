@@ -1,4 +1,3 @@
-import { fetchPicture } from "../../Redux/Action/CardView";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 
@@ -9,14 +8,14 @@ const SmallCard = (props) => {
   const renderPicture = (data) => {
     if (data) {
       return data.map((val, idx) => {
-        if (val.postId == props.PostId) {
+        if (val.postId === props.PostId) {
           return (
             <div className="card" style={{ width: "22vw" }}>
               <div className="card-body">
                 <img
                   style={{ height: "40vh", width: "20vw" }}
                   src={data[0].file_path}
-                  alt="picture"
+                  alt="small post"
                 />
               </div>
             </div>
@@ -34,4 +33,4 @@ const mapStateToProps = (state) => {
     PictureData: state.PictureReducer.PictureData,
   };
 };
-export default connect(mapStateToProps, { fetchPicture })(SmallCard);
+export default connect(mapStateToProps, { })(SmallCard);
