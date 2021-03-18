@@ -1,23 +1,36 @@
-import { useEffect } from "react";
-import { connect } from "react-redux";
-import {fetchLike} from "../../../Redux/Action/CardView"
-
+import axios from "axios";
+import {} from "../../../Redux/Action/CardView"
+const configHeader = {
+	headers: {
+		'Content-Type': 'application/json',
+		'auth-token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTBkMmMxMzg0OGRiMDAxNTI4N2Q0YyIsImlhdCI6MTYxNTkwOTU4NCwiZXhwIjoxNjE1OTk1OTg0fQ.xmJYG3N0Z7CA28bFb5zJkaMMnY3GHLEZ2h1P1ZzYyFY",
+	},
+};
 const Like=(props)=>{
-    useEffect(()=>{
-        props.fetchLike(props.PostId,"mukul")
-    },[])
+  
+    const likeStatus=(e)=>{
+        if(e.target.value==="liked"){
+            axios.get(`https://artist-hub-api.herokuapp.com/like/unLike/${props.PostId}`,configHeader)
+            .then((res)=>console.log(res,"ress unlike"))
+        }
+        else{
+            axios.get(`https://artist-hub-api.herokuapp.com/like/addLike/${props.PostId}`,configHeader)
+            .then((res)=>console.log(res,"ress like"))
+        }
+    }
     const renderLike=(data)=>{
         if(data){
-            if(data[0]){
-            console.log(data[0].userId,"like")
+            if(data.data){
                 return(
-                    <button  className="mr-2  btn btn-light"><i className="bi bi-heart-fill"></i>
+                    <button onClick={likeStatus} value={"liked"}  className="mr-2  btn btn-light"><i className="bi bi-heart-fill"></i>
                     </button>
                 )
             }
             else{
                 return(
-                    <button  className="mr-2  btn btn-light"><i className="bi bi-heart"></i>
+
+                    <button onClick={likeStatus} value={"unliked"}  className="mr-2  btn btn-light"><i className="bi bi-heart"></i>
+
                     </button>
                 )
             }
@@ -29,9 +42,5 @@ const Like=(props)=>{
         </div>
     )
 }
-const mapStateToProps=(state)=>{
-    return{
-        LikeData:state.LikeReducer.LikeData
-    }
-}
-export default connect(mapStateToProps,{fetchLike})(Like);
+
+export default Like;

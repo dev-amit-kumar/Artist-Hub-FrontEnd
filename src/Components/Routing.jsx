@@ -1,14 +1,17 @@
-import HomePage from "./HomePage";
-import SignupForm from "./auth/RegisterUser";
-import LoginForm from "./auth/LoginUser";
-import {BrowserRouter,Route} from "react-router-dom"
+import HomePage from "./HomePage"
+import {BrowserRouter,Route} from "react-router-dom";
+import ArtistProfile from "./ProfilePage/ArtistProfile";
+import AddPost from "./AddPost";
+
 const Routing=()=>{
     return(
         <div>
             <BrowserRouter>
                 <Route exact path="/" component={HomePage}/>
-                <Route exact path="/auth/register" component={SignupForm}/>
-                <Route path="/auth/login" component={LoginForm}/>
+
+                <Route path="/artist" component={ArtistProfile}/>
+                <Route path="/addpost" component={AddPost}/>
+
             </BrowserRouter>
         </div>
     )
