@@ -5,8 +5,7 @@ import {ArtistPost} from "../Redux/Action/CardView"
 const HomePage=(props)=>{
     useEffect(()=>{
         props.ArtistPost();
-    },[])
-    
+    },[])    
     const renderPost=(Data)=>{
         if(Data){
             if(Data.data){
@@ -27,11 +26,15 @@ const HomePage=(props)=>{
                 {renderPost(props.PostData)}
             </div>
         </div> 
+
     )
 }
 const mapStateToProps = (state) => {
 	return {
+
+
 		PostData:state.ArtistPost.PostData,
+
 	};
 };
 export default connect(mapStateToProps,{ArtistPost})(HomePage);

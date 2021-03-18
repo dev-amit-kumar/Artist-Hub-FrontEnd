@@ -7,5 +7,4 @@ const rootReducer = combineReducers({
     ArtistReducer,
     AllData
 });
-
 export default rootReducer;

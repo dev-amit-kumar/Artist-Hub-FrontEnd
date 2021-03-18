@@ -28,7 +28,9 @@ const Like=(props)=>{
             }
             else{
                 return(
+
                     <button onClick={likeStatus} value={"unliked"}  className="mr-2  btn btn-light"><i className="bi bi-heart"></i>
+
                     </button>
                 )
             }

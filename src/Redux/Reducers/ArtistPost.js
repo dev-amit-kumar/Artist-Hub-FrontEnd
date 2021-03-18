@@ -13,5 +13,4 @@ const ArtistPost = (state = initialState, action) => {
       return state;
   }
 };
-
 export default ArtistPost;

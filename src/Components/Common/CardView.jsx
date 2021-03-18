@@ -15,12 +15,14 @@ const CardView = (props)=>{
         return(
             <div><Comment ID={props.Post._id}/></div>
         )
+
     }
     return(
         <div>
             <div className="card" style={{"width": "38rem"}}>
                 <div className="card-header d-flex flex-row justify-content-between">
                     <div className="d-flex flex-row">
+
                     </div>
                     <select className="btn btn-light">
                         <option>setting</option>
@@ -53,11 +55,11 @@ const CardView = (props)=>{
                     <button className="btn btn-light"><i class="bi bi-share"></i></button>
                 </div>
             </div>
+
             </div>
         </div>
     )
 }
-
 const mapStateToProps = (state) => {
 	return {
 		CommentData:state.AllData.CommentData,

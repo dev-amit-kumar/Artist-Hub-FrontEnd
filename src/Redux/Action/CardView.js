@@ -80,3 +80,4 @@ export const fetchAllData = (id) => async (dispatch) => {
     console.log(error);
   }
 };
+
