@@ -32,63 +32,63 @@ const Header = () => {
 					>
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 							<li class="nav-item">
-								<a
+								<Link
 									class="nav-link active"
 									aria-current="page"
-									href="#"
+									to="/"
 								>
 									Home
-								</a>
+								</Link>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">
+								<Link class="nav-link" to="/">
 									Link
-								</a>
+								</Link>
 							</li>
 							<li class="nav-item dropdown">
-								<a
+								<Link
 									class="nav-link dropdown-toggle"
-									href="#"
+									to="/"
 									id="navbarDropdown"
 									role="button"
 									data-bs-toggle="dropdown"
 									aria-expanded="false"
 								>
 									Dropdown
-								</a>
+								</Link>
 								<ul
 									class="dropdown-menu"
 									aria-labelledby="navbarDropdown"
 								>
 									<li>
-										<a class="dropdown-item" href="#">
+										<Link class="dropdown-item" to="/">
 											Action
-										</a>
+										</Link>
 									</li>
 									<li>
-										<a class="dropdown-item" href="#">
+										<Link class="dropdown-item" to="/">
 											Another action
-										</a>
+										</Link>
 									</li>
 									<li>
 										<hr class="dropdown-divider" />
 									</li>
 									<li>
-										<a class="dropdown-item" href="#">
+										<Link class="dropdown-item" to="/">
 											Something else here
-										</a>
+										</Link>
 									</li>
 								</ul>
 							</li>
 							<li class="nav-item">
-								<a
+								<Link
 									class="nav-link disabled"
-									href="#"
+									to="/"
 									tabindex="-1"
 									aria-disabled="true"
 								>
 									Disabled
-								</a>
+								</Link>
 							</li>
 						</ul>
 						<div className="d-flex">
