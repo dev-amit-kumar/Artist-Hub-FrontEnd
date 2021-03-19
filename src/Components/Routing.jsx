@@ -1,19 +1,21 @@
-import HomePage from "./HomePage"
-import {BrowserRouter,Route} from "react-router-dom";
-import ArtistProfile from "./ProfilePage/ArtistProfile";
-import AddPost from "./AddPost";
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Home from './Home';
+import PageNotFound from './common/PageNotFound';
+import Header from './common/Header';
+import Footer from './common/Header';
 
-const Routing=()=>{
-    return(
-        <div>
-            <BrowserRouter>
-                <Route exact path="/" component={HomePage}/>
+const Routing = () => {
+	return (
+		<BrowserRouter>
+			<Header />
+			<Switch>
+				<Route exact path="/" component={Home} />
+				<Route component={PageNotFound} />
+			</Switch>
+			<Footer />
+		</BrowserRouter>
+	);
+};
 
-                <Route path="/artist" component={ArtistProfile}/>
-                <Route path="/addpost" component={AddPost}/>
-
-            </BrowserRouter>
-        </div>
-    )
-}
 export default Routing;
