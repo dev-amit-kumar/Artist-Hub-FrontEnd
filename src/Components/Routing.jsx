@@ -9,6 +9,7 @@ import Register from './auth/Register';
 import SideNav from './common/SideNav';
 import RightSide from './common/RightSide';
 import Explore from './Explore';
+import '../css/index.css';
 
 const Routing = () => {
 	return (
@@ -16,13 +17,10 @@ const Routing = () => {
 			<Header />
 			<div className="container-fluid">
 				<div className="row">
-					<div
-						className="col-md-2 bg-secondary"
-						style={{ height: '100vh' }}
-					>
+					<div className="col-md-3 card" style={{ height: '100vh' }}>
 						<SideNav />
 					</div>
-					<div className="col-md-8">
+					<div className="col-md-6 card main-container">
 						<Switch>
 							<Route exact path="/" component={Home} />
 							<Route exact path="/explore" component={Explore} />
@@ -35,6 +33,11 @@ const Routing = () => {
 							<Route exact path="/save" component={Explore} />
 							<Route exact path="/profile" component={Explore} />
 							<Route exact path="/setting" component={Explore} />
+							<Route
+								exact
+								path="/artist/:userId"
+								component={Explore}
+							/>
 							<Route exact path="/auth/login" component={Login} />
 							<Route
 								exact
@@ -44,7 +47,7 @@ const Routing = () => {
 							<Route component={PageNotFound} />
 						</Switch>
 					</div>
-					<div className="col-md-2 bg-secondary">
+					<div className="col-md-3 card" style={{ height: '100vh' }}>
 						<RightSide />
 					</div>
 				</div>

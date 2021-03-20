@@ -1,0 +1,11 @@
+html,
+body {
+	margin: 0;
+	height: 100%;
+	overflow: hidden;
+}
+
+.main-container {
+	overflow-y: scroll !important;
+	height: 93vh;
+}
