@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { base_url } from '../../redux/config';
+import { connect } from 'react-redux';
+import { registerUser } from '../../redux/actions';
 
-const Register = () => {
+const Register = (props) => {
 	const [R_email, setREmail] = useState('');
 	const [R_password, setRPassword] = useState('');
 	const [name, setName] = useState('');
-	const [R_error, setRError] = useState('');
-	const [R_msg, setRMsg] = useState('');
 	const [isArtist, setIsArtist] = useState(false);
 	const [occasssionList, setOccassion] = useState([]);
 
@@ -22,7 +20,6 @@ const Register = () => {
 			occassionAll.push(occassion);
 			setOccassion(occassionAll);
 		}
-		console.log(occasssionList);
 	};
 
 	const registerHandler = (e) => {
@@ -39,16 +36,7 @@ const Register = () => {
 				occassions: occasssionList,
 			};
 		}
-		axios.post(`${base_url}/auth/registerUser`, data).then((reply) => {
-			if (reply.data.status === 400) {
-				setRMsg('');
-				setRError(reply.data.error);
-			} else if (reply.data.status === 200) {
-				setRMsg(reply.data.message);
-				setRError('');
-			}
-			console.log(reply.data);
-		});
+		props.registerUser(data);
 	};
 
 	return (
@@ -145,11 +133,29 @@ const Register = () => {
 							</>
 						)}
 						<div className="form-group mt-2">
-							<button type="submit" className="btn btn-primary">
-								Register
-							</button>
-							<p className="text-danger">{R_error}</p>
-							<p className="text-info">{R_msg}</p>
+							{props.isLoadingUserAuth ? (
+								<button
+									className="btn btn-primary"
+									type="button"
+									disabled
+								>
+									<span
+										className="spinner-border spinner-border-sm"
+										role="status"
+										aria-hidden="true"
+									></span>
+									Loading...
+								</button>
+							) : (
+								<button
+									type="submit"
+									className="btn btn-primary"
+								>
+									Register
+								</button>
+							)}
+							<p className="text-danger">{props.registerError}</p>
+							<p className="text-success">{props.registerMsg}</p>
 						</div>
 					</form>
 				</div>
@@ -158,4 +164,12 @@ const Register = () => {
 	);
 };
 
-export default Register;
+const mapStateToProps = (state) => {
+	return {
+		registerError: state.UserAuth.registerError,
+		registerMsg: state.UserAuth.registerMsg,
+		isLoadingUserAuth: state.UserAuth.isLoadingUserAuth,
+	};
+};
+
+export default connect(mapStateToProps, { registerUser })(Register);

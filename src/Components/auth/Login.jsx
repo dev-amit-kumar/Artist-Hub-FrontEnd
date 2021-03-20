@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from '../../redux/actions';
-import { Redirect } from 'react-router';
+import { Redirect } from 'react-router-dom';
 
 const Login = (props) => {
 	const [L_email, setLEmail] = useState('');
 	const [L_password, setLPassword] = useState('');
-
 	const LoginHandler = (e) => {
 		e.preventDefault();
 		var data = {
 			email: L_email,
 			password: L_password,
 		};
-
 		props.loginUser(data);
 	};
 
@@ -71,7 +69,7 @@ const Login = (props) => {
 								<p className="text-danger">
 									{props.loginError}
 								</p>
-								<p className="text-info">{props.loginMsg}</p>
+								<p className="text-success">{props.loginMsg}</p>
 							</div>
 						</form>
 					</div>

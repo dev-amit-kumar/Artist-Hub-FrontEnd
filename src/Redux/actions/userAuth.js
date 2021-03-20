@@ -1,28 +1,43 @@
 import { base_url } from '../config';
 import axios from 'axios';
 
-// export const registerUser = (data) => (dispatch) => {
-// 	try {
-// 		dispatch({ type: 'TOGGLE_IS_LOADING_AUTH_USER' });
-// 		dispatch({ type: 'REGISTER_ERROR', payload: null });
-// 		axios
-// 			.post(`${base_url}/auth/registerUser`, data)
-// 			.then((reply) => {
-// 				if (reply.data.status === 400) {
-// 					setRMsg('');
-// 					setRError(reply.data.error);
-// 				} else if (reply.data.status === 200) {
-// 					setRMsg(reply.data.message);
-// 					setRError('');
-// 				}
-// 			})
-// 			.catch((err) => dispatch({ type: 'REGISTER_ERROR', payload: err }));
-// 	} catch (error) {
-// 		dispatch({ type: 'REGISTER_ERROR', payload: error });
-// 	} finally {
-// 		dispatch({ type: 'TOGGLE_IS_LOADING_AUTH_USER' });
-// 	}
-// };
+export const registerUser = (data) => (dispatch) => {
+	try {
+		dispatch({ type: 'TOGGLE_IS_LOADING_AUTH_USER' });
+		dispatch({ type: 'REGISTER_ERROR', payload: null });
+		dispatch({ type: 'REGISTER_MSG', payload: null });
+		axios
+			.post(`${base_url}/auth/registerUser`, data)
+			.then((reply) => {
+				if (reply.data.status === 200) {
+					dispatch({
+						type: 'REGISTER_MSG',
+						payload: reply.data.message,
+					});
+				} else if (reply.data.status === 300) {
+					dispatch({
+						type: 'REGISTER_ERROR',
+						payload: reply.data.message,
+					});
+				} else if (reply.data.status === 400) {
+					dispatch({
+						type: 'REGISTER_ERROR',
+						payload: reply.data.error,
+					});
+				} else {
+					dispatch({
+						type: 'REGISTER_ERROR',
+						payload: 'Something went wrong',
+					});
+				}
+			})
+			.catch((err) => dispatch({ type: 'REGISTER_ERROR', payload: err }));
+	} catch (error) {
+		dispatch({ type: 'REGISTER_ERROR', payload: error });
+	} finally {
+		dispatch({ type: 'TOGGLE_IS_LOADING_AUTH_USER' });
+	}
+};
 
 export const loginUser = (data) => (dispatch) => {
 	try {
@@ -54,7 +69,7 @@ export const loginUser = (data) => (dispatch) => {
 				} else {
 					dispatch({
 						type: 'LOGIN_ERROR',
-						payload: reply.data.error,
+						payload: 'Something went wrong',
 					});
 				}
 			})
