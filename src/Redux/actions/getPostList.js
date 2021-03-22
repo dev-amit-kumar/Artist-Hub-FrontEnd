@@ -22,7 +22,7 @@ export const getPostList = (post_url, page_no) => async (dispatch) => {
 				} else {
 					dispatch({
 						type: 'GET_POST_LIST_ERROR',
-						payload: reply.data,
+						payload: reply.data.message,
 					});
 				}
 			})

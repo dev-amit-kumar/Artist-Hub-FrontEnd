@@ -1,9 +1,38 @@
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import { likePost } from '../../redux/actions/like';
 
 const PostCard = (props) => {
-	console.log(props);
+	const [likes, setLikes] = useState('');
+	const [errorMsg, setErrorMsg] = useState('');
+	const [isLiked, setIsLiked] = useState(props.data.isLiked.length !== 0);
+	const likeHandler = () => {
+		likePost(props.data.postId, async (reply) => {
+			if (reply) {
+				await setLikes(reply.count);
+				setIsLiked(!isLiked);
+			} else {
+				setErrorMsg('Something went wrong');
+			}
+		});
+	};
+	const commentHandler = () => {};
+	const ratingHandler = () => {
+		console.log('rating hit');
+	};
+	const renderLike = () => {
+		if (likes) {
+			return <span>{likes}</span>;
+		} else if (props.data.likes.length) {
+			return <span>{props.data.likes[0].likesCount}</span>;
+		} else {
+			return <span>0</span>;
+		}
+	};
 	return (
-		<div className="card">
+		<div className="card post_card mt-3">
 			<div className="card-header">
 				<Link to={`/artist/${props.data.userId}`}>
 					{props.data.userData[0].profilePic ? (
@@ -12,6 +41,7 @@ const PostCard = (props) => {
 							width="30"
 							height="30"
 							style={{ borderRadius: '50%', borderColor: '#000' }}
+							alt="Userpic"
 						/>
 					) : (
 						<i className="far fa-user-circle"></i>
@@ -24,17 +54,53 @@ const PostCard = (props) => {
 				<span className="ms-1">{props.data.location}</span>
 				<i className="float-end fas fa-ellipsis-v"></i>
 			</div>
-			<div>
-				<img
-					src={props.data.all_files.files[0]}
-					style={{ height: '400px', maxWidth: '100%' }}
-				/>
+			<div className="postImages">
+				<Carousel showThumbs={false}>
+					{props.data.all_files.files.map((img, idx) => {
+						return (
+							<img
+								key={`${props.data.postId}${idx}`}
+								src={img}
+								style={{
+									height: '400px',
+									width: '100%',
+								}}
+								alt="postImage"
+							/>
+						);
+					})}
+				</Carousel>
 			</div>
-			<div className="card-footer">
-				<i className="far fa-heart"></i>
-				<i className="far fa-comment"></i>
-				<i className="fas fa-star"></i>
+			<div className="card-footer d-flex justify-content-around">
+				<span onClick={likeHandler}>
+					{isLiked ? (
+						<i className="fas fa-heart"></i>
+					) : (
+						<i className="far fa-heart"></i>
+					)}
+					&nbsp;&nbsp;
+					{renderLike()}
+				</span>
+				<span onClick={commentHandler}>
+					<i className="far fa-comment"></i>
+					&nbsp;&nbsp;
+					{props.data.comments.length ? (
+						<span>{props.data.comments[0].commentsCount}</span>
+					) : (
+						<span>0</span>
+					)}
+				</span>
+				<span onClick={ratingHandler}>
+					<i className="fas fa-star"></i>
+					&nbsp;&nbsp;
+					{props.data.ratings.length ? (
+						<span>{props.data.ratings[0].avgRating}</span>
+					) : (
+						<span>0</span>
+					)}
+				</span>
 			</div>
+			{errorMsg && <p>{errorMsg}</p>}
 			<h1>{props.name}</h1>
 		</div>
 	);

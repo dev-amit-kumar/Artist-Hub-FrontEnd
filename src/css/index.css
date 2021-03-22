@@ -8,4 +8,22 @@ body {
 .main-container {
 	overflow-y: scroll !important;
 	height: 93vh;
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+.main-container::-webkit-scrollbar {
+	display: none;
+}
+
+.postImages {
+}
+
+.post_card button {
+	outline: none;
+	border: none;
+}
+.post_card button:hover {
+	outline: none;
+	border: none;
 }
