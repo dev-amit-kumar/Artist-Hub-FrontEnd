@@ -2,26 +2,51 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import { likePost } from '../../redux/actions/like';
+import { likePost, getComment, getRatings } from '../../redux/actions';
+import CommentCard from './CommentCard';
 
 const PostCard = (props) => {
 	const [likes, setLikes] = useState('');
+	const [commentList, setCommentList] = useState([]);
+	const [showComment, setShowComment] = useState(false);
+	const [showRating, setShowRating] = useState(false);
+	const [ratingList, setRatingList] = useState([]);
 	const [errorMsg, setErrorMsg] = useState('');
 	const [isLiked, setIsLiked] = useState(props.data.isLiked.length !== 0);
+
 	const likeHandler = () => {
-		likePost(props.data.postId, async (reply) => {
+		likePost(props.data.postId, (reply) => {
 			if (reply) {
-				await setLikes(reply.count);
+				setLikes(reply.count);
 				setIsLiked(!isLiked);
 			} else {
 				setErrorMsg('Something went wrong');
 			}
 		});
 	};
-	const commentHandler = () => {};
-	const ratingHandler = () => {
-		console.log('rating hit');
+
+	const commentHandler = () => {
+		setShowComment(!showComment);
+		getComment(props.data.postId, (reply) => {
+			if (reply) {
+				setCommentList(reply.data);
+			} else {
+				setErrorMsg('Something went wrong');
+			}
+		});
 	};
+
+	const ratingHandler = () => {
+		getRatings(props.data.postId, (reply) => {
+			if (reply) {
+				console.log(reply.data);
+				setRatingList(reply.data);
+			} else {
+				setErrorMsg('Something went wrong');
+			}
+		});
+	};
+
 	const renderLike = () => {
 		if (likes) {
 			return <span>{likes}</span>;
@@ -31,6 +56,7 @@ const PostCard = (props) => {
 			return <span>0</span>;
 		}
 	};
+
 	return (
 		<div className="card post_card mt-3">
 			<div className="card-header">
@@ -71,35 +97,45 @@ const PostCard = (props) => {
 					})}
 				</Carousel>
 			</div>
-			<div className="card-footer d-flex justify-content-around">
-				<span onClick={likeHandler}>
-					{isLiked ? (
-						<i className="fas fa-heart"></i>
-					) : (
-						<i className="far fa-heart"></i>
-					)}
-					&nbsp;&nbsp;
-					{renderLike()}
-				</span>
-				<span onClick={commentHandler}>
-					<i className="far fa-comment"></i>
-					&nbsp;&nbsp;
-					{props.data.comments.length ? (
-						<span>{props.data.comments[0].commentsCount}</span>
-					) : (
-						<span>0</span>
-					)}
-				</span>
-				<span onClick={ratingHandler}>
-					<i className="fas fa-star"></i>
-					&nbsp;&nbsp;
-					{props.data.ratings.length ? (
-						<span>{props.data.ratings[0].avgRating}</span>
-					) : (
-						<span>0</span>
-					)}
-				</span>
+			<div className="card-footer">
+				<div className="container-fluid d-flex justify-content-around">
+					<span onClick={likeHandler}>
+						{isLiked ? (
+							<i className="fas fa-heart"></i>
+						) : (
+							<i className="far fa-heart"></i>
+						)}
+						&nbsp;&nbsp;
+						{renderLike()}
+					</span>
+					<span onClick={commentHandler}>
+						<i className="far fa-comment"></i>
+						&nbsp;&nbsp;
+						{props.data.comments.length ? (
+							<span>{props.data.comments[0].commentsCount}</span>
+						) : (
+							<span>0</span>
+						)}
+					</span>
+					<span onClick={ratingHandler}>
+						<i className="fas fa-star"></i>
+						&nbsp;&nbsp;
+						{props.data.ratings.length ? (
+							<span>{props.data.ratings[0].avgRating}</span>
+						) : (
+							<span>0</span>
+						)}
+					</span>
+				</div>
 			</div>
+			{showComment && (
+				<CommentCard
+					list={commentList}
+					postId={props.data.postId}
+					postUrl={props.postUrl}
+					pageNo={props.pageNo}
+				/>
+			)}
 			{errorMsg && <p>{errorMsg}</p>}
 			<h1>{props.name}</h1>
 		</div>

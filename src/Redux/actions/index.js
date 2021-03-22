@@ -2,3 +2,4 @@
 
 export * from './userAuth';
 export * from './getPostList';
+export * from './postAction';
