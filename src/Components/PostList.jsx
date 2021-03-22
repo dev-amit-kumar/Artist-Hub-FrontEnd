@@ -4,13 +4,19 @@ import { getPostList } from '../redux/actions';
 import Loading from './common/Loading';
 import PostCard from './common/PostCard';
 
-const post_url = 'explore/getAllPost';
 const page_no = 1;
 
-const Home = ({ getPostList, postList, postListError, isLoadingPostList }) => {
+const Home = ({
+	postUrl,
+	getPostList,
+	postList,
+	postListError,
+	isLoadingPostList,
+}) => {
 	useEffect(() => {
-		getPostList(post_url, page_no);
-	}, [getPostList]);
+		getPostList(postUrl, page_no);
+	}, [getPostList, postUrl]);
+
 	if (postList) {
 		return (
 			<div>
@@ -19,7 +25,7 @@ const Home = ({ getPostList, postList, postListError, isLoadingPostList }) => {
 						<PostCard
 							key={idx}
 							data={post}
-							postUrl={post_url}
+							postUrl={postUrl}
 							pageNo={page_no}
 						/>
 					);

@@ -1,23 +1,35 @@
 import React, { useState } from 'react';
+import ReactStars from 'react-rating-stars-component';
 import { connect } from 'react-redux';
-import { getPostList, addNewComment } from '../../redux/actions';
+import { getPostList, addNewRating } from '../../redux/actions';
 
-const RatingCard = ({ list, postId, getPostList, postUrl, pageNo }) => {
-	const [newComment, setComment] = useState('');
+const RatingCard = ({
+	list,
+	postId,
+	getPostList,
+	postUrl,
+	pageNo,
+	isRated,
+}) => {
+	const [newRating, setRating] = useState('');
 	const [errorMsg, setErrorMsg] = useState('');
 	const [newList, setnewList] = useState([]);
 
 	const addCommentHandler = (e) => {
 		e.preventDefault();
-		addNewComment(postId, newComment, (reply) => {
+		addNewRating(postId, newRating, (reply, err) => {
 			if (reply) {
 				setnewList([reply, ...list]);
-				setComment('');
+				setRating('');
 				getPostList(postUrl, pageNo);
 			} else {
-				setErrorMsg('Something went wrong');
+				setErrorMsg(err);
 			}
 		});
+	};
+
+	const setRate = (value) => {
+		setRating(value);
 	};
 
 	const renderComment = () => {
@@ -25,7 +37,7 @@ const RatingCard = ({ list, postId, getPostList, postUrl, pageNo }) => {
 			return newList.map((data) => {
 				return (
 					<div className="card" key={data._id}>
-						{data.comment}
+						{data.rating}
 					</div>
 				);
 			});
@@ -33,7 +45,14 @@ const RatingCard = ({ list, postId, getPostList, postUrl, pageNo }) => {
 			return list.map((data) => {
 				return (
 					<div className="card" key={data._id}>
-						{data.comment}
+						<ReactStars
+							count={5}
+							value={data.rating}
+							// onChange={ratingChanged}
+							isHalf={true}
+							size={24}
+							activeColor="#ffd700"
+						/>
 					</div>
 				);
 			});
@@ -42,26 +61,26 @@ const RatingCard = ({ list, postId, getPostList, postUrl, pageNo }) => {
 
 	return (
 		<div className="commentSection card-footer p-2">
-			<form onSubmit={addCommentHandler}>
-				<div className="input-group mb-2">
-					<input
-						type="text"
-						placeholder="Enter the comment"
-						className="form-control"
-						aria-label="Recipient's username"
-						aria-describedby="button-addon2"
-						value={newComment}
-						onChange={(e) => setComment(e.target.value)}
-					/>
-					<button
-						className="btn btn-primary"
-						type="submit"
-						id="button-addon2"
-					>
-						Add
-					</button>
-				</div>
-			</form>
+			{isRated && (
+				<form onSubmit={addCommentHandler}>
+					<div className="input-group mb-2">
+						<ReactStars
+							count={5}
+							onChange={setRate}
+							isHalf={true}
+							size={24}
+							activeColor="#ffd700"
+						/>
+						<button
+							className="btn btn-primary"
+							type="submit"
+							id="button-addon2"
+						>
+							Add
+						</button>
+					</div>
+				</form>
+			)}
 			{errorMsg && <p>{errorMsg}</p>}
 			<div style={{ maxHeight: '100px', overflowY: 'scroll' }}>
 				{renderComment()}
@@ -70,4 +89,4 @@ const RatingCard = ({ list, postId, getPostList, postUrl, pageNo }) => {
 	);
 };
 
-export default connect('', { getPostList })(CommentCard);
+export default connect('', { getPostList })(RatingCard);

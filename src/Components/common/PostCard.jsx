@@ -4,6 +4,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import { likePost, getComment, getRatings } from '../../redux/actions';
 import CommentCard from './CommentCard';
+import RatingCard from './RatingCard';
 
 const PostCard = (props) => {
 	const [likes, setLikes] = useState('');
@@ -27,6 +28,7 @@ const PostCard = (props) => {
 
 	const commentHandler = () => {
 		setShowComment(!showComment);
+		setShowRating(false);
 		getComment(props.data.postId, (reply) => {
 			if (reply) {
 				setCommentList(reply.data);
@@ -37,9 +39,10 @@ const PostCard = (props) => {
 	};
 
 	const ratingHandler = () => {
+		setShowComment(false);
+		setShowRating(!showRating);
 		getRatings(props.data.postId, (reply) => {
 			if (reply) {
-				console.log(reply.data);
 				setRatingList(reply.data);
 			} else {
 				setErrorMsg('Something went wrong');
@@ -60,7 +63,7 @@ const PostCard = (props) => {
 	return (
 		<div className="card post_card mt-3">
 			<div className="card-header">
-				<Link to={`/artist/${props.data.userId}`}>
+				<Link to={`/artist/${props.data.userId}`} className="link-dark">
 					{props.data.userData[0].profilePic ? (
 						<img
 							src={props.data.userData[0].profilePic}
@@ -72,13 +75,27 @@ const PostCard = (props) => {
 					) : (
 						<i className="far fa-user-circle"></i>
 					)}
-					<span className="me-2">{props.data.userData[0].name}</span>
+					<span className="me-2 ms-2">
+						{props.data.userData[0].name}
+					</span>
 				</Link>
-				<i className="fas fa-bullseye"></i>
-				<span className="ms-1 me-1">{props.data.occassion}</span>
-				<i className="fas fa-map-marker-alt"></i>
-				<span className="ms-1">{props.data.location}</span>
-				<i className="float-end fas fa-ellipsis-v"></i>
+				<span className="float-end">
+					<span>
+						<i className="fas fa-camera"></i>
+						<span className="ms-1 me-2 text-capitalize">
+							{props.data.occassion}
+						</span>
+					</span>
+					<span>
+						<i className="fas fa-map-marker-alt"></i>
+						<span className="ms-1 me-4 text-capitalize">
+							{props.data.location}
+						</span>
+					</span>
+					<span>
+						<i className="fas fa-ellipsis-v"></i>
+					</span>
+				</span>
 			</div>
 			<div className="postImages">
 				<Carousel showThumbs={false}>
@@ -134,6 +151,15 @@ const PostCard = (props) => {
 					postId={props.data.postId}
 					postUrl={props.postUrl}
 					pageNo={props.pageNo}
+				/>
+			)}
+			{showRating && (
+				<RatingCard
+					list={ratingList}
+					postId={props.data.postId}
+					postUrl={props.postUrl}
+					pageNo={props.pageNo}
+					isRated={props.data.isRated.length === 0}
 				/>
 			)}
 			{errorMsg && <p>{errorMsg}</p>}
