@@ -1,6 +1,5 @@
 import { base_url } from '../config';
 import axios from 'axios';
-
 const configHeader = {
 	headers: {
 		'Content-Type': 'application/json',
@@ -8,6 +7,7 @@ const configHeader = {
 	},
 };
 
+console.log(base_url);
 export const getPostList = (post_url, page_no) => async (dispatch) => {
 	try {
 		dispatch({ type: 'TOGGLE_IS_LOADING_POST_LIST' });
