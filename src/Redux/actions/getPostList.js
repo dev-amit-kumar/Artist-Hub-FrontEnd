@@ -1,5 +1,6 @@
 import { base_url } from '../config';
 import axios from 'axios';
+
 const configHeader = {
 	headers: {
 		'Content-Type': 'application/json',
@@ -11,6 +12,7 @@ export const getPostList = (post_url, page_no) => async (dispatch) => {
 	try {
 		dispatch({ type: 'TOGGLE_IS_LOADING_POST_LIST' });
 		dispatch({ type: 'GET_POST_LIST_ERROR', payload: null });
+		dispatch({ type: 'GET_POST_LIST', payload: null });
 		await axios
 			.get(`${base_url}/${post_url}?page_no=${page_no}`, configHeader)
 			.then((reply) => {

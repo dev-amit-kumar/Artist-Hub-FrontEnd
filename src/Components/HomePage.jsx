@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import PostList from './PostList';
+import PostList from './postComponent/PostList';
 
 const HomePage = () => {
 	const [HomeType, setHomeType] = useState('getPostForYou');

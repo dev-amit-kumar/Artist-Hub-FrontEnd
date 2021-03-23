@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import HomePage from './HomePage';
-import PageNotFound from './common/PageNotFound';
 import Header from './common/Header';
 import Footer from './common/Footer';
-import Login from './auth/Login';
-import Register from './auth/Register';
 import SideNav from './common/SideNav';
 import RightSide from './common/RightSide';
+import PageNotFound from './common/PageNotFound';
+import Login from './auth/Login';
+import Register from './auth/Register';
+import HomePage from './HomePage';
 import ExplorePage from './ExplorePage';
 import '../css/index.css';
 
