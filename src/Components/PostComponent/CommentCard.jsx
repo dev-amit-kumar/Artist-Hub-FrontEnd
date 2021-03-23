@@ -1,43 +1,46 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { getPostList, addNewComment } from '../../Redux/Actions';
+import React, { useEffect, useState } from 'react';
+import { addNewComment, getComment } from '../../Redux/Actions';
 
-const CommentCard = ({ list, postId, getPostList, postUrl, pageNo }) => {
+const CommentCard = ({ postId }) => {
 	const [newComment, setComment] = useState('');
+	const [commentList, setCommentList] = useState([]);
 	const [errorMsg, setErrorMsg] = useState('');
-	const [newList, setnewList] = useState([]);
-
 	const addCommentHandler = (e) => {
 		e.preventDefault();
 		addNewComment(postId, newComment, (reply) => {
 			if (reply) {
-				setnewList([reply, ...list]);
 				setComment('');
-				getPostList(postUrl, pageNo);
+				getComment(postId, (reply) => {
+					if (reply) {
+						setCommentList(reply.data);
+					} else {
+						setErrorMsg('Something went wrong');
+					}
+				});
 			} else {
 				setErrorMsg('Something went wrong');
 			}
 		});
 	};
 
+	useEffect(() => {
+		getComment(postId, (reply) => {
+			if (reply) {
+				setCommentList(reply.data);
+			} else {
+				setErrorMsg('Something went wrong');
+			}
+		});
+	}, [postId]);
+
 	const renderComment = () => {
-		if (newList.length !== 0) {
-			return newList.map((data) => {
-				return (
-					<div className="card" key={data._id}>
-						{data.comment}
-					</div>
-				);
-			});
-		} else {
-			return list.map((data) => {
-				return (
-					<div className="card" key={data._id}>
-						{data.comment}
-					</div>
-				);
-			});
-		}
+		return commentList.map((data) => {
+			return (
+				<div className="card" key={data._id}>
+					{data.comment}
+				</div>
+			);
+		});
 	};
 
 	return (
@@ -70,4 +73,4 @@ const CommentCard = ({ list, postId, getPostList, postUrl, pageNo }) => {
 	);
 };
 
-export default connect('', { getPostList })(CommentCard);
+export default CommentCard;
