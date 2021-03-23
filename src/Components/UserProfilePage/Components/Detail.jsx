@@ -4,61 +4,35 @@ import { base_url, configHeader } from "../../../Redux/config";
 
 const Detail = (props) => {
   const [name, setName] = useState(props.Name);
-  const [occassion, setOccassion] = useState(
-    props.Occassion ? props.Occassion[0] : ""
-  );
-  const [occassion2, setOccassion2] = useState(
-    props.Occassion ? props.Occassion[1] : ""
-  );
-  const [occassion3, setOccassion3] = useState(
-    props.Occassion ? props.Occassion[2] : ""
-  );
-  const [shortDesc, setshortDesc] = useState(props.Desc);
   const [message, setMessage] = useState("");
+  const [shortDesc, setshortDesc] = useState(props.Desc);
   const saveData = () => {
-    var Occassion = [];
-    Occassion.push(occassion);
-    Occassion.push(occassion2);
-    Occassion.push(occassion3);
-
     const data = {
       name: name,
-      occassion: Occassion,
       shortDesc: shortDesc,
     };
-    console.log(data, "data");
     axios
       .post(`${base_url}/artist/editDetails`, data, configHeader)
       .then((res) => setMessage(res))
       .catch((err) => console.log(err));
   };
-  const renderOccassion = (data) => {
-    if (data) {
-      data.map((val, idx) => {
-        return <p key={idx}>{val}</p>;
-      });
-    }
-  };
-  console.log(props.followingDetail, "detailS");
+
   return (
-    <div className="container d-flex flex-row align-items-center justify-content-around">
-      <div className="d-flex flex-column">
-        <h1 className="text-muted">{props.Name}</h1>
-        <p>{renderOccassion(props.Occassion)}</p>
-        <h6 className="text-center">{props.Desc}</h6>
-      </div>
+    <div className=" ms-5 d-flex  flex-column align-items-center">
       <div className="d-flex flex-row">
-        <h5>{props.followerCount}</h5>
-        <h5
-          className="text-muted"
+        <h3 className="text-muted ">{props.Name}</h3>
+        <button
           type="button"
           data-bs-toggle="modal"
-          data-bs-target="#ModalBoxFollow"
+          data-bs-target="#ModalBoxDetail"
+          className="btn btn-light ms-5"
         >
-          follower
-        </h5>
+          Edit Profile
+        </button>
       </div>
-      <div className="d-flex flex-row">
+
+      <div className="d-flex flex-row align-items-center">
+        <h5 className="me-4">Quotation</h5>
         <h5>{props.followingCount}</h5>
         <h5
           className="text-muted"
@@ -68,15 +42,9 @@ const Detail = (props) => {
         >
           following
         </h5>
+        <h6 className="text-center ms-5">{props.Desc}</h6>
       </div>
-      <button
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#ModalBoxDetail"
-        className="btn btn-danger"
-      >
-        Edit
-      </button>
+
       <div
         className="modal fade"
         id="ModalBoxDetail"
@@ -107,48 +75,7 @@ const Detail = (props) => {
                 placeholder="name"
                 className="form-control mb-2"
               />
-              <div class="form-check form-check-inline">
-                <input
-                  onChange={(e) => {
-                    setOccassion2(e.target.value);
-                  }}
-                  class="form-check-input"
-                  type="checkbox"
-                  id="inlineCheckbox1"
-                  value="Birthday"
-                />
-                <label class="form-check-label" for="inlineCheckbox1">
-                  Birthday
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input
-                  onChange={(e) => {
-                    setOccassion3(e.target.value);
-                  }}
-                  class="form-check-input"
-                  type="checkbox"
-                  id="inlineCheckbox2"
-                  value="Wedding"
-                />
-                <label class="form-check-label" for="inlineCheckbox2">
-                  Wedding
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input
-                  onChange={(e) => {
-                    setOccassion(e.target.value);
-                  }}
-                  class="form-check-input"
-                  type="checkbox"
-                  id="inlineCheckbox3"
-                  value="Outing"
-                />
-                <label class="form-check-label" for="inlineCheckbox3">
-                  Outing
-                </label>
-              </div>
+
               <input
                 onChange={(e) => {
                   setshortDesc(e.target.value);
@@ -199,9 +126,11 @@ const Detail = (props) => {
               ></button>
             </div>
             <div className="modal-body">
-              {props.followerDetail.map((val, idx) => {
-                return <p key={idx}>{val.userId1}</p>;
-              })}
+              {props.followingDetail
+                ? props.followingDetail.map((val, idx) => {
+                    return <p key={idx}>{val.userId1}</p>;
+                  })
+                : ""}
             </div>
           </div>
         </div>

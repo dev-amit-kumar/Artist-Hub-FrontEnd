@@ -7,14 +7,12 @@ import Details from "./Components/Details";
 import Gallery from "./Components/Gallery";
 
 const ArtistPage = (props) => {
-  const id = "60517164a8742800157e84dd";
+  const id = props.match.params.id;
   useEffect(() => {
     props.fetchArtist(id);
   }, []);
   if (props.ArtistDetail) {
-    console.log(props.ArtistDetail);
     if (props.ArtistDetail.data) {
-      console.log(props.ArtistDetail.data.followerCount, "count");
       return (
         <div className="d-flex flex-column">
           <CoverPic
@@ -36,11 +34,8 @@ const ArtistPage = (props) => {
               followingCount={props.followingCount.count}
             />
           </div>
-          <Gallery
-            All={props.AllPost.data}
-            Pinned={props.PinnedPost.data}
-            MostRated={props.MostRatedPost.data}
-          />
+          <hr />
+          <Gallery Id={props.match.params.id} />
         </div>
       );
     } else {
@@ -55,15 +50,11 @@ const ArtistPage = (props) => {
 const mapStateToProps = (state) => {
   return {
     ArtistDetail: state.ArtistReducer.ArtistDetail,
-    AllPost: state.ArtistReducer.AllPost,
-    PinnedPost: state.ArtistReducer.PinnedPost,
-    MostRatedPost: state.ArtistReducer.MostRatedPost,
     isLoadingArtistDetail: state.ArtistReducer.isLoadingArtistDetail,
     followingDetail: state.ArtistReducer.followingDetail,
     followerDetail: state.ArtistReducer.followerDetail,
     followingCount: state.ArtistReducer.followingCount,
     followerCount: state.ArtistReducer.followerCount,
-    isLoadingFollow: state.ArtistReducer.isLoadingFollow,
   };
 };
 export default connect(mapStateToProps, { fetchArtist })(ArtistPage);

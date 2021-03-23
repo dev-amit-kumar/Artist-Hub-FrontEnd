@@ -1,22 +1,17 @@
 import axios from "axios";
 import { useState } from "react";
-import { base_url } from "../../../Redux/config";
+import { base_url, configHeader } from "../../../Redux/config";
 const Dp = (props) => {
   const [image, setImage] = useState("");
+  const [message, setMessage] = useState("");
+
   const deleteImage = () => {
-    const configHeader = {
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTE3MTY0YTg3NDI4MDAxNTdlODRkZCIsImlhdCI6MTYxNjQzMjI5OCwiZXhwIjoxNjE2NTE4Njk4fQ.TRS66ShvnOsYsoNJTjc5oat3M5WPu4Du2TGknjcs70s",
-      },
-    };
     const data = {
       imageId: props.DpId,
     };
     axios
       .post(`${base_url}/artist/editPic/profilePic`, data, configHeader)
-      .then((res) => console.log(res))
+      .then((res) => setMessage(res))
       .catch((err) => console.log(err));
   };
   const saveImage = () => {
@@ -27,8 +22,7 @@ const Dp = (props) => {
     }
     const header = {
       headers: {
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTE3MTY0YTg3NDI4MDAxNTdlODRkZCIsImlhdCI6MTYxNjQzMjI5OCwiZXhwIjoxNjE2NTE4Njk4fQ.TRS66ShvnOsYsoNJTjc5oat3M5WPu4Du2TGknjcs70s",
+        "auth-token": localStorage.getItem("auth-token"),
         accept: "application/json",
         "Accept-Language": "en-US,en;q=0.8",
         "Content-Type": `multipart/form-data; boundary=${data._boundary}`,
@@ -36,7 +30,7 @@ const Dp = (props) => {
     };
     axios
       .post(`${base_url}/artist/editPic/profilePic`, data, header)
-      .then((res) => console.log(res))
+      .then((res) => setMessage(res))
       .catch((err) => console.log(err));
   };
   const renderDp = (Data) => {

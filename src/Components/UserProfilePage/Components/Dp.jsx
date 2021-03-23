@@ -1,23 +1,24 @@
 import axios from "axios";
 import { useState } from "react";
 import { base_url, configHeader } from "../../../Redux/config";
-const CoverPic = (props) => {
+const Dp = (props) => {
   const [image, setImage] = useState("");
   const [message, setMessage] = useState("");
+
   const deleteImage = () => {
     const data = {
-      imageId: props.coverId,
+      imageId: props.DpId,
     };
     axios
-      .post(`${base_url}/artist/editPic/coverPic`, data, configHeader)
+      .post(`${base_url}/artist/editPic/profilePic`, data, configHeader)
       .then((res) => setMessage(res))
       .catch((err) => console.log(err));
   };
   const saveImage = () => {
     const data = new FormData();
     data.append("imageFile", image);
-    if (props.CoverPic) {
-      data.append("imageId", props.coverId);
+    if (props.Dp) {
+      data.append("imageId", props.DpId);
     }
     const header = {
       headers: {
@@ -28,47 +29,39 @@ const CoverPic = (props) => {
       },
     };
     axios
-      .post(`${base_url}/artist/editPic/coverPic`, data, header)
+      .post(`${base_url}/artist/editPic/profilePic`, data, header)
       .then((res) => setMessage(res))
       .catch((err) => console.log(err));
   };
-  const renderCoverImage = (Data) => {
+  const renderDp = (Data) => {
     if (Data) {
       return (
-        <div style={{ position: "relative" }}>
+        <div>
           <img
-            className="col-12"
-            style={{ height: "35vh" }}
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#ModalBoxDp"
+            style={{
+              width: 150,
+              height: 150,
+              borderRadius: 150 / 2,
+            }}
             src={Data}
             alt="from database"
           />
-          <i
-            class="far fa-edit"
-            type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#ModalBox"
-            style={{ position: "absolute", top: "5%", right: "1%" }}
-          ></i>
         </div>
       );
     } else {
       return (
-        <div style={{ position: "relative" }}>
+        <div className="col-2">
           <img
-            className="col-12"
-            style={{ height: "35vh" }}
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgwp9FY8k5IX_xtP-68zsEk3zWtWBA6izlQ&usqp=CAU"
-            alt="lorem ipsum"
-          />
-          <button
             type="button"
             data-bs-toggle="modal"
-            data-bs-target="#ModalBox"
-            style={{ position: "absolute", top: "5%", right: "1%" }}
-            className="btn btn-danger"
-          >
-            <i class="fas fa-plus"></i>
-          </button>
+            data-bs-target="#ModalBoxDp"
+            style={{ width: 150, height: 150, borderRadius: 150 / 2 }}
+            src="https://thumbs.dreamstime.com/b/faceless-businessman-avatar-man-suit-blue-tie-human-profile-userpic-face-features-web-picture-gentlemen-85824471.jpg"
+            alt="lorem ipsum"
+          />
         </div>
       );
     }
@@ -76,10 +69,10 @@ const CoverPic = (props) => {
 
   return (
     <div>
-      {renderCoverImage(props.CoverPic)}
+      {renderDp(props.Dp)}
       <div
         class="modal fade"
-        id="ModalBox"
+        id="ModalBoxDp"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -88,7 +81,7 @@ const CoverPic = (props) => {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
-                Edit CoverPic
+                Edit Dp
               </h5>
               <button
                 type="button"
@@ -97,27 +90,16 @@ const CoverPic = (props) => {
                 aria-label="Close"
               ></button>
             </div>
-            <div style={{ position: "relative" }} class="modal-body">
-              {props.CoverPic && (
-                <img
-                  style={{ height: "20vh", width: "30vw" }}
-                  src={props.CoverPic}
-                  alt="modal cover"
-                />
-              )}
-              {props.CoverPic && (
-                <button
-                  className="btn btn-danger"
-                  onClick={deleteImage}
-                  style={{
-                    position: "absolute",
-                    top: "10%",
-                    right: "5%",
-                  }}
-                >
-                  <i class="fas fa-trash"></i>
-                </button>
-              )}
+            <div class="modal-body">
+              <div className="d-flex justify-content-center">
+                {props.Dp && (
+                  <img
+                    style={{ width: 150, height: 150, borderRadius: 150 / 2 }}
+                    src={props.Dp}
+                    alt="from database"
+                  />
+                )}
+              </div>
               <form encType="multipart/form-data">
                 <input
                   className="form-control"
@@ -125,11 +107,16 @@ const CoverPic = (props) => {
                     setImage(e.target.files[0]);
                   }}
                   type="file"
-                  name="CoverImage"
+                  name="Image"
                 />
               </form>
             </div>
             <div class="modal-footer">
+              {props.Dp && (
+                <button className="btn btn-danger" onClick={deleteImage}>
+                  <i class="fas fa-trash"></i>
+                </button>
+              )}
               <button
                 type="button"
                 class="btn btn-secondary"
@@ -147,4 +134,4 @@ const CoverPic = (props) => {
     </div>
   );
 };
-export default CoverPic;
+export default Dp;

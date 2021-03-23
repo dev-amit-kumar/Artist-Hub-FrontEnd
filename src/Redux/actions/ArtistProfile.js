@@ -1,12 +1,5 @@
-import { base_url } from "../config";
+import { base_url, configHeader } from "../config";
 import axios from "axios";
-const configHeader = {
-  headers: {
-    "Content-Type": "application/json",
-    "auth-token":
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTE3MTY0YTg3NDI4MDAxNTdlODRkZCIsImlhdCI6MTYxNjQzMjI5OCwiZXhwIjoxNjE2NTE4Njk4fQ.TRS66ShvnOsYsoNJTjc5oat3M5WPu4Du2TGknjcs70s",
-  },
-};
 
 export const fetchArtist = (id) => async (dispatch) => {
   try {
@@ -14,9 +7,6 @@ export const fetchArtist = (id) => async (dispatch) => {
       type: "GET_ARTIST_DETAIL",
       payload: {
         ArtistDetail: null,
-        AllPost: null,
-        PinnedPost: null,
-        mostRatedPost: null,
         followingDetail: null,
         followerDetail: null,
         followingCount: null,
@@ -27,18 +17,6 @@ export const fetchArtist = (id) => async (dispatch) => {
 
     const { data: ArtistDetail } = await axios.get(
       `${base_url}/artist/getDetails/${id}`,
-      configHeader
-    );
-    const { data: AllPost } = await axios.get(
-      `${base_url}/artist/getAllPostByUser/${id}`,
-      configHeader
-    );
-    const { data: PinnedPost } = await axios.get(
-      `${base_url}/artist/getPinnedPostByUser/${id}`,
-      configHeader
-    );
-    const { data: mostRatedPost } = await axios.get(
-      `${base_url}/artist/getMostRatedPostByUserId/${id}`,
       configHeader
     );
     const { data: follower } = await axios.get(
@@ -61,9 +39,6 @@ export const fetchArtist = (id) => async (dispatch) => {
       type: "GET_ARTIST_DETAIL",
       payload: {
         ArtistDetail: ArtistDetail,
-        AllPost: AllPost,
-        PinnedPost: PinnedPost,
-        MostRatedPost: mostRatedPost,
         followingDetail: followingDetail,
         followerDetail: follower,
         followingCount: followingCount,
@@ -73,6 +48,33 @@ export const fetchArtist = (id) => async (dispatch) => {
   } catch (error) {
     console.log(error);
   } finally {
-    dispatch({ type: "TOGGLE_IS_LOADING_FOLLOW" });
+    dispatch({ type: "TOGGLE_IS_LOADING_ARTIST_PAGE" });
+  }
+};
+
+export const fetchPost = (id, page) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "GET_POST_DETAIL",
+      payload: {
+        Post: null,
+      },
+    });
+    dispatch({ type: "TOGGLE_IS_LOADING_POST_PAGE" });
+
+    const { data } = await axios.get(
+      `${base_url}/artist/${page}/${id}`,
+      configHeader
+    );
+    dispatch({
+      type: "GET_POST_DETAIL",
+      payload: {
+        Post: data,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  } finally {
+    dispatch({ type: "TOGGLE_IS_LOADING_POST_PAGE" });
   }
 };
