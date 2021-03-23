@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from './redux/store';
-import Routing from './components/Routing';
+import store from './Redux/Store';
+import Routing from './Components/Routing';
 import './css/index.css';
 
 ReactDOM.render(
