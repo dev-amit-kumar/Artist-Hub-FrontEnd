@@ -18,6 +18,7 @@ const Gallery = (props) => {
               onClick={renderPost}
               value="getAllPostByUser"
               className="nav-link active"
+              id="nav-home-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-All"
               type="button"
@@ -31,6 +32,7 @@ const Gallery = (props) => {
               onClick={renderPost}
               value="getPinnedPostByUser"
               className="nav-link"
+              id="nav-home-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-Pinned"
               type="button"
@@ -44,6 +46,7 @@ const Gallery = (props) => {
               onClick={renderPost}
               value="getMostRatedPostByUserId"
               class="nav-link"
+              id="nav-home-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-mostRated"
               type="button"
