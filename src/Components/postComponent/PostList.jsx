@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getPostList } from '../../redux/actions';
-import Loading from '../common/Loading';
+import { getPostList } from '../../Redux/Actions';
+import Loading from '../Common/Loading';
 import PostCard from './PostCard';
 
 const page_no = 1;

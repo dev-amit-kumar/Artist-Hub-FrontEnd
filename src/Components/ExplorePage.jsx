@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import PostList from './postComponent/PostList';
+import PostList from './PostComponent/PostList';
 
 const ExplorePage = () => {
 	const [ExploreType, setExploreType] = useState('getAllPost');

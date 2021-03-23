@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { getPostList, addNewComment } from '../../redux/actions';
+import { getPostList, addNewComment } from '../../Redux/Actions';
 
 const CommentCard = ({ list, postId, getPostList, postUrl, pageNo }) => {
 	const [newComment, setComment] = useState('');

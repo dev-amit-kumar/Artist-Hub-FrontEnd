@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { registerUser } from '../../redux/actions';
+import { registerUser } from '../../Redux/Actions';
 
 const Register = (props) => {
 	const [R_email, setREmail] = useState('');

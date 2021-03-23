@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactStars from 'react-rating-stars-component';
 import { connect } from 'react-redux';
-import { getPostList, addNewRating } from '../../redux/actions';
+import { getPostList, addNewRating } from '../../Redux/Actions';
 
 const RatingCard = ({
 	list,

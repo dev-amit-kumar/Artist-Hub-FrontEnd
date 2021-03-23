@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { loginUser } from '../../redux/actions';
+import { loginUser } from '../../Redux/Actions';
 import { Redirect } from 'react-router-dom';
 
 const Login = (props) => {

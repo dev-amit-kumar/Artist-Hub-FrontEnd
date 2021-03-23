@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import { likePost, getComment, getRatings } from '../../redux/actions';
+import { likePost, getComment, getRatings } from '../../Redux/Actions';
 import CommentCard from './CommentCard';
 import RatingCard from './RatingCard';
 
