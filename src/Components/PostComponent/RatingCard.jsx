@@ -39,7 +39,10 @@ const RatingCard = ({ postId, isRated }) => {
 	const renderComment = () => {
 		return ratingList.map((data) => {
 			return (
-				<div className="card" key={data._id}>
+				<div className="card d-flex flex-row" key={data._id}>
+					<p className="text-capitalize me-2 ms-2 mt-2 bg-primary text-white border border-primary border-1 rounded-pill pe-2 ps-2">
+						{data.userData[0].name}
+					</p>
 					<ReactStars
 						count={5}
 						value={data.rating}
