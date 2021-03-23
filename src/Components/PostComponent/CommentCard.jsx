@@ -5,6 +5,7 @@ const CommentCard = ({ postId }) => {
 	const [newComment, setComment] = useState('');
 	const [commentList, setCommentList] = useState([]);
 	const [errorMsg, setErrorMsg] = useState('');
+
 	const addCommentHandler = (e) => {
 		e.preventDefault();
 		addNewComment(postId, newComment, (reply) => {
@@ -37,7 +38,12 @@ const CommentCard = ({ postId }) => {
 		return commentList.map((data) => {
 			return (
 				<div className="card" key={data._id}>
-					{data.comment}
+					<span>
+						<span className="text-capitalize me-2 ms-2 bg-primary text-white border border-primary border-1 rounded-pill pe-2 ps-2">
+							{data.userData[0].name}
+						</span>
+						{data.comment}
+					</span>
 				</div>
 			);
 		});
