@@ -137,7 +137,16 @@ const PostCard = (props) => {
 				/>
 			)}
 			{errorMsg && <p>{errorMsg}</p>}
-			<h1>{props.name}</h1>
+			<div className="ps-4">
+				{props.data.caption}
+				<p>
+					{props.data.tags.map((data) => {
+						return (
+							<span className="text-primary">#{data}&nbsp;</span>
+						);
+					})}
+				</p>
+			</div>
 		</div>
 	);
 };

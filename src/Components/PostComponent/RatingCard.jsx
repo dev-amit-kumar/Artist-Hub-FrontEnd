@@ -49,6 +49,7 @@ const RatingCard = ({ postId, isRated }) => {
 						isHalf={true}
 						size={24}
 						activeColor="#ffd700"
+						edit={false}
 					/>
 				</div>
 			);
