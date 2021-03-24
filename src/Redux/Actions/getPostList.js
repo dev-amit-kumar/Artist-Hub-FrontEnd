@@ -7,7 +7,6 @@ const configHeader = {
 	},
 };
 
-console.log(base_url);
 export const getPostList = (post_url, page_no) => async (dispatch) => {
 	try {
 		dispatch({ type: 'TOGGLE_IS_LOADING_POST_LIST' });

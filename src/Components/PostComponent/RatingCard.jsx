@@ -1,72 +1,69 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactStars from 'react-rating-stars-component';
-import { connect } from 'react-redux';
-import { getPostList, addNewRating } from '../../Redux/Actions';
+import { addNewRating, getRatings } from '../../Redux/Actions';
 
-const RatingCard = ({
-	list,
-	postId,
-	getPostList,
-	postUrl,
-	pageNo,
-	isRated,
-}) => {
-	const [newRating, setRating] = useState('');
+const RatingCard = ({ postId, isRated }) => {
+	const [newRating, setRating] = useState(0);
+	const [ratingList, setRatingList] = useState([]);
 	const [errorMsg, setErrorMsg] = useState('');
-	const [newList, setnewList] = useState([]);
-
-	const addCommentHandler = (e) => {
+	const [ratingDone, setRatingDone] = useState(isRated);
+	const addRatingHandler = (e) => {
 		e.preventDefault();
 		addNewRating(postId, newRating, (reply, err) => {
 			if (reply) {
-				setnewList([reply, ...list]);
-				setRating('');
-				getPostList(postUrl, pageNo);
+				setRating(0);
+				getRatings(postId, (reply) => {
+					if (reply) {
+						setRatingList(reply.data);
+					} else {
+						setErrorMsg('Something went wrong');
+					}
+				});
+				setRatingDone(false);
 			} else {
 				setErrorMsg(err);
 			}
 		});
 	};
 
-	const setRate = (value) => {
-		setRating(value);
-	};
+	useEffect(() => {
+		getRatings(postId, (reply) => {
+			if (reply) {
+				setRatingList(reply.data);
+			} else {
+				setErrorMsg('Something went wrong');
+			}
+		});
+	}, [postId]);
 
 	const renderComment = () => {
-		if (newList.length !== 0) {
-			return newList.map((data) => {
-				return (
-					<div className="card" key={data._id}>
-						{data.rating}
-					</div>
-				);
-			});
-		} else {
-			return list.map((data) => {
-				return (
-					<div className="card" key={data._id}>
-						<ReactStars
-							count={5}
-							value={data.rating}
-							// onChange={ratingChanged}
-							isHalf={true}
-							size={24}
-							activeColor="#ffd700"
-						/>
-					</div>
-				);
-			});
-		}
+		return ratingList.map((data) => {
+			return (
+				<div className="card d-flex flex-row" key={data._id}>
+					<p className="text-capitalize me-2 ms-2 mt-2 bg-primary text-white border border-primary border-1 rounded-pill pe-2 ps-2">
+						{data.userData[0].name}
+					</p>
+					<ReactStars
+						count={5}
+						value={data.rating}
+						isHalf={true}
+						size={24}
+						activeColor="#ffd700"
+						edit={false}
+					/>
+				</div>
+			);
+		});
 	};
 
 	return (
 		<div className="commentSection card-footer p-2">
-			{isRated && (
-				<form onSubmit={addCommentHandler}>
+			{ratingDone && (
+				<form onSubmit={addRatingHandler}>
 					<div className="input-group mb-2">
 						<ReactStars
 							count={5}
-							onChange={setRate}
+							onChange={(value) => setRating(value)}
 							isHalf={true}
 							size={24}
 							activeColor="#ffd700"
@@ -89,4 +86,4 @@ const RatingCard = ({
 	);
 };
 
-export default connect('', { getPostList })(RatingCard);
+export default RatingCard;

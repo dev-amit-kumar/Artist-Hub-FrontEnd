@@ -2,16 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import { likePost, getComment, getRatings } from '../../Redux/Actions';
+import { likePost } from '../../Redux/Actions';
 import CommentCard from './CommentCard';
 import RatingCard from './RatingCard';
 
 const PostCard = (props) => {
 	const [likes, setLikes] = useState('');
-	const [commentList, setCommentList] = useState([]);
 	const [showComment, setShowComment] = useState(false);
 	const [showRating, setShowRating] = useState(false);
-	const [ratingList, setRatingList] = useState([]);
 	const [errorMsg, setErrorMsg] = useState('');
 	const [isLiked, setIsLiked] = useState(props.data.isLiked.length !== 0);
 
@@ -29,25 +27,11 @@ const PostCard = (props) => {
 	const commentHandler = () => {
 		setShowComment(!showComment);
 		setShowRating(false);
-		getComment(props.data.postId, (reply) => {
-			if (reply) {
-				setCommentList(reply.data);
-			} else {
-				setErrorMsg('Something went wrong');
-			}
-		});
 	};
 
 	const ratingHandler = () => {
 		setShowComment(false);
 		setShowRating(!showRating);
-		getRatings(props.data.postId, (reply) => {
-			if (reply) {
-				setRatingList(reply.data);
-			} else {
-				setErrorMsg('Something went wrong');
-			}
-		});
 	};
 
 	const renderLike = () => {
@@ -145,25 +129,24 @@ const PostCard = (props) => {
 					</span>
 				</div>
 			</div>
-			{showComment && (
-				<CommentCard
-					list={commentList}
-					postId={props.data.postId}
-					postUrl={props.postUrl}
-					pageNo={props.pageNo}
-				/>
-			)}
+			{showComment && <CommentCard postId={props.data.postId} />}
 			{showRating && (
 				<RatingCard
-					list={ratingList}
 					postId={props.data.postId}
-					postUrl={props.postUrl}
-					pageNo={props.pageNo}
 					isRated={props.data.isRated.length === 0}
 				/>
 			)}
 			{errorMsg && <p>{errorMsg}</p>}
-			<h1>{props.name}</h1>
+			<div className="ps-4">
+				{props.data.caption}
+				<p>
+					{props.data.tags.map((data) => {
+						return (
+							<span className="text-primary">#{data}&nbsp;</span>
+						);
+					})}
+				</p>
+			</div>
 		</div>
 	);
 };
