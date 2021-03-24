@@ -11,6 +11,7 @@ body {
 
 .main-container {
 	overflow-y: scroll !important;
+	background-color: #fafafa;
 	height: 93vh;
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
@@ -18,13 +19,4 @@ body {
 
 .main-container::-webkit-scrollbar {
 	display: none;
-}
-
-.post_card button {
-	outline: none;
-	border: none;
-}
-.post_card button:hover {
-	outline: none;
-	border: none;
 }

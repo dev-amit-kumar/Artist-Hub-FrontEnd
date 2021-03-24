@@ -1,0 +1,23 @@
+.post_card {
+	border-radius: 10px;
+}
+
+.post_card .card-header,
+.post_card .card-footer {
+	background-color: #fff;
+}
+.post_card .card-header a {
+	text-decoration: none;
+}
+
+.post_card .card-header .username {
+	text-transform: lowercase;
+}
+.post_card button {
+	outline: none;
+	border: none;
+}
+.post_card button:hover {
+	outline: none;
+	border: none;
+}
