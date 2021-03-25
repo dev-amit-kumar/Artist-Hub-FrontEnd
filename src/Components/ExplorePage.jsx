@@ -13,7 +13,68 @@ const ExplorePage = () => {
 	};
 	return (
 		<>
-			<div>
+			<ul
+				className="nav nav-tabs nav-fill sticky-top bg-light"
+				id="myTab"
+				role="tablist"
+			>
+				<li className="nav-item" role="presentation">
+					<button
+						className="nav-link active fw-bold"
+						id="getAllPost"
+						onClick={(e) => {
+							setExploreType(e.target.id);
+							setShowOccasssion(false);
+							setShowSearch(false);
+						}}
+						data-bs-toggle="tab"
+						data-bs-target="#getAllPost"
+						type="button"
+						role="tab"
+						aria-controls="getAllPost"
+						aria-selected="true"
+					>
+						All Post
+					</button>
+				</li>
+				<li className="nav-item" role="presentation">
+					<button
+						className="nav-link fw-bold"
+						id="showOccasssion"
+						onClick={() => {
+							setShowOccasssion(!showOccasssion);
+							setShowSearch(false);
+						}}
+						data-bs-toggle="tab"
+						data-bs-target="#showOccasssion"
+						type="button"
+						role="tab"
+						aria-controls="showOccasssion"
+						aria-selected="false"
+					>
+						By Occasssion
+					</button>
+				</li>
+				<li className="nav-item" role="presentation">
+					<button
+						className="nav-link fw-bold"
+						id="searchPostByTag"
+						onClick={() => {
+							setShowSearch(!showSearch);
+							setShowOccasssion(false);
+						}}
+						data-bs-toggle="tab"
+						data-bs-target="#searchPostByTag"
+						type="button"
+						role="tab"
+						aria-controls="searchPostByTag"
+						aria-selected="false"
+					>
+						By Tag
+					</button>
+				</li>
+			</ul>
+			{/* <div>
 				<button
 					id="getAllPost"
 					onClick={(e) => {
@@ -41,7 +102,7 @@ const ExplorePage = () => {
 				>
 					By Tag
 				</button>
-			</div>
+			</div> */}
 			{showOccasssion && (
 				<select
 					className="form-select"

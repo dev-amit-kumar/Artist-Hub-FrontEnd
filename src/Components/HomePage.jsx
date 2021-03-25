@@ -9,14 +9,14 @@ const HomePage = () => {
 	return (
 		<>
 			<ul
-				className="nav nav-tabs nav-fill"
+				className="nav nav-tabs nav-fill sticky-top bg-light"
 				id="myTab"
 				role="tablist"
 				onClick={filterHomeType}
 			>
 				<li className="nav-item" role="presentation">
 					<button
-						className="nav-link active"
+						className="nav-link active fw-bold"
 						id="getPostForYou"
 						data-bs-toggle="tab"
 						data-bs-target="#getPostForYou"
@@ -30,7 +30,7 @@ const HomePage = () => {
 				</li>
 				<li className="nav-item" role="presentation">
 					<button
-						className="nav-link"
+						className="nav-link fw-bold"
 						id="getMostRatedPost"
 						data-bs-toggle="tab"
 						data-bs-target="#getMostRatedPost"
@@ -44,7 +44,7 @@ const HomePage = () => {
 				</li>
 				<li className="nav-item" role="presentation">
 					<button
-						className="nav-link"
+						className="nav-link fw-bold"
 						id="getTrendingPost"
 						data-bs-toggle="tab"
 						data-bs-target="#getTrendingPost"
@@ -57,7 +57,7 @@ const HomePage = () => {
 					</button>
 				</li>
 			</ul>
-			<div className="container-fluid">
+			<div>
 				<PostList postUrl={`home/${HomeType}`} />
 			</div>
 		</>

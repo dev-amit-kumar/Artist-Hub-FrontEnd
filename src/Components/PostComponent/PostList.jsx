@@ -19,7 +19,7 @@ const Home = ({
 
 	if (postList) {
 		return (
-			<div>
+			<>
 				{postList.map((post, idx) => {
 					return (
 						<PostCard
@@ -30,7 +30,7 @@ const Home = ({
 						/>
 					);
 				})}
-			</div>
+			</>
 		);
 	} else if (isLoadingPostList) {
 		return <Loading />;

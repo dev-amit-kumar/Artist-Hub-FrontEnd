@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { addNewComment, getComment } from '../../Redux/Actions';
+import '../../css/postCard.css';
 
 const CommentCard = ({ postId }) => {
 	const [newComment, setComment] = useState('');
@@ -8,28 +9,28 @@ const CommentCard = ({ postId }) => {
 
 	const addCommentHandler = (e) => {
 		e.preventDefault();
-		addNewComment(postId, newComment, (reply) => {
+		addNewComment(postId, newComment, (reply, errorMsg) => {
 			if (reply) {
 				setComment('');
 				getComment(postId, (reply) => {
 					if (reply) {
 						setCommentList(reply.data);
 					} else {
-						setErrorMsg('Something went wrong');
+						setErrorMsg(errorMsg);
 					}
 				});
 			} else {
-				setErrorMsg('Something went wrong');
+				setErrorMsg(errorMsg);
 			}
 		});
 	};
 
 	useEffect(() => {
-		getComment(postId, (reply) => {
+		getComment(postId, (reply, errorMsg) => {
 			if (reply) {
 				setCommentList(reply.data);
 			} else {
-				setErrorMsg('Something went wrong');
+				setErrorMsg(errorMsg);
 			}
 		});
 	}, [postId]);
@@ -37,11 +38,12 @@ const CommentCard = ({ postId }) => {
 	const renderComment = () => {
 		return commentList.map((data) => {
 			return (
-				<div className="card" key={data._id}>
+				<div className="border rounded-pill mb-2 p-1" key={data._id}>
 					<span>
-						<span className="text-capitalize me-2 ms-2 bg-primary text-white border border-primary border-1 rounded-pill pe-2 ps-2">
+						<b className="ms-2 text-lowercase">
 							{data.userData[0].name}
-						</span>
+						</b>
+						&emsp;
 						{data.comment}
 					</span>
 				</div>
@@ -50,31 +52,31 @@ const CommentCard = ({ postId }) => {
 	};
 
 	return (
-		<div className="commentSection card-footer p-2">
-			<form onSubmit={addCommentHandler}>
-				<div className="input-group mb-2">
-					<input
-						type="text"
-						placeholder="Enter the comment"
-						className="form-control"
-						aria-label="Recipient's username"
-						aria-describedby="button-addon2"
-						value={newComment}
-						onChange={(e) => setComment(e.target.value)}
-					/>
-					<button
-						className="btn btn-primary"
-						type="submit"
-						id="button-addon2"
-					>
-						Add
-					</button>
-				</div>
-			</form>
+		<div className="commentSection border-top">
 			{errorMsg && <p>{errorMsg}</p>}
-			<div style={{ maxHeight: '100px', overflowY: 'scroll' }}>
-				{renderComment()}
-			</div>
+			<div className="allComment pe-2">{renderComment()}</div>
+			<hr />
+			<form
+				onSubmit={addCommentHandler}
+				className="input-group mt-2 newComment"
+			>
+				<input
+					type="text"
+					placeholder="Enter the comment"
+					className="form-control"
+					aria-label="Recipient's username"
+					aria-describedby="button-addon2"
+					value={newComment}
+					onChange={(e) => setComment(e.target.value)}
+				/>
+				<button
+					className="btn btn-primary"
+					type="submit"
+					id="button-addon2"
+				>
+					Post
+				</button>
+			</form>
 		</div>
 	);
 };

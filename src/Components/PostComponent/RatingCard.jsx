@@ -12,11 +12,11 @@ const RatingCard = ({ postId, isRated }) => {
 		addNewRating(postId, newRating, (reply, err) => {
 			if (reply) {
 				setRating(0);
-				getRatings(postId, (reply) => {
+				getRatings(postId, (reply, errorMsg) => {
 					if (reply) {
 						setRatingList(reply.data);
 					} else {
-						setErrorMsg('Something went wrong');
+						setErrorMsg(errorMsg);
 					}
 				});
 				setRatingDone(false);
@@ -27,11 +27,11 @@ const RatingCard = ({ postId, isRated }) => {
 	};
 
 	useEffect(() => {
-		getRatings(postId, (reply) => {
+		getRatings(postId, (reply, errorMsg) => {
 			if (reply) {
 				setRatingList(reply.data);
 			} else {
-				setErrorMsg('Something went wrong');
+				setErrorMsg(errorMsg);
 			}
 		});
 	}, [postId]);
@@ -39,16 +39,19 @@ const RatingCard = ({ postId, isRated }) => {
 	const renderComment = () => {
 		return ratingList.map((data) => {
 			return (
-				<div className="card d-flex flex-row" key={data._id}>
-					<p className="text-capitalize me-2 ms-2 mt-2 bg-primary text-white border border-primary border-1 rounded-pill pe-2 ps-2">
-						{data.userData[0].name}
-					</p>
+				<div
+					className="d-flex flex-row border rounded-pill mt-2 ps-3 pe-3 align-items-center justify-content-between "
+					key={data._id}
+				>
+					<span className="text-lowercase">
+						<b>{data.userData[0].name}</b>
+					</span>
 					<ReactStars
 						count={5}
 						value={data.rating}
 						isHalf={true}
-						size={24}
-						activeColor="#ffd700"
+						size={30}
+						activeColor="#FFC107"
 						edit={false}
 					/>
 				</div>
@@ -57,7 +60,7 @@ const RatingCard = ({ postId, isRated }) => {
 	};
 
 	return (
-		<div className="commentSection card-footer p-2">
+		<div className="commentSection p-2 border-top">
 			{ratingDone && (
 				<form onSubmit={addRatingHandler}>
 					<div className="input-group mb-2">
@@ -79,9 +82,7 @@ const RatingCard = ({ postId, isRated }) => {
 				</form>
 			)}
 			{errorMsg && <p>{errorMsg}</p>}
-			<div style={{ maxHeight: '100px', overflowY: 'scroll' }}>
-				{renderComment()}
-			</div>
+			<div className="allComment">{renderComment()}</div>
 		</div>
 	);
 };
