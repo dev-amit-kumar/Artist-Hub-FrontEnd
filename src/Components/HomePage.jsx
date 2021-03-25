@@ -57,7 +57,7 @@ const HomePage = () => {
 					</button>
 				</li>
 			</ul>
-			<div className="container-fluid">
+			<div>
 				<PostList postUrl={`home/${HomeType}`} />
 			</div>
 		</>
