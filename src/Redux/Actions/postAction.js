@@ -83,12 +83,29 @@ export const addNewComment = (postId, comment, callback) => {
 
 export const addNewRating = (postId, rating, callback) => {
 	try {
-		console.log(`${base_url}/rating/addRating/${postId}?rating=${rating}`);
 		axios
 			.get(
 				`${base_url}/rating/addRating/${postId}?rating=${rating}`,
 				configHeader,
 			)
+			.then((reply) => {
+				console.log(reply.data);
+				if (reply.data.status === 200) {
+					callback(reply.data);
+				} else {
+					callback(false, reply.data.message);
+				}
+			})
+			.catch(() => callback(false));
+	} catch (error) {
+		callback(false);
+	}
+};
+
+export const savePost = (postId, callback) => {
+	try {
+		axios
+			.get(`${base_url}/save/savePost/${postId}`, configHeader)
 			.then((reply) => {
 				console.log(reply.data);
 				if (reply.data.status === 200) {

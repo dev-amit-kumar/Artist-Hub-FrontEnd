@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import { likePost } from '../../Redux/Actions';
+import { likePost, savePost } from '../../Redux/Actions';
 import CommentCard from './CommentCard';
 import RatingCard from './RatingCard';
 import '../../css/postCard.css';
@@ -15,12 +15,12 @@ const PostCard = (props) => {
 	const [isLiked, setIsLiked] = useState(props.data.isLiked.length !== 0);
 
 	const likeHandler = () => {
-		likePost(props.data.postId, (reply) => {
+		likePost(props.data.postId, (reply, errorMsg) => {
 			if (reply) {
 				setLikes(reply.count);
 				setIsLiked(!isLiked);
 			} else {
-				setErrorMsg('Something went wrong');
+				setErrorMsg(errorMsg);
 			}
 		});
 	};
@@ -35,6 +35,18 @@ const PostCard = (props) => {
 		setShowRating(!showRating);
 	};
 
+	const saveHandler = () => {
+		savePost(props.data.postId, (reply, errorMsg) => {
+			if (reply) {
+				console.log(reply);
+				// setSaved(reply)
+				// setIsSaved(!isSaved);
+			} else {
+				setErrorMsg(errorMsg);
+			}
+		});
+	};
+
 	const renderLike = () => {
 		if (likes) {
 			return <span>{likes}</span>;
@@ -46,8 +58,8 @@ const PostCard = (props) => {
 	};
 
 	return (
-		<div className="card post_card mt-3">
-			<div className="card-header">
+		<div className="post_card">
+			<div className="post_card_header border-bottom">
 				<Link to={`/artist/${props.data.userId}`} className="link-dark">
 					{props.data.userData[0].profilePic ? (
 						<img
@@ -66,7 +78,7 @@ const PostCard = (props) => {
 				</Link>
 				<span className="float-end">
 					<span>
-						<i className="fas fa-camera text-success"></i>
+						<i className="fas fa-camera text-secondary"></i>
 						<span className="ms-1 me-2 text-capitalize">
 							{props.data.occassion}
 						</span>
@@ -77,29 +89,47 @@ const PostCard = (props) => {
 							{props.data.location}
 						</span>
 					</span>
-					<span>
-						<i className="fas fa-ellipsis-v"></i>
+					<span className="dropdown">
+						<span
+							role="button"
+							id="dropdownMenuLink"
+							data-bs-toggle="dropdown"
+							aria-expanded="false"
+						>
+							<i className="fas fa-ellipsis-v text-dark"></i>
+						</span>
+						<ul
+							className="dropdown-menu"
+							aria-labelledby="dropdownMenuLink"
+						>
+							<li>
+								<span className="dropdown-item" role="button">
+									Edit
+								</span>
+							</li>
+							<li>
+								<span className="dropdown-item" role="button">
+									Report
+								</span>
+							</li>
+						</ul>
 					</span>
 				</span>
 			</div>
-			<div className="postImages">
+			<div className="post-images border-bottom">
 				<Carousel showThumbs={false}>
 					{props.data.all_files.files.map((img, idx) => {
 						return (
 							<img
 								key={`${props.data.postId}${idx}`}
 								src={img}
-								style={{
-									height: '400px',
-									width: '100%',
-								}}
 								alt="postImage"
 							/>
 						);
 					})}
 				</Carousel>
 			</div>
-			<div className="card-footer">
+			<div className="post-card-option border-bottom">
 				<div className="container-fluid d-flex justify-content-around">
 					<span onClick={likeHandler} type="button">
 						{isLiked ? (
@@ -125,20 +155,25 @@ const PostCard = (props) => {
 						) : (
 							<i className="far fa-star text-warning"></i>
 						)}
-						&nbsp;&nbsp; &nbsp;&nbsp;
+						&nbsp;&nbsp;
 						{props.data.ratings.length ? (
 							<span>{props.data.ratings[0].avgRating}</span>
 						) : (
 							<span>0</span>
 						)}
 					</span>
+					<span onClick={saveHandler} type="button">
+						<i className="fas fa-bookmark text-secondary"></i>
+						&nbsp;&nbsp;5
+					</span>
 				</div>
 			</div>
 			{errorMsg && <p>{errorMsg}</p>}
-			<div className="ps-4">
+			<div className="post-card-caption-tag">
 				<b>{props.data.userData[0].name}</b>&emsp;
 				{props.data.caption}
-				<p>
+				<br />
+				<span>
 					{props.data.tags.map((data, idx) => {
 						return (
 							<span
@@ -149,15 +184,17 @@ const PostCard = (props) => {
 							</span>
 						);
 					})}
-				</p>
+				</span>
 			</div>
-			{showComment && <CommentCard postId={props.data.postId} />}
-			{showRating && (
-				<RatingCard
-					postId={props.data.postId}
-					isRated={props.data.isRated.length === 0}
-				/>
-			)}
+			<div className="post-card-comment-rating">
+				{showComment && <CommentCard postId={props.data.postId} />}
+				{showRating && (
+					<RatingCard
+						postId={props.data.postId}
+						isRated={props.data.isRated.length === 0}
+					/>
+				)}
+			</div>
 		</div>
 	);
 };
