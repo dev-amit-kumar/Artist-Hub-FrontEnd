@@ -9,7 +9,7 @@ const HomePage = () => {
 	return (
 		<>
 			<ul
-				className="nav nav-tabs nav-fill sticky-top bg-light"
+				className="nav nav-tabs nav-fill sticky-top"
 				id="myTab"
 				role="tablist"
 				onClick={filterHomeType}

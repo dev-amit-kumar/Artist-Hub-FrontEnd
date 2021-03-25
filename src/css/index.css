@@ -10,6 +10,8 @@ body {
 }
 
 .main-container {
+	width: 50vw;
+	padding: 0 15px;
 	overflow-y: scroll !important;
 	background-color: #fff;
 	height: 93vh;
@@ -26,4 +28,14 @@ body {
 	border-color: #fff;
 	border-bottom: 3px solid red;
 	color: red;
+}
+.nav-tabs {
+	background-color: #fff;
+}
+
+@media only screen and (max-width: 720px) {
+	.main-container {
+		width: 100%;
+		padding: 0 1px;
+	}
 }
