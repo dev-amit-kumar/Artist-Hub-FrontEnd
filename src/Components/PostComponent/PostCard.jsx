@@ -13,6 +13,7 @@ const PostCard = (props) => {
 	const [showRating, setShowRating] = useState(false);
 	const [errorMsg, setErrorMsg] = useState('');
 	const [isLiked, setIsLiked] = useState(props.data.isLiked.length !== 0);
+	const [isSaved, setIsSaved] = useState(props.data.isSaved.length !== 0);
 
 	const likeHandler = () => {
 		likePost(props.data.postId, (reply, errorMsg) => {
@@ -39,8 +40,7 @@ const PostCard = (props) => {
 		savePost(props.data.postId, (reply, errorMsg) => {
 			if (reply) {
 				console.log(reply);
-				// setSaved(reply)
-				// setIsSaved(!isSaved);
+				setIsSaved(!isSaved);
 			} else {
 				setErrorMsg(errorMsg);
 			}
@@ -163,8 +163,17 @@ const PostCard = (props) => {
 						)}
 					</span>
 					<span onClick={saveHandler} type="button">
-						<i className="fas fa-bookmark text-secondary"></i>
-						&nbsp;&nbsp;5
+						{isSaved ? (
+							<i className="fas fa-bookmark text-secondary"></i>
+						) : (
+							<i className="far fa-bookmark text-secondary"></i>
+						)}
+						&nbsp;&nbsp;
+						{props.data.saved.length ? (
+							<span>{props.data.saved[0].saveCount}</span>
+						) : (
+							<span>0</span>
+						)}
 					</span>
 				</div>
 			</div>

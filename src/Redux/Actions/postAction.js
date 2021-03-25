@@ -105,7 +105,7 @@ export const addNewRating = (postId, rating, callback) => {
 export const savePost = (postId, callback) => {
 	try {
 		axios
-			.get(`${base_url}/save/savePost/${postId}`, configHeader)
+			.get(`${base_url}/save/manageSave/${postId}`, configHeader)
 			.then((reply) => {
 				console.log(reply.data);
 				if (reply.data.status === 200) {
