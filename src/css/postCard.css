@@ -1,5 +1,5 @@
 .post_card {
-	border-radius: 10px;
+	border-radius: 5px;
 	margin: 25px 0;
 	background-color: #fff;
 	box-shadow: 0px 0px 10px 1px rgb(0 0 0 / 29%);
@@ -88,4 +88,11 @@
 		color-stop(0.5, transparent),
 		to(transparent)
 	);
+}
+
+@media only screen and (max-width: 500px) {
+	.post_card {
+		border: none;
+		border-radius: 0%;
+	}
 }
