@@ -21,12 +21,12 @@
 }
 
 .navOption:hover {
-	color: #865dca;
-	background-color: #865dca20;
+	color: var(--primary);
+	background-color: var(--primary_hover);
 }
 
 .optionActive {
-	color: #865dca;
+	color: var(--primary_active);
 	font-weight: 700;
 }
 
@@ -74,7 +74,7 @@
 		top: 80%;
 		right: 50%;
 		transform: translateX(40%);
-		background-color: #865dca;
+		background-color: var(--primary);
 		border-radius: 50%;
 		text-align: center;
 		line-height: 30px;
@@ -82,7 +82,7 @@
 		width: 40px;
 		height: 40px;
 		cursor: pointer;
-		border: 5px solid #865dca;
+		border: 5px solid var(--primary);
 	}
 	.showButton::before {
 		content: '\f054';

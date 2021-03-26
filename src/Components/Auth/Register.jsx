@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
+import Zoom from 'react-reveal/Zoom';
 import { registerUser } from '../../Redux/Actions';
 
 const Register = (props) => {
@@ -22,142 +24,242 @@ const Register = (props) => {
 		}
 	};
 
-	const registerHandler = (e) => {
+	const [repeatPassword, setRepeatPassword] = useState('');
+	const [passwordError, setPasswordError] = useState(false);
+
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		var data = {
-			email: R_email,
-			password: R_password,
-			name: name,
-		};
-		if (isArtist) {
-			data = {
-				...data,
-				type: 'artist',
-				occassions: occasssionList,
+		if (R_password === repeatPassword) {
+			setPasswordError(false);
+			var data = {
+				email: R_email,
+				password: R_password,
+				name: name,
 			};
+			if (isArtist) {
+				data = {
+					...data,
+					type: 'artist',
+					occassions: occasssionList,
+				};
+			}
+			props.registerUser(data);
+		} else {
+			setPasswordError(true);
 		}
-		props.registerUser(data);
 	};
 
 	return (
 		<div className="container-fluid">
-			<div className="card" style={{ width: '400px' }}>
-				<h4 className="card-header text-center">Register Form</h4>
-				<div className="card-body">
-					<form onSubmit={registerHandler}>
-						<div className="form-group mt-2">
-							<label>Name</label>
-							<input
-								type="text"
-								placeholder="Enter the name"
-								className="form-control"
-								value={name}
-								onChange={(e) => setName(e.target.value)}
-							/>
-						</div>
-						<div className="form-group mt-2">
-							<label>Email</label>
-							<input
-								type="email"
-								placeholder="Enter the email"
-								className="form-control"
-								value={R_email}
-								onChange={(e) => setREmail(e.target.value)}
-							/>
-						</div>
-						<div className="form-group mt-2">
-							<label>Password (min 6 character)</label>
-							<input
-								type="password"
-								placeholder="Enter the email"
-								className="form-control"
-								value={R_password}
-								onChange={(e) => setRPassword(e.target.value)}
-							/>
-						</div>
-						<div className="form-check mt-2">
-							<input
-								type="checkbox"
-								name="type"
-								className="form-check-input"
-								onClick={() => setIsArtist(!isArtist)}
-							/>
-							<label className="form-check-label">
-								Are you a artist
-							</label>
-						</div>
-						{isArtist && (
-							<>
-								<hr />
-								<div className="form-group mt-2">
-									<label>Choose occassion</label>
-									<div className="d-flex">
-										<span className="form-check mt-2 me-2">
-											<input
-												type="checkbox"
-												name="occassion"
-												value="birthday"
-												className="form-check-input"
-												onClick={occassionHandler}
-											/>
-											<label className="form-check-label">
-												Birthday
-											</label>
-										</span>
-										<span className="form-check mt-2 me-2">
-											<input
-												type="checkbox"
-												name="occassion"
-												value="wedding"
-												className="form-check-input"
-												onClick={occassionHandler}
-											/>
-											<label className="form-check-label">
-												Wedding
-											</label>
-										</span>
-										<span className="form-check mt-2 me-2">
-											<input
-												type="checkbox"
-												name="occassion"
-												value="outing"
-												className="form-check-input"
-												onClick={occassionHandler}
-											/>
-											<label className="form-check-label">
-												Outing
-											</label>
-										</span>
-									</div>
+			<div className="signup-form login-outer-container">
+				<div className="mainConatiner">
+					<Zoom>
+						<div className="login-form">
+							<div className="signup-inner login-inner card">
+								<div className="card-header">
+									<h2>Create Account</h2>
 								</div>
-							</>
-						)}
-						<div className="form-group mt-2">
-							{props.isLoadingUserAuth ? (
-								<button
-									className="btn btn-primary"
-									type="button"
-									disabled
-								>
-									<span
-										className="spinner-border spinner-border-sm"
-										role="status"
-										aria-hidden="true"
-									></span>
-									Loading...
-								</button>
-							) : (
-								<button
-									type="submit"
-									className="btn btn-primary"
-								>
-									Register
-								</button>
-							)}
-							<p className="text-danger">{props.registerError}</p>
-							<p className="text-success">{props.registerMsg}</p>
+								<div className="card-body">
+									<form onSubmit={handleSubmit}>
+										<div className="row">
+											<div className="form-group col-md-6 col-sm-6">
+												<label htmlFor="full_name">
+													Full Name
+												</label>
+												<input
+													type="text"
+													value={name}
+													onChange={(e) =>
+														setName(e.target.value)
+													}
+													className="form-control"
+													id="full_name"
+													placeholder="Enter full name"
+													aria-describedby="emailHelp"
+												/>
+											</div>
+											<div className="form-group col-md-6 col-sm-6">
+												<label htmlFor="email_id">
+													Email address
+												</label>
+												<input
+													type="email"
+													value={R_email}
+													onChange={(e) =>
+														setREmail(
+															e.target.value,
+														)
+													}
+													className="form-control"
+													id="email_id"
+													placeholder="Enter email address"
+													aria-describedby="emailHelp"
+												/>
+											</div>
+											<div className="form-group col-md-6 col-sm-6">
+												<label htmlFor="password">
+													Password
+												</label>
+												<input
+													type="password"
+													value={R_password}
+													onChange={(e) =>
+														setRPassword(
+															e.target.value,
+														)
+													}
+													className="form-control"
+													placeholder="Enter password"
+													id="password"
+												/>
+											</div>
+											<div className="form-group col-md-6 col-sm-6">
+												<label htmlFor="repeat_password">
+													Repeat Password
+												</label>
+												<input
+													type="password"
+													onChange={(e) =>
+														setRepeatPassword(
+															e.target.value,
+														)
+													}
+													value={repeatPassword}
+													className="form-control"
+													placeholder="Repeat password"
+													id="repeat_password"
+												/>
+											</div>
+											<div className="form-group mt-2">
+												<input
+													type="checkbox"
+													name="type"
+													className="form-check-input"
+													onClick={() =>
+														setIsArtist(!isArtist)
+													}
+												/>
+												<label className="form-check-label ms-2">
+													Are you a artist
+												</label>
+											</div>
+											{isArtist && (
+												<>
+													<div className="form-group mt-2">
+														<label>
+															Choose occassion
+														</label>
+														<div className="d-flex">
+															<span className="form-check mt-2 me-2">
+																<input
+																	type="checkbox"
+																	name="occassion"
+																	value="birthday"
+																	className="form-check-input"
+																	onClick={
+																		occassionHandler
+																	}
+																/>
+																<label className="form-check-label">
+																	Birthday
+																</label>
+															</span>
+															<span className="form-check mt-2 me-2">
+																<input
+																	type="checkbox"
+																	name="occassion"
+																	value="wedding"
+																	className="form-check-input"
+																	onClick={
+																		occassionHandler
+																	}
+																/>
+																<label className="form-check-label">
+																	Wedding
+																</label>
+															</span>
+															<span className="form-check mt-2 me-2">
+																<input
+																	type="checkbox"
+																	name="occassion"
+																	value="outing"
+																	className="form-check-input"
+																	onClick={
+																		occassionHandler
+																	}
+																/>
+																<label className="form-check-label">
+																	Outing
+																</label>
+															</span>
+														</div>
+													</div>
+												</>
+											)}
+											<div className="form-group mt-2 text-center">
+												{props.isLoadingUserAuth ? (
+													<button
+														className="btn btn-primary"
+														type="button"
+														disabled
+													>
+														<span
+															className="spinner-border spinner-border-sm"
+															role="status"
+															aria-hidden="true"
+														></span>
+														Loading...
+													</button>
+												) : (
+													<button
+														type="submit"
+														className="pl-3 pr-3 btn btn-primary"
+													>
+														Create Account
+													</button>
+												)}
+												<p className="mt-2">
+													<span className="text-success">
+														{props.registerMsg}
+													</span>
+													{passwordError ? (
+														<span className="text-danger">
+															Both password should
+															be same
+														</span>
+													) : (
+														<span className="text-danger">
+															{
+																props.registerError
+															}
+														</span>
+													)}
+												</p>
+											</div>
+										</div>
+										<div className="form-group register-option-mobile">
+											<hr />
+											<h6>
+												Already have an account ?
+												<Link
+													className=""
+													to="/auth/login"
+												>
+													Login
+												</Link>
+											</h6>
+										</div>
+									</form>
+								</div>
+							</div>
 						</div>
-					</form>
+					</Zoom>
+					<div className="container register-option">
+						<h2>Already have an account ?</h2>
+						<Link className="btn btn-danger" to="/auth/login">
+							Login
+						</Link>
+					</div>
 				</div>
 			</div>
 		</div>
