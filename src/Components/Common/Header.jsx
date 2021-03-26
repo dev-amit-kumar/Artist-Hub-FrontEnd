@@ -5,7 +5,6 @@ import { logoutUser } from '../../Redux/Actions';
 import { connect } from 'react-redux';
 
 const Header = (props) => {
-	console.log(props);
 	const handleLogout = () => {
 		props.logoutUser();
 		props.history.push('/');

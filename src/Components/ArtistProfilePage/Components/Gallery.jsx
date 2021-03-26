@@ -46,7 +46,7 @@ const Gallery = (props) => {
 						<button
 							onClick={renderPost}
 							value="getMostRatedPostByUserId"
-							class="nav-link"
+							className="nav-link"
 							id="nav-home-tab"
 							data-bs-toggle="tab"
 							data-bs-target="#nav-mostRated"

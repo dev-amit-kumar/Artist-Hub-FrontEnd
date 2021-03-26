@@ -10,7 +10,7 @@ const UserPage = (props) => {
 	useEffect(() => {
 		props.fetchUser(id);
 	}, [props.match.params.id]);
-	console.log(props.savedPost ? props.savedPost.data : 'h', 'saved');
+
 	if (props.UserDetail) {
 		if (props.UserDetail.data) {
 			return (

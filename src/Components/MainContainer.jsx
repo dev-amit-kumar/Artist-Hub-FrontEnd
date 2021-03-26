@@ -33,6 +33,11 @@ const MainContainer = (props) => {
 								component={ArtistProfile}
 							/>
 						)}
+						<Route
+							exact
+							path="/artist/:id"
+							component={ArtistProfile}
+						/>
 						<Route exact path="/save" component={SavedPost} />
 					</Switch>
 				</div>
