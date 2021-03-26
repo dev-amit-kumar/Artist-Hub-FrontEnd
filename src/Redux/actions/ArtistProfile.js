@@ -78,3 +78,36 @@ export const fetchPost = (id, page) => async (dispatch) => {
     dispatch({ type: "TOGGLE_IS_LOADING_POST_PAGE" });
   }
 };
+
+export const fetchEditPost = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "GET_EDIT_POST_DETAIL",
+      payload: {
+        Post: null,
+        Image: null,
+      },
+    });
+    dispatch({ type: "TOGGLE_IS_LOADING_EDIT_POST_PAGE" });
+
+    const { data } = await axios.get(
+      `${base_url}/post/getPostDetail/${id}`,
+      configHeader
+    );
+    const { data: image } = await axios.get(
+      `${base_url}/image/getImages/${id}`,
+      configHeader
+    );
+    dispatch({
+      type: "GET_EDIT_POST_DETAIL",
+      payload: {
+        Post: data,
+        Image: image,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  } finally {
+    dispatch({ type: "TOGGLE_IS_LOADING_EDIT_POST_PAGE" });
+  }
+};

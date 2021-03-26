@@ -39,7 +39,6 @@ const Detail = (props) => {
       });
     }
   };
-  console.log(props.followingDetail, "detailS");
   return (
     <div className="container d-flex flex-row align-items-center justify-content-around">
       <div className="d-flex flex-column">
@@ -69,14 +68,19 @@ const Detail = (props) => {
           following
         </h5>
       </div>
-      <button
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#ModalBoxDetail"
-        className="btn btn-danger"
-      >
-        Edit
-      </button>
+      {props.Id === localStorage.getItem("userId") ? (
+        <button
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#ModalBoxDetail"
+          className="btn btn-light"
+        >
+          Edit Profile
+        </button>
+      ) : (
+        <button className="btn btn-light">Hire</button>
+      )}
+
       <div
         className="modal fade"
         id="ModalBoxDetail"

@@ -4,6 +4,7 @@ import { base_url, configHeader } from "../../../Redux/config";
 const CoverPic = (props) => {
   const [image, setImage] = useState("");
   const [message, setMessage] = useState("");
+  console.log(message);
   const deleteImage = () => {
     const data = {
       imageId: props.coverId,
@@ -60,15 +61,13 @@ const CoverPic = (props) => {
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgwp9FY8k5IX_xtP-68zsEk3zWtWBA6izlQ&usqp=CAU"
             alt="lorem ipsum"
           />
-          <button
+          <i
             type="button"
             data-bs-toggle="modal"
             data-bs-target="#ModalBox"
             style={{ position: "absolute", top: "5%", right: "1%" }}
-            className="btn btn-danger"
-          >
-            <i class="fas fa-plus"></i>
-          </button>
+            class="fas fa-plus"
+          ></i>
         </div>
       );
     }
@@ -106,17 +105,16 @@ const CoverPic = (props) => {
                 />
               )}
               {props.CoverPic && (
-                <button
-                  className="btn btn-danger"
+                <i
                   onClick={deleteImage}
+                  type="button"
                   style={{
                     position: "absolute",
                     top: "10%",
                     right: "5%",
                   }}
-                >
-                  <i class="fas fa-trash"></i>
-                </button>
+                  class="fas fa-trash"
+                ></i>
               )}
               <form encType="multipart/form-data">
                 <input

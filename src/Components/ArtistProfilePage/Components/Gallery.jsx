@@ -58,7 +58,7 @@ const Gallery = (props) => {
             </button>
           </div>
         </nav>
-        <div className=" container d-flex flex-row flex-wrap">
+        <div className=" container justify-content-center d-flex flex-row flex-wrap">
           {props.Post.data ? (
             props.Post.data.map((val, idx) => {
               return <GalleryView Data={val} key={idx} />;

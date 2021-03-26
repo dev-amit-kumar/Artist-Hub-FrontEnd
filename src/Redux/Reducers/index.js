@@ -4,11 +4,15 @@ import UserAuth from "./UserAuth";
 import ArtistReducer from "./ArtistReducer";
 import UserReducer from "./UserReducer";
 import PostReducer from "./PostReducer";
+import SavedReducer from "./SavedReducer";
+import EditPost from "./EditPost";
 const rootReducer = combineReducers({
   UserAuth,
   ArtistReducer,
   UserReducer,
   PostReducer,
+  SavedReducer,
+  EditPost,
 });
 
 export default rootReducer;

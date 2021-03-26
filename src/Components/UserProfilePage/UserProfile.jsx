@@ -6,7 +6,7 @@ import Details from "./Components/Detail";
 import GalleryView from "./Components/GalleryView";
 
 const UserPage = (props) => {
-  const id = "60517164a8742800157e84dd";
+  const id = props.match.params.id;
   useEffect(() => {
     props.fetchUser(id);
   }, []);

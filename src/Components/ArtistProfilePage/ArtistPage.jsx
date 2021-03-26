@@ -25,6 +25,7 @@ const ArtistPage = (props) => {
               DpId={props.ArtistDetail.data.profilePicId}
             />
             <Details
+              Id={props.ArtistDetail.data._id}
               Name={props.ArtistDetail.data.name}
               Occassion={props.ArtistDetail.data.occassion}
               Desc={props.ArtistDetail.data.shortDesc}
