@@ -15,7 +15,7 @@ const Routing = () => {
 	return (
 		<BrowserRouter>
 			<Header />
-			<div className="container-fluid d-flex flex-row">
+			<div className="d-flex flex-row">
 				<div className="rightSideBar">
 					<SideNav />
 				</div>
