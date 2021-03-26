@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Zoom from 'react-reveal/Zoom';
 import { registerUser } from '../../Redux/Actions';
 

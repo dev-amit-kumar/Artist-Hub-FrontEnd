@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, NavLink, withRouter } from 'react-router-dom';
 import '../../css/Header.css';
 import { logoutUser } from '../../Redux/Actions';
