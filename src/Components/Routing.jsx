@@ -24,14 +24,14 @@ class Routing extends React.Component {
 					<Route exact path="/" component={MainContainer} />
 					<Route exact path="/explore" component={MainContainer} />
 					<Route exact path="/quotation" component={MainContainer} />
-					<Route exact path="/save" component={MainContainer} />
-					<Route exact path="/profile" component={MainContainer} />
-					<Route exact path="/setting" component={MainContainer} />
+					<Route exact path="/save/:id" component={MainContainer} />
 					<Route
 						exact
-						path="/artist/:userId"
+						path="/profile/:id"
 						component={MainContainer}
 					/>
+					<Route exact path="/setting" component={MainContainer} />
+					<Route exact path="/artist/:id" component={MainContainer} />
 					<Route exact path="/auth/login" component={Login} />
 					<Route exact path="/auth/register" component={Register} />
 					<Route component={PageNotFound} />

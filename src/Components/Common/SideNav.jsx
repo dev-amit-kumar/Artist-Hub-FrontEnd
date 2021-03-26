@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import '../../css/sideNav.css';
 
-const SideNav = () => {
+const SideNav = (props) => {
 	const [isClicked, setClicked] = useState(false);
 	return (
 		<div
@@ -42,7 +43,7 @@ const SideNav = () => {
 				</span>
 			</NavLink>
 			<NavLink
-				to="/save"
+				to={`/save/${props.user.userId}`}
 				activeClassName="optionActive"
 				className="navOption"
 			>
@@ -52,7 +53,7 @@ const SideNav = () => {
 				</span>
 			</NavLink>
 			<NavLink
-				to="/profile"
+				to={`/profile/${props.user.userId}`}
 				activeClassName="optionActive"
 				className="navOption"
 			>
@@ -78,5 +79,10 @@ const SideNav = () => {
 		</div>
 	);
 };
+const mapStateToProps = (state) => {
+	return {
+		user: state.UserAuth.user,
+	};
+};
 
-export default SideNav;
+export default connect(mapStateToProps)(SideNav);
