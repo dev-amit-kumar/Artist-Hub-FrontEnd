@@ -1,11 +1,5 @@
-import { base_url } from '../config';
+import { base_url, configHeader } from '../config';
 import axios from 'axios';
-const configHeader = {
-	headers: {
-		'Content-Type': 'application/json',
-		'auth-token': localStorage.getItem('auth-token'),
-	},
-};
 
 export const getPostList = (post_url, page_no) => async (dispatch) => {
 	try {
