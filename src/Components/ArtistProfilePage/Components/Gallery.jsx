@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import GalleryView from "./GalleryView";
 import { fetchPost } from "../../../Redux/actions/ArtistProfile";
 import { connect } from "react-redux";
+
 const Gallery = (props) => {
   useEffect(() => {
     props.fetchPost(props.Id, "getAllPostByUser");
