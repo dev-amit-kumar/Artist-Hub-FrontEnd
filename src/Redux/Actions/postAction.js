@@ -107,7 +107,6 @@ export const savePost = (postId, callback) => {
 		axios
 			.get(`${base_url}/save/manageSave/${postId}`, configHeader)
 			.then((reply) => {
-				console.log(reply.data);
 				if (reply.data.status === 200) {
 					callback(reply.data);
 				} else {

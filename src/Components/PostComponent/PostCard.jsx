@@ -40,7 +40,6 @@ const PostCard = (props) => {
 	const saveHandler = () => {
 		savePost(props.data.postId, (reply, errorMsg) => {
 			if (reply) {
-				console.log(reply);
 				setIsSaved(!isSaved);
 			} else {
 				setErrorMsg(errorMsg);
