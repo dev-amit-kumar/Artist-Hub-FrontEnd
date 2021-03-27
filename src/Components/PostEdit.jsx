@@ -114,8 +114,10 @@ const PostEdit = (props) => {
         </div>
       </div>
     );
+  } else if (props.isLoadingPostDetail) {
+    return <h1>Loading</h1>;
   } else {
-    return <h1>dj</h1>;
+    return <h1>error</h1>;
   }
 };
 const mapStateToProps = (state) => {
