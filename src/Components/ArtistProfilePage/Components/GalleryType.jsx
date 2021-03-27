@@ -69,7 +69,7 @@ const Gallery = ({ Id }) => {
 					</button>
 				</li>
 			</ul>
-			<div className="container-fluid">
+			<div className="d-flex flex-row flex-wrap">
 				<GalleryList galleryType={galleryType} Id={Id} />
 			</div>
 		</>
