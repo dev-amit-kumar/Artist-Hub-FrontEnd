@@ -4,7 +4,7 @@ import { fetchArtist } from '../../Redux/Actions/ArtistProfile';
 import CoverPic from './Components/CoverPic';
 import Dp from './Components/Dp';
 import Details from './Components/Details';
-import Gallery from './Components/Gallery';
+import Gallery from './Components/GalleryType';
 
 const ArtistPage = ({
 	match,

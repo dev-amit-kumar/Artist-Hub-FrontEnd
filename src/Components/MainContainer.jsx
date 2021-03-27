@@ -5,7 +5,7 @@ import UserProfile from './UserProfilePage/UserProfile';
 import ArtistProfile from './ArtistProfilePage/ArtistPage';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import ExplorePage from './ExplorePage';
-import SavedPost from './Common/SavedPost';
+import SavedPost from './SavedPost';
 import Setting from './Setting/Index';
 import PostEdit from './PostEdit';
 import '../css/index.css';

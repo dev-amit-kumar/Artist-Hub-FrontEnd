@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchSavedPost } from '../../Redux/Actions/SavedPost';
-import Dp from '../UserProfilePage/Components/Dp';
-import GalleryView from '../UserProfilePage/Components/GalleryView';
+import { fetchSavedPost } from '../Redux/Actions/SavedPost';
+import GalleryView from './Common/GalleryView';
+
 const SavedPost = ({
 	match,
 	fetchSavedPost,
@@ -17,17 +17,6 @@ const SavedPost = ({
 		if (PostDetail.data) {
 			return (
 				<div>
-					<div className=" d-flex flex-row justify-content-center">
-						<Dp
-							Dp={PostDetail.data.profilePic}
-							DpId={PostDetail.data.profilePicId}
-						/>
-						<h1 className="d-flex align-items-center">
-							{PostDetail.data.name}
-						</h1>
-					</div>
-					<hr />
-					<h4 className="text-center text-primary">Saved Post</h4>
 					<div className=" container d-flex flex-row flex-wrap">
 						{savedPost.data ? (
 							savedPost.data.map((val, idx) => {
