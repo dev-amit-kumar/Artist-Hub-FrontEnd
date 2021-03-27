@@ -4,7 +4,7 @@ import { fetchArtist } from '../../Redux/Actions/ArtistProfile';
 import CoverPic from './Components/CoverPic';
 import Dp from './Components/Dp';
 import Details from './Components/Details';
-import Gallery from './Components/GalleryType';
+import GalleryType from './Components/GalleryType';
 
 const ArtistPage = ({
 	match,
@@ -22,7 +22,7 @@ const ArtistPage = ({
 	if (ArtistDetail) {
 		if (ArtistDetail.data) {
 			return (
-				<div className="d-flex flex-column">
+				<>
 					<CoverPic
 						CoverPic={ArtistDetail.data.coverPic}
 						coverId={ArtistDetail.data.coverPicId}
@@ -44,8 +44,8 @@ const ArtistPage = ({
 						/>
 					</div>
 					<hr />
-					<Gallery Id={match.params.id} />
-				</div>
+					<GalleryType Id={match.params.id} />
+				</>
 			);
 		} else {
 			return <h1>{ArtistDetail.message}</h1>;

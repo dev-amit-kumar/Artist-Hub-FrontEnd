@@ -21,7 +21,6 @@ body {
 
 .main-container {
 	width: 50vw;
-	padding: 0 15px;
 	overflow-y: scroll !important;
 	background-color: #fff;
 	height: 93vh;
