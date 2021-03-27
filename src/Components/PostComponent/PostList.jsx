@@ -12,6 +12,7 @@ const Home = ({
 	postList,
 	postListError,
 	isLoadingPostList,
+	user,
 }) => {
 	useEffect(() => {
 		getPostList(postUrl, page_no);
@@ -25,6 +26,8 @@ const Home = ({
 						<PostCard
 							key={idx}
 							data={post}
+							userType={user.type}
+							userId={user.userId}
 							postUrl={postUrl}
 							pageNo={page_no}
 						/>
@@ -41,6 +44,7 @@ const Home = ({
 
 const mapStateToProps = (state) => {
 	return {
+		user: state.UserAuth.user,
 		postList: state.GetPostList.postList,
 		postListError: state.GetPostList.postListError,
 		isLoadingPostList: state.GetPostList.isLoadingPostList,

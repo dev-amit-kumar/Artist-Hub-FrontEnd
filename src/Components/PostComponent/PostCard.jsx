@@ -6,6 +6,7 @@ import { likePost, savePost } from '../../Redux/Actions';
 import CommentCard from './CommentCard';
 import RatingCard from './RatingCard';
 import '../../css/postCard.css';
+import { connect } from 'react-redux';
 
 const PostCard = (props) => {
 	const [likes, setLikes] = useState('');
@@ -89,31 +90,39 @@ const PostCard = (props) => {
 							{props.data.location}
 						</span>
 					</span>
-					<span className="dropdown">
-						<span
-							role="button"
-							id="dropdownMenuLink"
-							data-bs-toggle="dropdown"
-							aria-expanded="false"
-						>
-							<i className="fas fa-ellipsis-v text-dark"></i>
+					{props.userId === props.data.userId && (
+						<span className="dropdown">
+							<span
+								role="button"
+								id="dropdownMenuLink"
+								data-bs-toggle="dropdown"
+								aria-expanded="false"
+							>
+								<i className="fas fa-ellipsis-v text-dark"></i>
+							</span>
+							<ul
+								className="dropdown-menu"
+								aria-labelledby="dropdownMenuLink"
+								style={{ minWidth: 'auto' }}
+							>
+								<li>
+									<Link
+										to={`/edit/${props.data._id}`}
+										className="dropdown-item text-info"
+										role="button"
+									>
+										<i className="fas fa-edit"></i>
+									</Link>
+									<span
+										className="dropdown-item text-danger"
+										role="button"
+									>
+										<i className="fas fa-trash-alt"></i>
+									</span>
+								</li>
+							</ul>
 						</span>
-						<ul
-							className="dropdown-menu"
-							aria-labelledby="dropdownMenuLink"
-						>
-							<li>
-								<span className="dropdown-item" role="button">
-									Edit
-								</span>
-							</li>
-							<li>
-								<span className="dropdown-item" role="button">
-									Report
-								</span>
-							</li>
-						</ul>
-					</span>
+					)}
 				</span>
 			</div>
 			<div className="post-images border-bottom">
@@ -205,5 +214,9 @@ const PostCard = (props) => {
 		</div>
 	);
 };
-
-export default PostCard;
+const mapStateToProps = (state) => {
+	return {
+		user: state.UserAuth.user,
+	};
+};
+export default connect(mapStateToProps)(PostCard);

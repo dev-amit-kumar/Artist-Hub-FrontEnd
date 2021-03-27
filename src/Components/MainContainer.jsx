@@ -7,6 +7,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import ExplorePage from './ExplorePage';
 import SavedPost from './Common/SavedPost';
 import Setting from './Setting/Index';
+import PostEdit from './PostEdit';
 import '../css/index.css';
 import { ChangeColor } from '../Redux/Actions';
 import { connect } from 'react-redux';
@@ -48,8 +49,9 @@ const MainContainer = (props) => {
 							path="/artist/:id"
 							component={ArtistProfile}
 						/>
-						<Route exact path="/save" component={SavedPost} />
+						<Route exact path="/save/:id" component={SavedPost} />
 						<Route exact path="/setting" component={Setting} />
+						<Route exact path="/edit/:id" component={PostEdit} />
 					</Switch>
 				</div>
 				<div className="card leftSideBar" style={{ height: '100vh' }}>

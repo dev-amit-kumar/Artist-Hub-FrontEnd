@@ -2,7 +2,7 @@ import axios from 'axios';
 import { base_url, configHeader } from '../Redux/config';
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { fetchEditPost } from '../Redux/actions/ArtistProfile';
+import { fetchEditPost } from '../Redux/Actions/ArtistProfile';
 const PostEdit = (props) => {
 	const [location, setLocation] = useState(
 		props.Post ? props.Post.data.location : '',
