@@ -8,9 +8,18 @@ import ExplorePage from './ExplorePage';
 import SavedPost from './Common/SavedPost';
 import Setting from './Setting/Index';
 import '../css/index.css';
+import { ChangeColor } from '../Redux/Actions';
 import { connect } from 'react-redux';
+import { useEffect } from 'react';
 
 const MainContainer = (props) => {
+	useEffect(() => {
+		if (props.user) {
+			if (props.user.data.themeColor) {
+				ChangeColor(props.user.data.themeColor);
+			}
+		}
+	});
 	if (props.user) {
 		return (
 			<div className="d-flex flex-row">
