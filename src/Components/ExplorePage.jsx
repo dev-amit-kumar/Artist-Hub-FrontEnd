@@ -74,35 +74,6 @@ const ExplorePage = () => {
 					</button>
 				</li>
 			</ul>
-			{/* <div>
-				<button
-					id="getAllPost"
-					onClick={(e) => {
-						setExploreType(e.target.id);
-						setShowOccasssion(false);
-						setShowSearch(false);
-					}}
-				>
-					All Post
-				</button>
-				<button
-					onClick={() => {
-						setShowOccasssion(!showOccasssion);
-						setShowSearch(false);
-					}}
-				>
-					By Occasssion
-				</button>
-				<button
-					id="searchPostByTag/hill"
-					onClick={() => {
-						setShowSearch(!showSearch);
-						setShowOccasssion(false);
-					}}
-				>
-					By Tag
-				</button>
-			</div> */}
 			{showOccasssion && (
 				<select
 					className="form-select"

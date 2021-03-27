@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchUser } from '../../Redux/Actions/UserProfile';
 import Dp from '../UserProfilePage/Components/Dp';
 import Details from './Components/Detail';
-import GalleryView from './Components/GalleryView';
+import GalleryView from '../Common/GalleryView';
 
 const UserPage = ({
 	match,
@@ -36,7 +36,7 @@ const UserPage = ({
 					</div>
 					<hr />
 					<div className=" container d-flex flex-row flex-wrap">
-						{savedPost.data[0] ? (
+						{savedPost.data ? (
 							savedPost.data.map((val, idx) => {
 								return <GalleryView Data={val} key={idx} />;
 							})
