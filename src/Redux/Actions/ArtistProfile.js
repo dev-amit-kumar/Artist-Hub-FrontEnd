@@ -85,7 +85,6 @@ export const fetchEditPost = (id) => async (dispatch) => {
       type: "GET_EDIT_POST_DETAIL",
       payload: {
         Post: null,
-        Image: null,
       },
     });
     dispatch({ type: "TOGGLE_IS_LOADING_EDIT_POST_PAGE" });
@@ -94,15 +93,10 @@ export const fetchEditPost = (id) => async (dispatch) => {
       `${base_url}/post/getPostDetail/${id}`,
       configHeader
     );
-    const { data: image } = await axios.get(
-      `${base_url}/image/getImages/${id}`,
-      configHeader
-    );
     dispatch({
       type: "GET_EDIT_POST_DETAIL",
       payload: {
         Post: data,
-        Image: image,
       },
     });
   } catch (error) {
