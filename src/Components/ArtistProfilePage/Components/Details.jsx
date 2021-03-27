@@ -1,36 +1,46 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { base_url, configHeader } from '../../../Redux/config';
+import { connect } from 'react-redux';
+import { fetchArtist } from '../../../Redux/Actions/ArtistProfile';
+import { withRouter } from 'react-router';
+
+const allOccassion = ['birthday', 'wedding', 'outing'];
 
 const Detail = (props) => {
 	const [name, setName] = useState(props.Name);
-	const [occassion, setOccassion] = useState(
-		props.Occassion ? props.Occassion[0] : '',
-	);
-	const [occassion2, setOccassion2] = useState(
-		props.Occassion ? props.Occassion[1] : '',
-	);
-	const [occassion3, setOccassion3] = useState(
-		props.Occassion ? props.Occassion[2] : '',
-	);
 	const [shortDesc, setshortDesc] = useState(props.Desc);
+	const [occasssionList, setOccassion] = useState([]);
+	const [error, setError] = useState('');
+	const [msg, setMsg] = useState('');
 
-	const saveData = () => {
-		var Occassion = [];
-		Occassion.push(occassion);
-		Occassion.push(occassion2);
-		Occassion.push(occassion3);
+	const occassionHandler = (e) => {
+		const occassion = e.target.value;
+		if (occasssionList.includes(occassion)) {
+			let occassionAll = occasssionList;
+			occassionAll.pop(occassion);
+			setOccassion(occassionAll);
+		} else {
+			let occassionAll = occasssionList;
+			occassionAll.push(occassion);
+			setOccassion(occassionAll);
+		}
+	};
 
+	const editProfileHandler = (e) => {
+		e.preventDefault();
 		const data = {
 			name: name,
-			occassion: Occassion,
+			occassions: occasssionList,
 			shortDesc: shortDesc,
 		};
-		console.log(data, 'data');
 		axios
 			.post(`${base_url}/artist/editDetails`, data, configHeader)
-			.then((res) => console.log(res))
-			.catch((err) => console.log(err));
+			.then((res) => {
+				setMsg(res.data.message);
+				// props.fetchArtist(props.match.params.id);
+			})
+			.catch(() => setError('Some went wrong'));
 	};
 
 	const renderOccassion = (data) => {
@@ -54,6 +64,7 @@ const Detail = (props) => {
 			return <></>;
 		}
 	};
+
 	return (
 		<div className="container">
 			<div className="d-flex flex-row justify-content-between align-items-center flex-wrap">
@@ -115,91 +126,85 @@ const Detail = (props) => {
 							></button>
 						</div>
 						<div className="modal-body">
-							<input
-								onChange={(e) => {
-									setName(e.target.value);
-								}}
-								name="name"
-								type="text"
-								placeholder="name"
-								className="form-control mb-2"
-							/>
-							<div className="form-check form-check-inline">
-								<input
-									onChange={(e) => {
-										setOccassion2(e.target.value);
-									}}
-									className="form-check-input"
-									type="checkbox"
-									id="inlineCheckbox1"
-									value="Birthday"
-								/>
-								<label
-									className="form-check-label"
-									htmlFor="inlineCheckbox1"
-								>
-									Birthday
-								</label>
-							</div>
-							<div className="form-check form-check-inline">
-								<input
-									onChange={(e) => {
-										setOccassion3(e.target.value);
-									}}
-									className="form-check-input"
-									type="checkbox"
-									id="inlineCheckbox2"
-									value="Wedding"
-								/>
-								<label
-									className="form-check-label"
-									htmlFor="inlineCheckbox2"
-								>
-									Wedding
-								</label>
-							</div>
-							<div className="form-check form-check-inline">
-								<input
-									onChange={(e) => {
-										setOccassion(e.target.value);
-									}}
-									className="form-check-input"
-									type="checkbox"
-									id="inlineCheckbox3"
-									value="Outing"
-								/>
-								<label
-									className="form-check-label"
-									htmlFor="inlineCheckbox3"
-								>
-									Outing
-								</label>
-							</div>
-							<input
-								onChange={(e) => {
-									setshortDesc(e.target.value);
-								}}
-								type="text"
-								name="detail"
-								placeholder="details"
-								className="form-control"
-							/>
-						</div>
-						<div className="modal-footer">
-							<button
-								type="button"
-								className="btn btn-secondary"
-								data-bs-dismiss="modal"
-							>
-								Close
-							</button>
-							<button
-								onClick={saveData}
-								type="button"
-								className="btn btn-primary"
-							>
-								Save changes
-							</button>
+							<form onSubmit={editProfileHandler}>
+								<div className="form-group">
+									<label>
+										Enter full name &nbsp;
+										<span className="text-danger">*</span>
+									</label>
+									<input
+										onChange={(e) => {
+											setName(e.target.value);
+										}}
+										name="name"
+										value={props.Name}
+										type="text"
+										placeholder="name"
+										className="form-control mb-2"
+										required
+									/>
+								</div>
+								<div className="form-group mt-2">
+									<label>Choose occassion</label>
+									<div className="d-flex">
+										{allOccassion.map((occ, idx) => {
+											return (
+												<span
+													className="form-check mt-2 me-2"
+													key={`occ${idx}`}
+												>
+													<input
+														type="checkbox"
+														name="occassion"
+														value={occ}
+														className="form-check-input"
+														onClick={
+															occassionHandler
+														}
+													/>
+													<label className="form-check-label text-capitalize">
+														{occ}
+													</label>
+												</span>
+											);
+										})}
+									</div>
+								</div>
+								<div className="form-group">
+									<label>
+										Description &nbsp;
+										<span className="text-danger">*</span>
+									</label>
+									<textarea
+										onChange={(e) => {
+											setshortDesc(e.target.value);
+										}}
+										type="text"
+										name="detail"
+										placeholder="details"
+										className="form-control"
+										rows="5"
+										required
+										value={props.Desc}
+									></textarea>
+								</div>
+								<div className="form-group">
+									{msg && (
+										<p className="text-success">{msg}</p>
+									)}
+									{error && (
+										<p className="text-danger">{error}</p>
+									)}
+								</div>
+								<div className="form-group mt-2 text-center">
+									<button
+										type="submit"
+										className="btn btn-primary"
+									>
+										Edit Changes
+									</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -273,5 +278,4 @@ const Detail = (props) => {
 		</div>
 	);
 };
-
-export default Detail;
+export default withRouter(connect('', { fetchArtist })(Detail));
