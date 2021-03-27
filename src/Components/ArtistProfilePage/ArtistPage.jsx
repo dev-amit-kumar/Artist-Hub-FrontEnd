@@ -13,12 +13,33 @@ const ArtistPage = ({
 	isLoadingArtistDetail,
 	fetchArtist,
 	followerDetail,
-	followerCount,
-	followingCount,
 }) => {
 	useEffect(() => {
 		fetchArtist(match.params.id);
 	}, [match.params.id, fetchArtist]);
+
+	const renderOccassion = (data) => {
+		if (data) {
+			return data.map((val, idx) => {
+				if (idx !== data.length - 1) {
+					return (
+						<span key={idx} className="text-capitalize fw-bold">
+							{val},&nbsp;
+						</span>
+					);
+				} else {
+					return (
+						<span key={idx} className="text-capitalize fw-bold">
+							{val}
+						</span>
+					);
+				}
+			});
+		} else {
+			return <></>;
+		}
+	};
+
 	if (ArtistDetail) {
 		if (ArtistDetail.data) {
 			return (
@@ -27,7 +48,7 @@ const ArtistPage = ({
 						CoverPic={ArtistDetail.data.coverPic}
 						coverId={ArtistDetail.data.coverPicId}
 					/>
-					<div className="container mt-2 d-flex flex-row">
+					<div className="ps-4 pe-4 pt-4 d-flex flex-row justify-content-evenly align-items-center">
 						<Dp
 							Dp={ArtistDetail.data.profilePic}
 							DpId={ArtistDetail.data.profilePicId}
@@ -35,15 +56,20 @@ const ArtistPage = ({
 						<Details
 							Id={ArtistDetail.data._id}
 							Name={ArtistDetail.data.name}
-							Occassion={ArtistDetail.data.occassion}
+							Occassion={ArtistDetail.data.occassions}
 							Desc={ArtistDetail.data.shortDesc}
 							followingDetail={followingDetail.data}
 							followerDetail={followerDetail.data}
-							followerCount={followerCount.count}
-							followingCount={followingCount.count}
 						/>
 					</div>
-					<hr />
+					<div className="ps-4 pe-4 pt-2">
+						<p className="showOn650">
+							{renderOccassion(ArtistDetail.data.occassions)}
+						</p>
+						<p className="text-justify">
+							{ArtistDetail.data.shortDesc}
+						</p>
+					</div>
 					<GalleryType Id={match.params.id} />
 				</>
 			);
@@ -62,8 +88,6 @@ const mapStateToProps = (state) => {
 		isLoadingArtistDetail: state.ArtistReducer.isLoadingArtistDetail,
 		followingDetail: state.ArtistReducer.followingDetail,
 		followerDetail: state.ArtistReducer.followerDetail,
-		followingCount: state.ArtistReducer.followingCount,
-		followerCount: state.ArtistReducer.followerCount,
 	};
 };
 export default connect(mapStateToProps, { fetchArtist })(ArtistPage);

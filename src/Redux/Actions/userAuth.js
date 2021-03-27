@@ -148,9 +148,7 @@ export const updateUserTheme = (themeColor) => {
 			{ color: themeColor },
 			configHeader,
 		)
-		.then((reply) => {
-			console.log(reply.data);
-		})
+		.then()
 		.catch((err) => {
 			console.log(err);
 		});
