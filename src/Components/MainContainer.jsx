@@ -6,6 +6,7 @@ import ArtistProfile from './ArtistProfilePage/ArtistPage';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import ExplorePage from './ExplorePage';
 import SavedPost from './Common/SavedPost';
+import Setting from './Setting/Index';
 import '../css/index.css';
 import { connect } from 'react-redux';
 
@@ -39,6 +40,7 @@ const MainContainer = (props) => {
 							component={ArtistProfile}
 						/>
 						<Route exact path="/save" component={SavedPost} />
+						<Route exact path="/setting" component={Setting} />
 					</Switch>
 				</div>
 				<div className="card leftSideBar" style={{ height: '100vh' }}>

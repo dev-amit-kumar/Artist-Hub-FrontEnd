@@ -4,7 +4,7 @@ import { base_url, configHeader } from '../../../Redux/config';
 const CoverPic = (props) => {
 	const [image, setImage] = useState('');
 	const [message, setMessage] = useState('');
-	console.log(message);
+
 	const deleteImage = () => {
 		const data = {
 			imageId: props.coverId,

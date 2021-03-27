@@ -132,3 +132,26 @@ export const setUser = () => (dispatch) => {
 		dispatch({ type: 'TOGGLE_IS_LOADING_AUTH_USER' });
 	}
 };
+
+export const ChangeColor = (themeColor) => {
+	document.body.style.setProperty('--primary', themeColor.main);
+	document.body.style.setProperty('--primary_text', themeColor.main);
+	document.body.style.setProperty('--primary_hover', themeColor.hover);
+	document.body.style.setProperty('--primary_active', themeColor.active);
+};
+
+export const updateUserTheme = (themeColor) => {
+	ChangeColor(themeColor);
+	axios
+		.post(
+			`${base_url}/setting/editThemeColor`,
+			{ color: themeColor },
+			configHeader,
+		)
+		.then((reply) => {
+			console.log(reply.data);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+};

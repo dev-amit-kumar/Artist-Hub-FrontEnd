@@ -123,7 +123,7 @@ const Detail = (props) => {
 								/>
 								<label
 									className="form-check-label"
-									for="inlineCheckbox1"
+									htmlFor="inlineCheckbox1"
 								>
 									Birthday
 								</label>
@@ -140,7 +140,7 @@ const Detail = (props) => {
 								/>
 								<label
 									className="form-check-label"
-									for="inlineCheckbox2"
+									htmlFor="inlineCheckbox2"
 								>
 									Wedding
 								</label>
@@ -157,7 +157,7 @@ const Detail = (props) => {
 								/>
 								<label
 									className="form-check-label"
-									for="inlineCheckbox3"
+									htmlFor="inlineCheckbox3"
 								>
 									Outing
 								</label>
