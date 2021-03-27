@@ -8,7 +8,7 @@ const SavedPost = (props) => {
 		props.fetchSavedPost(props.match.params.id);
 	}, []);
 	if (props.PostDetail) {
-		console.log(props.savedPost);
+		console.log(props.savedPost.data);
 		if (props.PostDetail.data) {
 			return (
 				<div>
@@ -24,9 +24,9 @@ const SavedPost = (props) => {
 					<hr />
 					<h4 className="text-center text-primary">Saved Post</h4>
 					<div className=" container d-flex flex-row flex-wrap">
-						{props.savedPost.data[0] ? (
+						{props.savedPost.data ? (
 							props.savedPost.data.map((val, idx) => {
-								<GalleryView Data={val} key={idx} />;
+								return <GalleryView Data={val} key={idx} />;
 							})
 						) : (
 							<div className="col-12 mt-5 text-center">
