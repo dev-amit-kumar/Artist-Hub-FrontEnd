@@ -6,43 +6,51 @@ import Dp from './Components/Dp';
 import Details from './Components/Details';
 import Gallery from './Components/Gallery';
 
-const ArtistPage = (props) => {
-	const id = props.match.params.id;
+const ArtistPage = ({
+	match,
+	ArtistDetail,
+	followingDetail,
+	isLoadingArtistDetail,
+	fetchArtist,
+	followerDetail,
+	followerCount,
+	followingCount,
+}) => {
 	useEffect(() => {
-		props.fetchArtist(id);
-	}, []);
-	if (props.ArtistDetail) {
-		if (props.ArtistDetail.data) {
+		fetchArtist(match.params.id);
+	}, [match.params.id, fetchArtist]);
+	if (ArtistDetail) {
+		if (ArtistDetail.data) {
 			return (
 				<div className="d-flex flex-column">
 					<CoverPic
-						CoverPic={props.ArtistDetail.data.coverPic}
-						coverId={props.ArtistDetail.data.coverPicId}
+						CoverPic={ArtistDetail.data.coverPic}
+						coverId={ArtistDetail.data.coverPicId}
 					/>
 					<div className="container mt-2 d-flex flex-row">
 						<Dp
-							Dp={props.ArtistDetail.data.profilePic}
-							DpId={props.ArtistDetail.data.profilePicId}
+							Dp={ArtistDetail.data.profilePic}
+							DpId={ArtistDetail.data.profilePicId}
 						/>
 						<Details
-							Id={props.ArtistDetail.data._id}
-							Name={props.ArtistDetail.data.name}
-							Occassion={props.ArtistDetail.data.occassion}
-							Desc={props.ArtistDetail.data.shortDesc}
-							followingDetail={props.followingDetail.data}
-							followerDetail={props.followerDetail.data}
-							followerCount={props.followerCount.count}
-							followingCount={props.followingCount.count}
+							Id={ArtistDetail.data._id}
+							Name={ArtistDetail.data.name}
+							Occassion={ArtistDetail.data.occassion}
+							Desc={ArtistDetail.data.shortDesc}
+							followingDetail={followingDetail.data}
+							followerDetail={followerDetail.data}
+							followerCount={followerCount.count}
+							followingCount={followingCount.count}
 						/>
 					</div>
 					<hr />
-					<Gallery Id={props.match.params.id} />
+					<Gallery Id={match.params.id} />
 				</div>
 			);
 		} else {
-			return <h1>{props.ArtistDetail.message}</h1>;
+			return <h1>{ArtistDetail.message}</h1>;
 		}
-	} else if (props.isLoadingArtistDetail) {
+	} else if (isLoadingArtistDetail) {
 		return <h4>Loading</h4>;
 	} else {
 		return <h1>error</h1>;
