@@ -1,24 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Zoom from 'react-reveal/Zoom';
-import { registerUser } from '../../Redux/Actions';
+import { registerUser, getOccasion } from '../../Redux/Actions';
 
 const Register = (props) => {
 	const [R_email, setREmail] = useState('');
 	const [R_password, setRPassword] = useState('');
 	const [name, setName] = useState('');
 	const [isArtist, setIsArtist] = useState(false);
-	const [occasssionList, setOccassion] = useState([]);
+	const [occasssionSelectList, setOccassion] = useState([]);
+	const [occasionList, setList] = useState([]);
+	const [occasionError, setOccError] = useState(false);
+
+	useEffect(() => {
+		getOccasion((reply) => {
+			console.log(reply);
+			if (reply) {
+				setList(reply);
+			} else {
+				setOccError(true);
+			}
+		});
+	}, []);
 
 	const occassionHandler = (e) => {
 		const occassion = e.target.value;
-		if (occasssionList.includes(occassion)) {
-			let occassionAll = occasssionList;
+		if (occasssionSelectList.includes(occassion)) {
+			let occassionAll = occasssionSelectList;
 			occassionAll.pop(occassion);
 			setOccassion(occassionAll);
 		} else {
-			let occassionAll = occasssionList;
+			let occassionAll = occasssionSelectList;
 			occassionAll.push(occassion);
 			setOccassion(occassionAll);
 		}
@@ -40,7 +53,7 @@ const Register = (props) => {
 				data = {
 					...data,
 					type: 'artist',
-					occassions: occasssionList,
+					occassions: occasssionSelectList,
 				};
 			}
 			props.registerUser(data);
@@ -149,49 +162,46 @@ const Register = (props) => {
 														<label>
 															Choose occassion
 														</label>
-														<div className="d-flex">
-															<span className="form-check mt-2 me-2">
-																<input
-																	type="checkbox"
-																	name="occassion"
-																	value="birthday"
-																	className="form-check-input"
-																	onClick={
-																		occassionHandler
-																	}
-																/>
-																<label className="form-check-label">
-																	Birthday
-																</label>
-															</span>
-															<span className="form-check mt-2 me-2">
-																<input
-																	type="checkbox"
-																	name="occassion"
-																	value="wedding"
-																	className="form-check-input"
-																	onClick={
-																		occassionHandler
-																	}
-																/>
-																<label className="form-check-label">
-																	Wedding
-																</label>
-															</span>
-															<span className="form-check mt-2 me-2">
-																<input
-																	type="checkbox"
-																	name="occassion"
-																	value="outing"
-																	className="form-check-input"
-																	onClick={
-																		occassionHandler
-																	}
-																/>
-																<label className="form-check-label">
-																	Outing
-																</label>
-															</span>
+														<div className="d-flex flex-row flex-wrap">
+															{!occasionError ? (
+																occasionList.map(
+																	(
+																		occ,
+																		idx,
+																	) => {
+																		return (
+																			<span
+																				className="form-check mt-2 me-2"
+																				key={`occ_register${idx}`}
+																			>
+																				<input
+																					type="checkbox"
+																					name="occassion"
+																					value={
+																						occ
+																					}
+																					className="form-check-input"
+																					onClick={
+																						occassionHandler
+																					}
+																				/>
+																				<label className="form-check-label text-capitalize">
+																					{
+																						occ
+																					}
+																				</label>
+																			</span>
+																		);
+																	},
+																)
+															) : (
+																<p className="text-danger">
+																	Can't load
+																	occasion,
+																	Please try
+																	again later
+																</p>
+															)}
 														</div>
 													</div>
 												</>

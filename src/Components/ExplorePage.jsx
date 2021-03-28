@@ -1,16 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PostList from './PostComponent/PostList';
+import { getOccasion } from '../Redux/Actions';
 
 const ExplorePage = () => {
 	const [ExploreType, setExploreType] = useState('getAllPost');
 	const [showOccasssion, setShowOccasssion] = useState(false);
 	const [showSearch, setShowSearch] = useState(false);
 	const [search, setSearch] = useState('');
+	const [occasionList, setList] = useState([]);
+	const [occasionError, setOccError] = useState(false);
 
 	const searchHandler = (e) => {
 		e.preventDefault();
 		setExploreType(`searchPostByTag/${search}`);
 	};
+	useEffect(() => {
+		getOccasion((reply) => {
+			if (reply) {
+				setList(reply);
+			} else {
+				setOccError(true);
+			}
+		});
+	}, []);
 	return (
 		<>
 			<ul
@@ -74,19 +86,33 @@ const ExplorePage = () => {
 					</button>
 				</li>
 			</ul>
-			{showOccasssion && (
-				<select
-					className="form-select"
-					onClick={(e) =>
-						setExploreType(
-							`searchPostByOccasssion/${e.target.value}`,
-						)
-					}
-				>
-					<option value="wedding">Wedding</option>
-					<option value="birthday">Birthday</option>
-					<option value="outing">Outing</option>
-				</select>
+			{!occasionError ? (
+				showOccasssion && (
+					<select
+						className="form-select"
+						onClick={(e) =>
+							setExploreType(
+								`searchPostByOccasssion/${e.target.value}`,
+							)
+						}
+					>
+						{occasionList.map((occ, idx) => {
+							return (
+								<option
+									key={`occ_${idx}`}
+									value={occ}
+									className="text-capitalize"
+								>
+									{occ}
+								</option>
+							);
+						})}
+					</select>
+				)
+			) : (
+				<p className="text-danger">
+					Can't load occasion, Please try again later
+				</p>
 			)}
 			{showSearch && (
 				<form onSubmit={searchHandler}>

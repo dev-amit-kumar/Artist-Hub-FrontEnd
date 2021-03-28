@@ -5,3 +5,4 @@ export * from './SavedPost';
 export * from './UserProfile';
 export * from './getPostList';
 export * from './postAction';
+export * from './Data';
