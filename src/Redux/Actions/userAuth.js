@@ -84,6 +84,9 @@ export const loginUser = (data) => (dispatch) => {
 export const logoutUser = () => (dispatch) => {
 	try {
 		dispatch({ type: 'TOGGLE_IS_LOADING_AUTH_USER' });
+		dispatch({ type: 'LOGIN_ERROR', payload: null });
+		dispatch({ type: 'LOGIN_MSG', payload: null });
+		dispatch({ type: 'SET_USER', payload: null });
 		localStorage.clear();
 	} catch (error) {
 		dispatch({ type: 'LOGIN_ERROR', payload: error });

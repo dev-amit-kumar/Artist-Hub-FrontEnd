@@ -4,6 +4,7 @@ import { fetchUser } from '../../Redux/Actions/UserProfile';
 import Dp from '../UserProfilePage/Components/Dp';
 import Details from './Components/Detail';
 import GalleryView from '../Common/GalleryView';
+import Loading from '../Common/Loading';
 
 const UserPage = ({
 	match,
@@ -35,6 +36,7 @@ const UserPage = ({
 						/>
 					</div>
 					<hr />
+					<h1>Saved Post</h1>
 					<div className=" container d-flex flex-row flex-wrap">
 						{savedPost.data ? (
 							savedPost.data.map((val, idx) => {
@@ -52,7 +54,7 @@ const UserPage = ({
 			return <h1>{UserDetail.message}</h1>;
 		}
 	} else if (isLoadingUserDetail) {
-		return <h4>Loading</h4>;
+		return <Loading />;
 	} else {
 		return <h1>error</h1>;
 	}

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 const Header = (props) => {
 	const handleLogout = () => {
 		props.logoutUser();
-		props.history.push('/');
+		props.history.push('/auth/login');
 	};
 	return (
 		<>

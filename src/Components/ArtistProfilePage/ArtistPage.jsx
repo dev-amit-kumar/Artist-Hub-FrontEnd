@@ -5,6 +5,7 @@ import CoverPic from './Components/CoverPic';
 import Dp from './Components/Dp';
 import Details from './Components/Details';
 import GalleryType from './Components/GalleryType';
+import Loading from '../Common/Loading';
 
 const ArtistPage = ({
 	match,
@@ -77,7 +78,7 @@ const ArtistPage = ({
 			return <h1>{ArtistDetail.message}</h1>;
 		}
 	} else if (isLoadingArtistDetail) {
-		return <h4>Loading</h4>;
+		return <Loading />;
 	} else {
 		return <h1>error</h1>;
 	}

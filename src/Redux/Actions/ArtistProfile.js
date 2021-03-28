@@ -1,4 +1,4 @@
-import { base_url, configHeader } from '../config';
+import { base_url } from '../config';
 import axios from 'axios';
 
 export const fetchArtist = (id) => async (dispatch) => {
@@ -17,15 +17,30 @@ export const fetchArtist = (id) => async (dispatch) => {
 
 		const { data: ArtistDetail } = await axios.get(
 			`${base_url}/artist/getDetails/${id}`,
-			configHeader,
+			{
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			},
 		);
 		const { data: follower } = await axios.get(
 			`${base_url}/follower/getFollowerList/${id}`,
-			configHeader,
+			{
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			},
 		);
 		const { data: followingDetail } = await axios.get(
 			`${base_url}/follower/getFollowingList/${id}`,
-			configHeader,
+			{
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			},
 		);
 		dispatch({
 			type: 'GET_ARTIST_DETAIL',
@@ -52,10 +67,12 @@ export const fetchPost = (id, page) => async (dispatch) => {
 		});
 		dispatch({ type: 'TOGGLE_IS_LOADING_POST_PAGE' });
 
-		const { data } = await axios.get(
-			`${base_url}/artist/${page}/${id}`,
-			configHeader,
-		);
+		const { data } = await axios.get(`${base_url}/artist/${page}/${id}`, {
+			headers: {
+				'Content-Type': 'application/json',
+				'auth-token': localStorage.getItem('auth-token'),
+			},
+		});
 		dispatch({
 			type: 'GET_POST_DETAIL',
 			payload: {
@@ -82,11 +99,21 @@ export const fetchEditPost = (id) => async (dispatch) => {
 
 		const { data } = await axios.get(
 			`${base_url}/post/getPostDetail/${id}`,
-			configHeader,
+			{
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			},
 		);
 		const { data: image } = await axios.get(
 			`${base_url}/image/getImages/${id}`,
-			configHeader,
+			{
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			},
 		);
 		dispatch({
 			type: 'GET_EDIT_POST_DETAIL',

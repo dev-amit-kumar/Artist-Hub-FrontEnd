@@ -1,16 +1,15 @@
 import { base_url } from '../config';
 import axios from 'axios';
-const configHeader = {
-	headers: {
-		'Content-Type': 'application/json',
-		'auth-token': localStorage.getItem('auth-token'),
-	},
-};
 
 export const likePost = (postId, callback) => {
 	try {
 		axios
-			.get(`${base_url}/like/manageLike/${postId}`, configHeader)
+			.get(`${base_url}/like/manageLike/${postId}`, {
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			})
 			.then((reply) => {
 				if (reply.data.status === 200) {
 					callback(reply.data);
@@ -27,7 +26,12 @@ export const likePost = (postId, callback) => {
 export const getComment = (postId, callback) => {
 	try {
 		axios
-			.get(`${base_url}/comment/getComments/${postId}`, configHeader)
+			.get(`${base_url}/comment/getComments/${postId}`, {
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			})
 			.then((reply) => {
 				if (reply.data.status === 200) {
 					callback(reply.data);
@@ -44,7 +48,12 @@ export const getComment = (postId, callback) => {
 export const getRatings = (postId, callback) => {
 	try {
 		axios
-			.get(`${base_url}/rating/getRatings/${postId}`, configHeader)
+			.get(`${base_url}/rating/getRatings/${postId}`, {
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			})
 			.then((reply) => {
 				if (reply.data.status === 200) {
 					callback(reply.data);
@@ -66,7 +75,12 @@ export const addNewComment = (postId, comment, callback) => {
 				{
 					comment: comment,
 				},
-				configHeader,
+				{
+					headers: {
+						'Content-Type': 'application/json',
+						'auth-token': localStorage.getItem('auth-token'),
+					},
+				},
 			)
 			.then((reply) => {
 				if (reply.data.status === 200) {
@@ -84,10 +98,12 @@ export const addNewComment = (postId, comment, callback) => {
 export const addNewRating = (postId, rating, callback) => {
 	try {
 		axios
-			.get(
-				`${base_url}/rating/addRating/${postId}?rating=${rating}`,
-				configHeader,
-			)
+			.get(`${base_url}/rating/addRating/${postId}?rating=${rating}`, {
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			})
 			.then((reply) => {
 				console.log(reply.data);
 				if (reply.data.status === 200) {
@@ -105,7 +121,12 @@ export const addNewRating = (postId, rating, callback) => {
 export const savePost = (postId, callback) => {
 	try {
 		axios
-			.get(`${base_url}/save/manageSave/${postId}`, configHeader)
+			.get(`${base_url}/save/manageSave/${postId}`, {
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			})
 			.then((reply) => {
 				if (reply.data.status === 200) {
 					callback(reply.data);

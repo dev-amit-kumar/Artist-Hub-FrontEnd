@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchSavedPost } from '../Redux/Actions/SavedPost';
 import GalleryView from './Common/GalleryView';
+import Loading from './Common/Loading';
 
 const SavedPost = ({
 	match,
@@ -56,7 +57,7 @@ const SavedPost = ({
 			return <h1>{PostDetail.message}</h1>;
 		}
 	} else if (isLoadingSavedtDetail) {
-		return <h4>Loading</h4>;
+		return <Loading />;
 	} else {
 		return <h1>error</h1>;
 	}
