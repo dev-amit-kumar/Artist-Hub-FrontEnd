@@ -27,7 +27,7 @@ body {
 	width: 50vw;
 	overflow-y: scroll !important;
 	background-color: #fff;
-	height: 93vh;
+	height: 100vh;
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
 }

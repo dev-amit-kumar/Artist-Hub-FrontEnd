@@ -1,7 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Header from './Common/Header';
-import Footer from './Common/Footer';
 import PageNotFound from './Common/PageNotFound';
 import Login from './Auth/Login';
 import Register from './Auth/Register';
@@ -19,7 +17,6 @@ class Routing extends React.Component {
 	render() {
 		return (
 			<BrowserRouter>
-				<Header />
 				<Switch>
 					<Route exact path="/" component={MainContainer} />
 					<Route exact path="/explore" component={MainContainer} />
@@ -37,7 +34,6 @@ class Routing extends React.Component {
 					<Route exact path="/auth/register" component={Register} />
 					<Route component={PageNotFound} />
 				</Switch>
-				<Footer />
 			</BrowserRouter>
 		);
 	}
