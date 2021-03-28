@@ -23,7 +23,7 @@ const UserPage = ({
 		if (UserDetail.data) {
 			return (
 				<>
-					<div className="d-flex flex-row justify-content-center flex-wrap">
+					<div className="ps-4 pe-4 pt-4 d-flex flex-row justify-content-evenly align-items-center">
 						<Dp
 							Dp={UserDetail.data.profilePic}
 							DpId={UserDetail.data.profilePicId}
@@ -36,11 +36,21 @@ const UserPage = ({
 						/>
 					</div>
 					<hr />
-					<h1>Saved Post</h1>
+					<div className="text-center">
+						<b className="save_post_border">
+							&emsp; SAVED POST &emsp;
+						</b>
+					</div>
 					<div className=" container d-flex flex-row flex-wrap">
 						{savedPost.data ? (
 							savedPost.data.map((val, idx) => {
-								return <GalleryView Data={val} key={idx} />;
+								return (
+									<GalleryView
+										Data={val}
+										key={idx}
+										unSave={true}
+									/>
+								);
 							})
 						) : (
 							<h1 className="col-12 mt-5 text-center">

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import '../../../css/galleryPost.css';
-import { base_url, configHeader } from '../../../Redux/config';
+import { base_url } from '../../../Redux/config';
 const CoverPic = (props) => {
 	const [image, setImage] = useState('');
 
@@ -10,7 +10,12 @@ const CoverPic = (props) => {
 			imageId: props.coverId,
 		};
 		axios
-			.post(`${base_url}/artist/editPic/coverPic`, data, configHeader)
+			.post(`${base_url}/artist/editPic/coverPic`, data, {
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			})
 			.then((res) => console.log(res))
 			.catch((err) => console.log(err));
 	};

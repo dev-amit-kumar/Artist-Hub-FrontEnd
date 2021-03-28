@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { base_url, configHeader } from '../../../Redux/config';
+import { base_url } from '../../../Redux/config';
 
 const allOccassion = ['birthday', 'wedding', 'outing'];
 
@@ -32,7 +32,12 @@ const Detail = (props) => {
 			shortDesc: shortDesc,
 		};
 		axios
-			.post(`${base_url}/artist/editDetails`, data, configHeader)
+			.post(`${base_url}/artist/editDetails`, data, {
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			})
 			.then((res) => {
 				setMsg(res.data.message);
 				// props.fetchArtist(props.match.params.id);
@@ -65,7 +70,7 @@ const Detail = (props) => {
 	return (
 		<div className="container">
 			<div className="d-flex flex-row justify-content-between align-items-center flex-wrap">
-				<h3 className="text-muted">{props.Name}</h3>
+				<h3 className="text-primary-color fw-bolder">{props.Name}</h3>
 				<span>
 					<b
 						className="text-muted"
@@ -134,7 +139,7 @@ const Detail = (props) => {
 											setName(e.target.value);
 										}}
 										name="name"
-										value={props.Name}
+										value={name}
 										type="text"
 										placeholder="name"
 										className="form-control mb-2"
@@ -182,7 +187,7 @@ const Detail = (props) => {
 										className="form-control"
 										rows="5"
 										required
-										value={props.Desc}
+										value={shortDesc}
 									></textarea>
 								</div>
 								<div className="form-group">

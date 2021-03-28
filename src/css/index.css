@@ -19,6 +19,10 @@ body {
 	box-sizing: border-box;
 }
 
+.text-primary-color {
+	color: var(--primary_active);
+}
+
 .main-container {
 	width: 50vw;
 	overflow-y: scroll !important;
@@ -40,6 +44,10 @@ body {
 }
 .nav-tabs {
 	background-color: #fff;
+}
+
+.save_post_border {
+	border-bottom: 3px solid var(--primary_active);
 }
 
 @media only screen and (max-width: 720px) {

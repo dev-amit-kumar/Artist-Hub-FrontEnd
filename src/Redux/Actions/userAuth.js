@@ -1,4 +1,4 @@
-import { base_url, configHeader } from '../config';
+import { base_url } from '../config';
 import axios from 'axios';
 
 export const registerUser = (data) => (dispatch) => {
@@ -101,7 +101,12 @@ export const setUser = () => (dispatch) => {
 		dispatch({ type: 'LOGIN_ERROR', payload: null });
 		dispatch({ type: 'LOGIN_MSG', payload: null });
 		axios
-			.get(`${base_url}/auth/getUserDetail`, configHeader)
+			.get(`${base_url}/auth/getUserDetail`, {
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			})
 			.then((reply) => {
 				if (reply.data.status === 200) {
 					dispatch({
@@ -149,7 +154,12 @@ export const updateUserTheme = (themeColor) => {
 		.post(
 			`${base_url}/setting/editThemeColor`,
 			{ color: themeColor },
-			configHeader,
+			{
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			},
 		)
 		.then()
 		.catch((err) => {
