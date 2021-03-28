@@ -196,6 +196,22 @@ export const PostEditPostDeleteImage = (id, callback) => {
     callback(false);
   }
 };
+export const PostDelete = (id, callback) => {
+  try {
+    axios
+      .get(`${base_url}/post/deletePost/${id}`, configHeader)
+      .then((reply) => {
+        if (reply.data.status === 200) {
+          callback(reply.data);
+        } else {
+          callback(false);
+        }
+      })
+      .catch(() => callback(false));
+  } catch (error) {
+    callback(false);
+  }
+};
 export const getRatings = (postId, callback) => {
   try {
     axios
