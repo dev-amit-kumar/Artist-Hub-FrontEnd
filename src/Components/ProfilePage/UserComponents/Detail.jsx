@@ -51,7 +51,7 @@ const Detail = (props) => {
 					</button>
 				</span>
 			</div>
-			<p className="text-justify">{props.Desc}</p>
+			<p className="hideOn650 text-justify">{props.Desc}</p>
 			<div
 				className="modal fade"
 				id="ModalBoxDetail"

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { logoutUser } from '../../Redux/Actions';
 import '../../css/sideNav.css';
 
@@ -12,9 +12,10 @@ const SideNav = (props) => {
 	};
 	return (
 		<div className={`sidebar ${isClicked ? '' : 'active'}`}>
-			<div className="d-flex justify-content-center align-items-center flex-column">
-				<img src="/logo.png" className="logoImg" alt="logo_img" />
-			</div>
+			<Link to="/" className="logoLink">
+				<img src="/logo.png" alt="logo_img" />
+				<span className="hideOn650">ARTIST HUB</span>
+			</Link>
 			<NavLink
 				to="/"
 				exact

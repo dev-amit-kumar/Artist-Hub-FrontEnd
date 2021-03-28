@@ -35,13 +35,16 @@ const UserPage = ({
 							followingCount={followingCount.count}
 						/>
 					</div>
+					<p className="showOn650 text-justify pt-3 pe-3 ps-3">
+						{UserDetail.data.shortDesc}
+					</p>
 					<hr />
-					<div className="text-center">
+					<div className="text-center mb-4">
 						<b className="save_post_border">
 							&emsp; SAVED POST &emsp;
 						</b>
 					</div>
-					<div className=" container d-flex flex-row flex-wrap">
+					<div className=" container d-flex flex-row flex-wrap mb-4 pb-4">
 						{savedPost.data ? (
 							savedPost.data.map((val, idx) => {
 								return (
