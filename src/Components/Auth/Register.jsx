@@ -15,7 +15,6 @@ const Register = (props) => {
 
 	useEffect(() => {
 		getOccasion((reply) => {
-			console.log(reply);
 			if (reply) {
 				setList(reply);
 			} else {
