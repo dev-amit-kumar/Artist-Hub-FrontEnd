@@ -41,7 +41,7 @@
 }
 
 /* //////// */
-.leftSideBar {
+.rightSideBar {
 	width: 25vw;
 }
 .showButton {
@@ -65,7 +65,7 @@
 	.option {
 		width: 40px !important;
 	}
-	.leftSideBar {
+	.rightSideBar {
 		display: none;
 	}
 	.showButton {

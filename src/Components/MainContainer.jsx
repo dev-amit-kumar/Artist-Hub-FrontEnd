@@ -1,8 +1,8 @@
 import SideNav from './Common/SideNav';
 import RightSide from './Common/RightSide';
 import HomePage from './HomePage';
-import UserProfile from './UserProfilePage/UserProfile';
-import ArtistProfile from './ArtistProfilePage/ArtistPage';
+import UserProfile from './ProfilePage/UserProfile';
+import ArtistProfile from './ProfilePage/ArtistPage';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import ExplorePage from './ExplorePage';
 import SavedPost from './SavedPost';
@@ -27,7 +27,7 @@ const MainContainer = (props) => {
 		if (props.user) {
 			return (
 				<div className="d-flex flex-row">
-					<div className="rightSideBar">
+					<div className="leftSideBar">
 						<SideNav />
 					</div>
 					<div className="card main-container">
@@ -69,10 +69,7 @@ const MainContainer = (props) => {
 							/>
 						</Switch>
 					</div>
-					<div
-						className="card leftSideBar"
-						style={{ height: '100vh' }}
-					>
+					<div className="rightSideBar" style={{ height: '100vh' }}>
 						<RightSide />
 					</div>
 				</div>

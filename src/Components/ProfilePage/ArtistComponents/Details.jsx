@@ -1,9 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { base_url, configHeader } from '../../../Redux/config';
-import { connect } from 'react-redux';
-import { fetchArtist } from '../../../Redux/Actions/ArtistProfile';
-import { withRouter } from 'react-router';
 
 const allOccassion = ['birthday', 'wedding', 'outing'];
 
@@ -278,4 +275,4 @@ const Detail = (props) => {
 		</div>
 	);
 };
-export default withRouter(connect('', { fetchArtist })(Detail));
+export default Detail;

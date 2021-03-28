@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from '../../Redux/Actions/UserProfile';
-import Dp from '../UserProfilePage/Components/Dp';
-import Details from './Components/Detail';
+import Dp from './Common/Dp';
+import Details from './UserComponents/Detail';
 import GalleryView from '../Common/GalleryView';
 import Loading from '../Common/Loading';
 
@@ -22,8 +22,8 @@ const UserPage = ({
 	if (UserDetail) {
 		if (UserDetail.data) {
 			return (
-				<div className="mt-5 d-flex flex-column">
-					<div className=" d-flex flex-row justify-content-center">
+				<>
+					<div className="d-flex flex-row justify-content-center flex-wrap">
 						<Dp
 							Dp={UserDetail.data.profilePic}
 							DpId={UserDetail.data.profilePicId}
@@ -48,7 +48,7 @@ const UserPage = ({
 							</h1>
 						)}
 					</div>
-				</div>
+				</>
 			);
 		} else {
 			return <h1>{UserDetail.message}</h1>;

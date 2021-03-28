@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchArtist } from '../../Redux/Actions/ArtistProfile';
-import CoverPic from './Components/CoverPic';
-import Dp from './Components/Dp';
-import Details from './Components/Details';
-import GalleryType from './Components/GalleryType';
+import CoverPic from './ArtistComponents/CoverPic';
+import Dp from './Common/Dp';
+import Details from './ArtistComponents/Details';
+import GalleryType from './ArtistComponents/GalleryType';
 import Loading from '../Common/Loading';
 
 const ArtistPage = ({
