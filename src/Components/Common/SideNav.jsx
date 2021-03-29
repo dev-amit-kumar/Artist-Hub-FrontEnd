@@ -1,15 +1,10 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { NavLink, Link, withRouter } from 'react-router-dom';
-import { logoutUser } from '../../Redux/Actions';
+import { NavLink, Link } from 'react-router-dom';
 import '../../css/sideNav.css';
 
 const SideNav = (props) => {
 	const [isClicked, setClicked] = useState(false);
-	const handleLogout = () => {
-		props.logoutUser();
-		props.history.push('/auth/login');
-	};
 	return (
 		<div className={`sidebar ${isClicked ? '' : 'active'}`}>
 			<Link to="/" className="logoLink">
@@ -67,12 +62,6 @@ const SideNav = (props) => {
 					Profile
 				</span>
 			</NavLink>
-			<button className="navOption btn" onClick={handleLogout}>
-				<i className="fas fa-sign-out-alt option"></i>
-				<span className={`showNavText ${isClicked ? '' : 'active'}`}>
-					Log out
-				</span>
-			</button>
 			<NavLink
 				to="/setting"
 				activeClassName="optionActive"
@@ -96,4 +85,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default withRouter(connect(mapStateToProps, { logoutUser })(SideNav));
+export default connect(mapStateToProps)(SideNav);

@@ -6,6 +6,7 @@ import Dp from './Common/Dp';
 import Details from './ArtistComponents/Details';
 import GalleryType from './ArtistComponents/GalleryType';
 import Loading from '../Common/Loading';
+import ErrorPage from '../Common/ErrorPage';
 
 const ArtistPage = ({
 	match,
@@ -71,6 +72,7 @@ const ArtistPage = ({
 							{ArtistDetail.data.shortDesc}
 						</p>
 					</div>
+					<hr />
 					<GalleryType Id={match.params.id} />
 				</>
 			);
@@ -80,7 +82,7 @@ const ArtistPage = ({
 	} else if (isLoadingArtistDetail) {
 		return <Loading />;
 	} else {
-		return <h1>error</h1>;
+		return <ErrorPage error="Something went wrong" />;
 	}
 };
 const mapStateToProps = (state) => {
