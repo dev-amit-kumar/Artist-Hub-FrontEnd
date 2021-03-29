@@ -30,7 +30,7 @@ const MainContainer = (props) => {
 					<div className="leftSideBar">
 						<SideNav />
 					</div>
-					<div className="card main-container">
+					<div className="main-container">
 						<Switch>
 							<Route exact path="/" component={HomePage} />
 							<Route

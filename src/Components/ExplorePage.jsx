@@ -24,7 +24,7 @@ const ExplorePage = () => {
 		});
 	}, []);
 	return (
-		<>
+		<div className="allPostContainer">
 			<ul
 				className="nav nav-tabs nav-fill sticky-top"
 				id="myTab"
@@ -139,7 +139,7 @@ const ExplorePage = () => {
 			<div className="container-fluid">
 				<PostList postUrl={`explore/${ExploreType}`} />
 			</div>
-		</>
+		</div>
 	);
 };
 

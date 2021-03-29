@@ -2,11 +2,7 @@
 	--primary: #032541;
 	--primary_hover: #088bf750;
 	--primary_active: #0d7ad3;
-	--primary_text: #032541;
-	--secondary: #ffffff;
-	--secondary_text: #ffffff;
-	--content_text: #000000;
-	--transparent: #fff0;
+	--primary_text: #ffffff;
 }
 html,
 body {
@@ -35,7 +31,10 @@ body {
 .main-container::-webkit-scrollbar {
 	display: none;
 }
-
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link {
+	color: var(--primary_text);
+}
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
 	border-color: #fff;
@@ -43,7 +42,7 @@ body {
 	color: var(--primary_active);
 }
 .nav-tabs {
-	background-color: #fff;
+	background-color: var(--primary);
 }
 
 .save_post_border {

@@ -3,37 +3,44 @@
 		{
 			"main": "#032541",
 			"hover": "#088bf720",
-			"active": "#0d7ad3"
+			"active": "#0d7ad3",
+			"text": "#ffffff"
 		},
 		{
 			"main": "#372668",
 			"hover": "#37266830",
-			"active": "#613ad8"
+			"active": "#a78aff",
+			"text": "#ffffff"
 		},
 		{
 			"main": "#D40242",
 			"hover": "#D4024220",
-			"active": "#D40242"
+			"active": "#200808",
+			"text": "#ffffff"
 		},
 		{
 			"main": "#710340",
 			"hover": "#71034020",
-			"active": "#c41b78"
+			"active": "#ff008d",
+			"text": "#ffffff"
 		},
 		{
 			"main": "#000000",
 			"hover": "#00000020",
-			"active": "#4d4444"
+			"active": "#4d4444",
+			"text": "#ffffff"
 		},
 		{
 			"main": "#3d1622",
 			"hover": "#3d162230",
-			"active": "#882a46"
+			"active": "#ff0b54",
+			"text": "#ffffff"
 		},
 		{
-			"main": "#8b002b",
-			"hover": "#8b002b20",
-			"active": "#8b002b"
+			"main": "#fff",
+			"hover": "#3d162230",
+			"active": "#ff0b54",
+			"text": "#000000"
 		}
 	]
 }

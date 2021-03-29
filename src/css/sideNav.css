@@ -3,6 +3,7 @@
 	position: relative;
 	height: 100vh;
 	width: 50px;
+	background-color: var(--primary);
 }
 .sidebar.active {
 	width: 25vw;
@@ -15,12 +16,12 @@
 	align-items: center;
 	padding: 10px;
 	font-size: 30px;
-	color: var(--primary_active);
+	color: var(--primary_text);
 	font-weight: 700;
 	font-family: 'Kiwi Maru', serif;
 }
 .logoLink:hover {
-	color: var(--primary_active);
+	color: var(--primary_text);
 }
 .logoLink img {
 	height: 100px;
@@ -30,7 +31,7 @@
 	display: flex;
 	flex-flow: row wrap;
 	align-items: center;
-	color: #000;
+	color: var(--primary_text);
 	font-weight: 600;
 	margin-bottom: 24px;
 	font-size: 30px;
@@ -41,7 +42,7 @@
 }
 
 .navOption:hover {
-	color: var(--primary);
+	color: var(--primary_text);
 	background-color: var(--primary_hover);
 }
 
@@ -66,6 +67,7 @@
 /* //////// */
 .rightSideBar {
 	width: 25vw;
+	background-color: var(--primary);
 }
 /* /////// */
 @media only screen and (max-width: 1100px) {

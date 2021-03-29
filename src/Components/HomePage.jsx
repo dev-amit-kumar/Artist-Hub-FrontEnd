@@ -7,7 +7,7 @@ const HomePage = () => {
 		setHomeType(e.target.id);
 	};
 	return (
-		<>
+		<div className="allPostContainer">
 			<ul
 				className="nav nav-tabs nav-fill sticky-top"
 				id="myTab"
@@ -57,10 +57,8 @@ const HomePage = () => {
 					</button>
 				</li>
 			</ul>
-			<div>
-				<PostList postUrl={`home/${HomeType}`} />
-			</div>
-		</>
+			<PostList postUrl={`home/${HomeType}`} />
+		</div>
 	);
 };
 
