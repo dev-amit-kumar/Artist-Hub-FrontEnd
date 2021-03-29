@@ -20,7 +20,7 @@ class Routing extends React.Component {
 				<Switch>
 					<Route exact path="/" component={MainContainer} />
 					<Route exact path="/explore" component={MainContainer} />
-					<Route exact path="/quotation" component={MainContainer} />
+					<Route exact path="/addPost" component={MainContainer} />
 					<Route exact path="/save/:id" component={MainContainer} />
 					<Route
 						exact
@@ -28,7 +28,6 @@ class Routing extends React.Component {
 						component={MainContainer}
 					/>
 					<Route exact path="/setting" component={MainContainer} />
-					<Route exact path="/quotation" component={MainContainer} />
 					<Route exact path="/edit/:id" component={MainContainer} />
 					<Route
 						exact

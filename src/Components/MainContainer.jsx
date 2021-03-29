@@ -69,11 +69,7 @@ const MainContainer = (props) => {
 								path="/edit/:id"
 								component={PostEdit}
 							/>
-							<Route
-								exact
-								path="/quotation"
-								component={NewPost}
-							/>
+							<Route exact path="/addPost" component={NewPost} />
 							<Route
 								exact
 								path="/newpost/image/:id"

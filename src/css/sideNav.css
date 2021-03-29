@@ -34,7 +34,7 @@
 	align-items: center;
 	color: var(--primary_text);
 	font-weight: 600;
-	margin-bottom: 24px;
+	margin-bottom: 20px;
 	font-size: 30px;
 	border-radius: 50px 0px 0px 50px;
 	padding: 10px;
@@ -45,6 +45,14 @@
 .navOption:hover {
 	color: var(--primary_text);
 	background-color: var(--primary_hover);
+}
+
+.addPost {
+	width: 90%;
+	border-radius: 50px 50px 50px 50px;
+	background-color: var(--primary);
+	border: 3px solid var(--primary_active);
+	font-weight: 700;
 }
 
 .optionActive {

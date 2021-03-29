@@ -33,16 +33,6 @@ const SideNav = (props) => {
 				</span>
 			</NavLink>
 			<NavLink
-				to="/quotation"
-				activeClassName="optionActive"
-				className="navOption"
-			>
-				<i className="fas fa-money-check-alt option"></i>
-				<span className={`showNavText ${isClicked ? '' : 'active'}`}>
-					Quotation
-				</span>
-			</NavLink>
-			<NavLink
 				to={`/save/${props.user.userId}`}
 				activeClassName="optionActive"
 				className="navOption"
@@ -72,6 +62,16 @@ const SideNav = (props) => {
 					Setting
 				</span>
 			</NavLink>
+			{props.user.type === 'artist' && (
+				<NavLink to="/addPost" className="navOption addPost">
+					<i className="fas fa-plus option"></i>
+					<span
+						className={`showNavText ${isClicked ? '' : 'active'}`}
+					>
+						Add Post
+					</span>
+				</NavLink>
+			)}
 			<div
 				className={`showButton ${isClicked ? 'active' : ''}`}
 				onClick={() => setClicked(!isClicked)}
