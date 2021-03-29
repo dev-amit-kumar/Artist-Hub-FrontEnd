@@ -47,6 +47,7 @@ export const loginUser = (data) => (dispatch) => {
 		axios
 			.post(`${base_url}/auth/loginUser`, data)
 			.then((reply) => {
+				console.log(reply.data);
 				if (reply.data.status === 200) {
 					dispatch({
 						type: 'LOGIN_MSG',
@@ -59,7 +60,7 @@ export const loginUser = (data) => (dispatch) => {
 				} else if (reply.data.status === 300) {
 					dispatch({
 						type: 'LOGIN_ERROR',
-						payload: reply.data.message,
+						payload: reply.data.error,
 					});
 				} else if (reply.data.status === 400) {
 					dispatch({
