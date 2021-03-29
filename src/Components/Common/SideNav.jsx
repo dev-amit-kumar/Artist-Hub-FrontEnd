@@ -1,16 +1,21 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link, withRouter } from 'react-router-dom';
+import { logoutUser } from '../../Redux/Actions';
 import '../../css/sideNav.css';
 
 const SideNav = (props) => {
 	const [isClicked, setClicked] = useState(false);
+	const handleLogout = () => {
+		props.logoutUser();
+		props.history.push('/auth/login');
+	};
 	return (
-		<div
-			className={`sidebar d-flex flex-column ${
-				isClicked ? '' : 'active'
-			}`}
-		>
+		<div className={`sidebar ${isClicked ? '' : 'active'}`}>
+			<Link to="/" className="logoLink">
+				<img src="/logo.png" alt="logo_img" />
+				<span className="hideOn650">ARTIST HUB</span>
+			</Link>
 			<NavLink
 				to="/"
 				exact
@@ -62,6 +67,12 @@ const SideNav = (props) => {
 					Profile
 				</span>
 			</NavLink>
+			<button className="navOption btn" onClick={handleLogout}>
+				<i className="fas fa-sign-out-alt option"></i>
+				<span className={`showNavText ${isClicked ? '' : 'active'}`}>
+					Log out
+				</span>
+			</button>
 			<NavLink
 				to="/setting"
 				activeClassName="optionActive"
@@ -85,4 +96,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(SideNav);
+export default withRouter(connect(mapStateToProps, { logoutUser })(SideNav));

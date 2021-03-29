@@ -1,4 +1,4 @@
-import { base_url, configHeader } from '../config';
+import { base_url } from '../config';
 import axios from 'axios';
 
 export const registerUser = (data) => (dispatch) => {
@@ -84,6 +84,9 @@ export const loginUser = (data) => (dispatch) => {
 export const logoutUser = () => (dispatch) => {
 	try {
 		dispatch({ type: 'TOGGLE_IS_LOADING_AUTH_USER' });
+		dispatch({ type: 'LOGIN_ERROR', payload: null });
+		dispatch({ type: 'LOGIN_MSG', payload: null });
+		dispatch({ type: 'SET_USER', payload: null });
 		localStorage.clear();
 	} catch (error) {
 		dispatch({ type: 'LOGIN_ERROR', payload: error });
@@ -98,7 +101,12 @@ export const setUser = () => (dispatch) => {
 		dispatch({ type: 'LOGIN_ERROR', payload: null });
 		dispatch({ type: 'LOGIN_MSG', payload: null });
 		axios
-			.get(`${base_url}/auth/getUserDetail`, configHeader)
+			.get(`${base_url}/auth/getUserDetail`, {
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			})
 			.then((reply) => {
 				if (reply.data.status === 200) {
 					dispatch({
@@ -135,7 +143,7 @@ export const setUser = () => (dispatch) => {
 
 export const ChangeColor = (themeColor) => {
 	document.body.style.setProperty('--primary', themeColor.main);
-	document.body.style.setProperty('--primary_text', themeColor.main);
+	document.body.style.setProperty('--primary_text', themeColor.text);
 	document.body.style.setProperty('--primary_hover', themeColor.hover);
 	document.body.style.setProperty('--primary_active', themeColor.active);
 };
@@ -146,11 +154,14 @@ export const updateUserTheme = (themeColor) => {
 		.post(
 			`${base_url}/setting/editThemeColor`,
 			{ color: themeColor },
-			configHeader,
+			{
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			},
 		)
-		.then((reply) => {
-			console.log(reply.data);
-		})
+		.then()
 		.catch((err) => {
 			console.log(err);
 		});

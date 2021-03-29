@@ -2,12 +2,9 @@
 	--primary: #032541;
 	--primary_hover: #088bf750;
 	--primary_active: #0d7ad3;
-	--primary_text: #032541;
-	--secondary: #ffffff;
-	--secondary_text: #ffffff;
-	--content_text: #000000;
-	--transparent: #fff0;
+	--primary_text: #ffffff;
 }
+
 html,
 body {
 	margin: 0;
@@ -19,12 +16,15 @@ body {
 	box-sizing: border-box;
 }
 
+.text-primary-color {
+	color: var(--primary_active);
+}
+
 .main-container {
 	width: 50vw;
-	padding: 0 15px;
 	overflow-y: scroll !important;
 	background-color: #fff;
-	height: 93vh;
+	height: 100vh;
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
 }
@@ -34,13 +34,26 @@ body {
 }
 
 .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link {
+	color: var(--primary_text);
+}
+
+.nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
 	border-color: #fff;
 	border-bottom: 3px solid var(--primary_active);
 	color: var(--primary_active);
 }
+
 .nav-tabs {
-	background-color: #fff;
+	background-color: var(--primary);
+	border: 1px solid var(--primary_text);
+	border-top-left-radius: 0.25rem;
+	border-top-right-radius: 0.25rem;
+}
+
+.save_post_border {
+	border-bottom: 3px solid var(--primary_active);
 }
 
 @media only screen and (max-width: 720px) {

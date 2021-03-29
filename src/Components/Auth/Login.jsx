@@ -63,6 +63,7 @@ const Login = (props) => {
 													className="form-control"
 													placeholder="Enter password"
 													id="exampleInputPassword1"
+													autoComplete="true"
 												/>
 											</div>
 											{props.loginError && (

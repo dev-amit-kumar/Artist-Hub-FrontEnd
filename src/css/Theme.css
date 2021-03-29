@@ -1,16 +1,17 @@
 .theme_container {
 	display: flex;
 	flex-flow: row wrap;
-	/* justify-content: space-evenly; */
+	justify-content: space-evenly;
 }
 
 .theme_container button {
 	margin: 10px;
-	color: var(--secondary_text);
-	width: 120px;
+	color: var(--primary_text);
+	width: 25%;
 	height: 120px;
 	border: none;
 	border-radius: 10px;
+	box-shadow: 0px 0px 16px 6px #d2d1d1;
 }
 
 .theme_container button:hover {
