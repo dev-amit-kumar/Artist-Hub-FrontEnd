@@ -7,7 +7,9 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import ExplorePage from './ExplorePage';
 import SavedPost from './SavedPost';
 import Setting from './Setting/Index';
-import PostEdit from './PostEdit';
+import PostEdit from './EditPost/PostEdit';
+import NewPost from './NewPost/NewPost';
+import NewImage from './NewPost/NewImage';
 import Loading from './Common/Loading';
 import '../css/index.css';
 import { ChangeColor } from '../Redux/Actions';
@@ -66,6 +68,16 @@ const MainContainer = (props) => {
 								exact
 								path="/edit/:id"
 								component={PostEdit}
+							/>
+							<Route
+								exact
+								path="/quotation"
+								component={NewPost}
+							/>
+							<Route
+								exact
+								path="/newpost/image/:id"
+								component={NewImage}
 							/>
 						</Switch>
 					</div>

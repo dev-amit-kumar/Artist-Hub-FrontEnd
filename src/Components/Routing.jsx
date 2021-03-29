@@ -28,7 +28,13 @@ class Routing extends React.Component {
 						component={MainContainer}
 					/>
 					<Route exact path="/setting" component={MainContainer} />
+					<Route exact path="/quotation" component={MainContainer} />
 					<Route exact path="/edit/:id" component={MainContainer} />
+					<Route
+						exact
+						path="/newpost/image/:id"
+						component={MainContainer}
+					/>
 					<Route exact path="/artist/:id" component={MainContainer} />
 					<Route exact path="/auth/login" component={Login} />
 					<Route exact path="/auth/register" component={Register} />
