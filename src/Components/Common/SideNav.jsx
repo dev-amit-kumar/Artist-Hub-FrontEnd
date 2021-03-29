@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, withRouter } from 'react-router-dom';
 import { logoutUser } from '../../Redux/Actions';
 import '../../css/sideNav.css';
 
@@ -96,4 +96,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { logoutUser })(SideNav);
+export default withRouter(connect(mapStateToProps, { logoutUser })(SideNav));

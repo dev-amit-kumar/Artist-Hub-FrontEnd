@@ -28,6 +28,7 @@
 	width: 100px !important;
 }
 .navOption {
+	width: 98%;
 	display: flex;
 	flex-flow: row wrap;
 	align-items: center;
@@ -35,10 +36,10 @@
 	font-weight: 600;
 	margin-bottom: 24px;
 	font-size: 30px;
-	border-radius: 50px;
+	border-radius: 50px 0px 0px 50px;
 	padding: 10px;
+	margin-left: 2%;
 	text-decoration: none;
-	margin-right: 10px;
 }
 
 .navOption:hover {
@@ -47,7 +48,8 @@
 }
 
 .optionActive {
-	color: var(--primary_active);
+	background-color: var(--primary_text);
+	color: var(--primary);
 	font-weight: 700;
 }
 

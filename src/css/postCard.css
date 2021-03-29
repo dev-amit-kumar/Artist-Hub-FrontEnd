@@ -20,10 +20,7 @@
 }
 
 .allPostContainer {
-	background-color: var(--primary);
 	padding: 0 5px 30px 5px;
-	border-left: 1px solid grey;
-	border-right: 1px solid grey;
 }
 
 .border-bottom {
