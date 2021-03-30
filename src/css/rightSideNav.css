@@ -2,3 +2,47 @@
 	width: 25vw;
 	background-color: var(--primary);
 }
+
+.searchResult {
+	margin-top: 20px;
+	overflow-y: scroll;
+	height: 50vh;
+}
+
+.searchResult::-webkit-scrollbar-track {
+	background-color: var(--primary);
+	border-radius: 10px;
+}
+
+.searchResult::-webkit-scrollbar {
+	width: 7px;
+	background-color: var(--primary);
+}
+
+.searchResult::-webkit-scrollbar-thumb {
+	background-color: var(--primary_text);
+	border-radius: 10px;
+	background-image: -webkit-gradient(
+		linear,
+		0 0,
+		0 100%,
+		color-stop(0.5, rgba(255, 255, 255, 0.2)),
+		color-stop(0.5, transparent),
+		to(transparent)
+	);
+}
+
+.searchResult a {
+	text-decoration: none;
+	width: 90%;
+}
+
+.searchResult div {
+	color: var(--primary);
+	padding: 10px;
+	margin-top: 10px;
+	margin-right: 10px;
+	border-radius: 5px;
+	text-decoration: none;
+	background-color: var(--primary_text);
+}

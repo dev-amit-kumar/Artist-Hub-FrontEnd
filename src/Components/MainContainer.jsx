@@ -43,13 +43,13 @@ const MainContainer = (props) => {
 							{props.user.type === 'user' ? (
 								<Route
 									exact
-									path={`/profile/:id`}
+									path="/profile/:id"
 									component={UserProfile}
 								/>
 							) : (
 								<Route
 									exact
-									path={`/profile/:id`}
+									path="/profile/:id"
 									component={ArtistProfile}
 								/>
 							)}
