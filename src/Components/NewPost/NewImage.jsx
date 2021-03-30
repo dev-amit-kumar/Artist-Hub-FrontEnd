@@ -4,13 +4,17 @@ import { PostEditPostNewImage } from "../../Redux/Actions";
 const NewImage = (props) => {
   const [image, setNewImage] = useState();
   const addImage = () => {
-    PostEditPostNewImage(props.match.params.id, image, (reply, errorMsg) => {
-      if (reply) {
-        props.history.push("/");
-      } else {
-        console.log(errorMsg);
-      }
-    });
+    setTimeout(function () {
+      PostEditPostNewImage(props.match.params.id, image, (reply, errorMsg) => {
+        if (reply) {
+          console.log(reply);
+        } else {
+          console.log(errorMsg);
+        }
+      });
+    }, 0);
+
+    props.history.push("/");
   };
   const msg = (query) => {
     if (query) {
