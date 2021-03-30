@@ -100,3 +100,23 @@
 		border-radius: 0%;
 	}
 }
+
+.newPost {
+	margin: 20px;
+	box-shadow: 0px 0px 10px 6px rgba(0, 0, 0, 0.3);
+}
+.newPost .card-header {
+	background-color: var(--primary);
+	color: var(--primary_text);
+}
+
+.newPost button {
+	background-color: var(--primary);
+	padding: 6px 20px;
+	color: var(--primary_text);
+}
+
+.newPost button:hover {
+	background-color: var(--primary);
+	color: var(--primary_text);
+}
