@@ -189,26 +189,19 @@ const PostEdit = (props) => {
                 data-bs-toggle="modal"
                 data-bs-target="#NewPostModalImage"
                 className="btn btn-success"
+                onMouseEnter={() => setClicked(false)}
               >
                 Add Image
               </button>
-              {isClicked ? (
-                <button
-                  type="button"
-                  data-bs-toggle="modal"
-                  data-bs-target="#EditPostModalImage"
-                  className="ms-4 btn btn-primary"
-                >
-                  Edit Image
-                </button>
-              ) : (
-                <button
-                  className="ms-4 btn btn-primary"
-                  onClick={() => setClicked(true)}
-                >
-                  Edit Image
-                </button>
-              )}
+              <button
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#EditPostModalImage"
+                className="ms-4 btn btn-primary"
+                onMouseEnter={() => setClicked(true)}
+              >
+                Edit Image
+              </button>
             </div>
           </div>
         </div>
