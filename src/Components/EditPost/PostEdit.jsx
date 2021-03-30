@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import PostEditModal from "./ImagePostEditModal";
+import ImagePostEditModal from "./ImagePostEditModal";
 import { fetchEditPostDetail, PostEditPostDetail } from "../../Redux/Actions";
 import Loading from "../Common/Loading";
 
@@ -12,6 +12,7 @@ const PostEdit = (props) => {
   const [occassion, setOccassion] = useState(data ? data[0].occassion : "");
   const [tags, setTags] = useState(data ? data[0].tags : "");
   const [msg, setErrorMsg] = useState();
+  const [succes, setSuccess] = useState();
   useEffect(() => {
     fetchEditPostDetail(props.match.params.id, (reply, errorMsg) => {
       if (reply) {
@@ -20,7 +21,7 @@ const PostEdit = (props) => {
         setErrorMsg(errorMsg);
       }
     });
-  }, []);
+  }, [props.match.params.id]);
   const UpdateData = () => {
     var res = tags.split(" ");
     const data = {
@@ -32,21 +33,20 @@ const PostEdit = (props) => {
     };
     PostEditPostDetail(props.match.params, data, (reply, errorMsg) => {
       if (reply) {
-        console.log(reply);
-        // setData("");
-        // fetchEditPostDetail(props.match.params.id, (reply) => {
-        //   if (reply) {
-        //     setData(reply.data);
-        //   } else {
-        //     setErrorMsg(errorMsg);
-        //   }
-        // });
+        setSuccess("Data Updated");
+        fetchEditPostDetail(props.match.params.id, (reply) => {
+          if (reply) {
+            setData(reply.data);
+          } else {
+            setErrorMsg(errorMsg);
+          }
+        });
       } else {
         setErrorMsg(errorMsg);
       }
     });
   };
-  if (data) {
+  if (data && !msg) {
     return (
       <div>
         <div className="card">
@@ -143,7 +143,11 @@ const PostEdit = (props) => {
             </button>
           </div>
         </div>
-        <PostEditModal Id={props.match.params.id} />
+        <h4 className="text-center text-success">{succes ? succes : ""}</h4>
+        <ImagePostEditModal
+          message={(msg) => setSuccess(msg)}
+          Id={props.match.params.id}
+        />
       </div>
     );
   } else {

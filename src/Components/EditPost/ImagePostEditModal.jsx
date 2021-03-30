@@ -8,7 +8,7 @@ import {
   PostEditPostDeleteImage,
   PostEditPostImage,
 } from "../../Redux/Actions";
-const PostEditModal = (props) => {
+const ImagePostEditModal = (props) => {
   const [image, setImage] = useState("");
   const [errMsg, setErrorMsg] = useState("");
   const [newImage, setNewImage] = useState();
@@ -25,15 +25,7 @@ const PostEditModal = (props) => {
   const addImage = () => {
     PostEditPostNewImage(props.Id, newImage, (reply, errorMsg) => {
       if (reply) {
-        // setImage();
-        // fetchEditPostImage(props.Id, (reply, errorMsg) => {
-        //   if (reply) {
-        //     setImage(reply.data);
-        //   } else {
-        //     setErrorMsg(errorMsg);
-        //   }
-        // });
-        console.log(reply);
+        props.message("Image Added");
       } else {
         setErrorMsg(errorMsg);
       }
@@ -42,15 +34,15 @@ const PostEditModal = (props) => {
   const deleteImage = (e) => {
     PostEditPostDeleteImage(e.target.value, (reply, errorMsg) => {
       if (reply) {
-        // setImage();
-        // fetchEditPostImage(props.Id, (reply, errorMsg) => {
-        //   if (reply) {
-        //     setImage(reply.data);
-        //   } else {
-        //     setErrorMsg(errorMsg);
-        //   }
-        // });
-        console.log(reply);
+        props.message("Image Deleted");
+        setImage();
+        fetchEditPostImage(props.Id, (reply, errorMsg) => {
+          if (reply) {
+            setImage(reply.data);
+          } else {
+            setErrorMsg(errorMsg);
+          }
+        });
       } else {
         setErrorMsg(errorMsg);
       }
@@ -59,21 +51,13 @@ const PostEditModal = (props) => {
   const updateImage = (e) => {
     PostEditPostImage(e.target.value, oldImage, (reply, errorMsg) => {
       if (reply) {
-        // setImage();
-        // fetchEditPostImage(props.Id, (reply, errorMsg) => {
-        //   if (reply) {
-        //     setImage(reply.data);
-        //   } else {
-        //     setErrorMsg(errorMsg);
-        //   }
-        // });
-        console.log(reply);
+        props.message("Image Updated");
       } else {
         setErrorMsg(errorMsg);
       }
     });
   };
-  if (image) {
+  if (image && !errMsg) {
     return (
       <div>
         <div
@@ -208,4 +192,4 @@ const PostEditModal = (props) => {
   }
 };
 
-export default PostEditModal;
+export default ImagePostEditModal;
