@@ -54,8 +54,8 @@ const PostEdit = (props) => {
             <h1 className="text-center">Edit</h1>
           </div>
           <div className="card-body">
-            <div className="d-flex flex-row justify-content-between">
-              <div>
+            <div className="d-flex flex-row">
+              <div className="col-md-6 col-sm-6">
                 <label>Location</label>
                 <input
                   name="location"
@@ -68,7 +68,7 @@ const PostEdit = (props) => {
                   className="form-control"
                 />
               </div>
-              <div>
+              <div className="col-md-6 col-sm-6">
                 <label>Caption</label>
                 <input
                   type="text"
