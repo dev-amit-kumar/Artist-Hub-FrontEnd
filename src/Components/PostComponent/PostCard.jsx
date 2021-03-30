@@ -105,6 +105,7 @@ const PostCard = (props) => {
                 className="dropdown-menu"
                 aria-labelledby="dropdownMenuLink"
                 style={{ minWidth: "auto" }}
+                onMouseEnter={() => setClicked(true)}
               >
                 <li>
                   <Link
@@ -115,16 +116,12 @@ const PostCard = (props) => {
                     <i className="fas fa-edit"></i>
                   </Link>
                   <span className="dropdown-item text-danger" role="button">
-                    {isClicked ? (
-                      <button
-                        data-bs-toggle="modal"
-                        data-bs-target="#DeletePostModal"
-                      >
-                        d
-                      </button>
-                    ) : (
-                      <button onClick={() => setClicked(true)}>d</button>
-                    )}
+                    <button
+                      data-bs-toggle="modal"
+                      data-bs-target="#DeletePostModal"
+                    >
+                      d
+                    </button>
                   </span>
                 </li>
               </ul>
