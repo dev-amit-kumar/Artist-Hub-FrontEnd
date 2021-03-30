@@ -9,7 +9,11 @@ const PostEdit = (props) => {
   const [msg, setErrorMsg] = useState();
 
   const UpdateData = () => {
-    var res = tags.split(" ");
+    if (tags) {
+      var res = tags.split(" ");
+    } else {
+      res = "";
+    }
     const data = {
       location: location,
       occassion: occassion,
@@ -19,7 +23,9 @@ const PostEdit = (props) => {
     };
     AddNewPostDetail(data, (reply, errorMsg) => {
       if (reply) {
-        props.history.push(`/newpost/image/${reply.data._id}`);
+        props.history.push(
+          `/newpost/image/${reply.data._id}?message=Post&Detail&Added`
+        );
       } else {
         setErrorMsg(errorMsg);
       }
@@ -30,11 +36,12 @@ const PostEdit = (props) => {
     <div>
       <div className="card">
         <div className="card-header">
+          {msg ? msg : ""}
           <h1 className="text-center">New Post</h1>
         </div>
         <div className="card-body">
-          <div className="d-flex flex-row justify-content-between">
-            <div>
+          <div className="d-flex flex-row">
+            <div className="col-md-6 col-sm-6">
               <label>Location</label>
               <input
                 name="location"
@@ -47,7 +54,7 @@ const PostEdit = (props) => {
                 className="form-control"
               />
             </div>
-            <div>
+            <div className="col-md-6 col-sm-6">
               <label>Caption</label>
               <input
                 type="text"
