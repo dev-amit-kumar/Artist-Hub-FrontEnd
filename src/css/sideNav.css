@@ -74,12 +74,6 @@
 	display: none;
 }
 
-/* //////// */
-.rightSideBar {
-	width: 25vw;
-	background-color: var(--primary);
-}
-/* /////// */
 @media only screen and (max-width: 1100px) {
 	.logoLink {
 		padding: 0;
@@ -97,7 +91,7 @@
 		font-size: 24px;
 	}
 }
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 780px) {
 	.logoLink {
 		padding: 0;
 		font-size: 20px;
@@ -113,9 +107,6 @@
 	}
 	.option {
 		width: 40px !important;
-	}
-	.rightSideBar {
-		display: none;
 	}
 	.showButton {
 		display: block;

@@ -56,7 +56,7 @@ body {
 	border-bottom: 3px solid var(--primary_active);
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 780px) {
 	.main-container {
 		width: 100%;
 		padding: 0 1px;

@@ -43,13 +43,13 @@ const MainContainer = (props) => {
 							{props.user.type === 'user' ? (
 								<Route
 									exact
-									path={`/profile/:id`}
+									path="/profile/:id"
 									component={UserProfile}
 								/>
 							) : (
 								<Route
 									exact
-									path={`/profile/:id`}
+									path="/profile/:id"
 									component={ArtistProfile}
 								/>
 							)}
@@ -77,7 +77,7 @@ const MainContainer = (props) => {
 							/>
 						</Switch>
 					</div>
-					<div className="rightSideBar" style={{ height: '100vh' }}>
+					<div className="rightSideBar">
 						<RightSide />
 					</div>
 				</div>
