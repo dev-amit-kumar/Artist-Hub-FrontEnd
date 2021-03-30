@@ -115,13 +115,16 @@ const PostCard = (props) => {
                     <i className="fas fa-edit"></i>
                   </Link>
                   <span className="dropdown-item text-danger" role="button">
-                    <button
-                      data-bs-toggle="modal"
-                      data-bs-target="#DeletePostModal"
-                      onClick={() => setClicked(true)}
-                    >
-                      d
-                    </button>
+                    {isClicked ? (
+                      <button
+                        data-bs-toggle="modal"
+                        data-bs-target="#DeletePostModal"
+                      >
+                        d
+                      </button>
+                    ) : (
+                      <button onClick={() => setClicked(true)}>d</button>
+                    )}
                   </span>
                 </li>
               </ul>

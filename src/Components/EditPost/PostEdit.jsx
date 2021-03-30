@@ -43,7 +43,7 @@ const PostEdit = (props) => {
     });
   }, [props.match.params.id]);
 
-  const UpdateData = (e) => {
+  const UpdateData = () => {
     if (typeof tags == "object") {
       var res = tags;
     } else {
@@ -192,15 +192,23 @@ const PostEdit = (props) => {
               >
                 Add Image
               </button>
-              <button
-                type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#EditPostModalImage"
-                className="ms-4 btn btn-primary"
-                onClick={() => setClicked(true)}
-              >
-                Edit Image
-              </button>
+              {isClicked ? (
+                <button
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#EditPostModalImage"
+                  className="ms-4 btn btn-primary"
+                >
+                  Edit Image
+                </button>
+              ) : (
+                <button
+                  className="ms-4 btn btn-primary"
+                  onClick={() => setClicked(true)}
+                >
+                  Edit Image
+                </button>
+              )}
             </div>
           </div>
         </div>
