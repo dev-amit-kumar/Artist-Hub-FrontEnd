@@ -21,7 +21,7 @@ const PostEdit = (props) => {
     if (tags) {
       var res = tags.split(" ");
     } else {
-      res = "";
+      res = [];
     }
     const data = {
       location: location,

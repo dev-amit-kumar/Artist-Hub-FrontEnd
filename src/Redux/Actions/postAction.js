@@ -105,7 +105,6 @@ export const addNewRating = (postId, rating, callback) => {
         },
       })
       .then((reply) => {
-        console.log(reply.data);
         if (reply.data.status === 200) {
           callback(reply.data);
         } else {
@@ -214,16 +213,13 @@ export const PostEditPostDetail = (id, Data, callback) => {
       )
       .then((reply) => {
         if (reply.data.status === 200) {
-          console.log("callback", reply);
           callback(reply.data);
         } else {
-          console.log(reply, "in");
           callback(false);
         }
       })
       .catch(() => callback(false));
   } catch (error) {
-    console.log(error, "error");
     callback(false);
   }
 };

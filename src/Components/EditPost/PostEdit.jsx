@@ -62,15 +62,12 @@ const PostEdit = (props) => {
         setSuccess("Data Updated");
         fetchEditPostDetail(props.match.params.id, (reply, errorMsg) => {
           if (reply) {
-            console.log(reply, "reply");
             setData(reply.data);
           } else {
-            console.log(errorMsg, "error");
             setErrorMsg(errorMsg);
           }
         });
       } else {
-        console.log(errorMsg, "e2");
         setErrorMsg(errorMsg);
       }
     });
