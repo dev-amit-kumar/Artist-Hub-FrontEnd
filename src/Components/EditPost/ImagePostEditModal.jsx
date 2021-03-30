@@ -26,6 +26,7 @@ const ImagePostEditModal = (props) => {
     PostEditPostNewImage(props.Id, newImage, (reply, errorMsg) => {
       if (reply) {
         props.message("Image Added");
+        window.location.reload();
       } else {
         setErrorMsg(errorMsg);
       }
@@ -35,6 +36,7 @@ const ImagePostEditModal = (props) => {
     PostEditPostDeleteImage(e.target.value, (reply, errorMsg) => {
       if (reply) {
         props.message("Image Deleted");
+        window.location.reload();
       } else {
         setErrorMsg(errorMsg);
       }
@@ -44,6 +46,7 @@ const ImagePostEditModal = (props) => {
     PostEditPostImage(e.target.value, oldImage, (reply, errorMsg) => {
       if (reply) {
         props.message("Image Updated");
+        window.location.reload();
       } else {
         setErrorMsg(errorMsg);
       }

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { AddNewPostDetail } from "../../Redux/Actions";
 const PostEdit = (props) => {
-  const [location, setLocation] = useState();
-  const [desc, setDesc] = useState();
-  const [caption, setCaption] = useState();
-  const [occassion, setOccassion] = useState();
-  const [tags, setTags] = useState();
-  const [msg, setErrorMsg] = useState();
+  const [location, setLocation] = useState("");
+  const [desc, setDesc] = useState("");
+  const [caption, setCaption] = useState("");
+  const [occassion, setOccassion] = useState("");
+  const [tags, setTags] = useState("");
+  const [msg, setErrorMsg] = useState("");
 
   const UpdateData = () => {
     if (tags) {
@@ -24,7 +24,7 @@ const PostEdit = (props) => {
     AddNewPostDetail(data, (reply, errorMsg) => {
       if (reply) {
         props.history.push(
-          `/newpost/image/${reply.data._id}?message=Post&Detail&Added`
+          `/newpost/image/${reply.data._id}?Post&Detail&Added`
         );
       } else {
         setErrorMsg(errorMsg);
