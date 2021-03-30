@@ -35,14 +35,6 @@ const ImagePostEditModal = (props) => {
     PostEditPostDeleteImage(e.target.value, (reply, errorMsg) => {
       if (reply) {
         props.message("Image Deleted");
-        setImage();
-        fetchEditPostImage(props.Id, (reply, errorMsg) => {
-          if (reply) {
-            setImage(reply.data);
-          } else {
-            setErrorMsg(errorMsg);
-          }
-        });
       } else {
         setErrorMsg(errorMsg);
       }
