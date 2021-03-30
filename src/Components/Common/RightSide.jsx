@@ -52,26 +52,28 @@ const RightSide = () => {
 	};
 
 	return (
-		<div className="container">
-			<form className="mt-2" onSubmit={searchHandler}>
-				<div class="input-group mb-3">
-					<input
-						type="search"
-						class="form-control text-capitalize"
-						placeholder="Search post/user"
-						value={keyword}
-						aria-label="Search post/user"
-						aria-describedby="button-search"
-						onChange={changeHandler}
-					/>
-					<button
-						class="btn btn-light"
-						type="submit"
-						id="button-search"
-					>
-						<i class="fas fa-search"></i>
-					</button>
-				</div>
+		<>
+			<div className="search-container container">
+				<form className="mt-2" onSubmit={searchHandler}>
+					<div class="input-group mb-3">
+						<input
+							type="search"
+							class="form-control text-capitalize"
+							placeholder="Search post/user"
+							value={keyword}
+							aria-label="Search post/user"
+							aria-describedby="button-search"
+							onChange={changeHandler}
+						/>
+						<button
+							class="btn btn-light"
+							type="submit"
+							id="button-search"
+						>
+							<i class="fas fa-search"></i>
+						</button>
+					</div>
+				</form>
 				<div className="searchResult">
 					{!error ? (
 						searchList.map((data) => {
@@ -105,8 +107,14 @@ const RightSide = () => {
 						Load more...
 					</p>
 				)}
-			</form>
-		</div>
+			</div>
+			<div className="footer">
+				<span>Terms of Service</span>
+				<span>Privacy Policy</span>
+				<span>Cookie Policy</span>
+				<span>&copy; 2021 Artist Hub, Inc.</span>
+			</div>
+		</>
 	);
 };
 export default RightSide;

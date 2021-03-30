@@ -77,7 +77,7 @@ const MainContainer = (props) => {
 							/>
 						</Switch>
 					</div>
-					<div className="rightSideBar" style={{ height: '100vh' }}>
+					<div className="rightSideBar">
 						<RightSide />
 					</div>
 				</div>

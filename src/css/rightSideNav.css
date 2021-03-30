@@ -1,12 +1,16 @@
 .rightSideBar {
 	width: 25vw;
 	background-color: var(--primary);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .searchResult {
 	margin-top: 20px;
 	overflow-y: scroll;
-	height: 50vh;
+	/* height: 60vh; */
+	height: 70vh;
 }
 
 .searchResult::-webkit-scrollbar-track {
@@ -54,4 +58,22 @@
 	margin-top: 10px;
 	cursor: pointer;
 	padding-right: 20px;
+}
+
+.footer {
+	height: auto;
+	border-top: 1px solid var(--primary_text);
+	color: var(--primary_text);
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.footer span {
+	padding: 5px 10px;
+}
+
+@media only screen and (max-width: 780px) {
+	.rightSideBar {
+		display: none;
+	}
 }
