@@ -55,10 +55,10 @@ const RightSide = () => {
 		<>
 			<div className="search-container container">
 				<form className="mt-2" onSubmit={searchHandler}>
-					<div class="input-group mb-3">
+					<div className="input-group mb-3">
 						<input
 							type="search"
-							class="form-control text-capitalize"
+							className="form-control text-capitalize"
 							placeholder="Search post/user"
 							value={keyword}
 							aria-label="Search post/user"
@@ -66,11 +66,11 @@ const RightSide = () => {
 							onChange={changeHandler}
 						/>
 						<button
-							class="btn btn-light"
+							className="btn btn-light"
 							type="submit"
 							id="button-search"
 						>
-							<i class="fas fa-search"></i>
+							<i className="fas fa-search"></i>
 						</button>
 					</div>
 				</form>
@@ -86,7 +86,7 @@ const RightSide = () => {
 													? data.profilePic
 													: 'https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png'
 											}
-											alt="user image"
+											alt="user"
 											width="30"
 											height="30"
 											className="me-2 rounded-circle"

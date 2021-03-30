@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { AddNewPostDetail } from '../../Redux/Actions';
+import { useEffect, useState } from 'react';
+import { AddNewPostDetail, getOccasion } from '../../Redux/Actions';
 const PostEdit = (props) => {
 	const [location, setLocation] = useState();
 	const [desc, setDesc] = useState();
@@ -7,6 +7,15 @@ const PostEdit = (props) => {
 	const [occassion, setOccassion] = useState();
 	const [tags, setTags] = useState();
 	const [msg, setErrorMsg] = useState();
+	const [occasionList, setList] = useState([]);
+
+	useEffect(() => {
+		getOccasion((reply) => {
+			if (reply) {
+				setList(reply);
+			}
+		});
+	});
 
 	const UpdateData = () => {
 		if (tags) {
@@ -70,10 +79,17 @@ const PostEdit = (props) => {
 									aria-label="Default select example"
 									required
 								>
-									<option value="">Choose Occassion</option>
-									<option value="Birthday">Birthday</option>
-									<option value="Wedding">Wedding</option>
-									<option value="Outing">Outing</option>
+									{occasionList.map((occ, idx) => {
+										return (
+											<option
+												key={`occ_${idx}`}
+												value={occ}
+												className="text-capitalize"
+											>
+												{occ}
+											</option>
+										);
+									})}
 								</select>
 							</div>
 						</div>
