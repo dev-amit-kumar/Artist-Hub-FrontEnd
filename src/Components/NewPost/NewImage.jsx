@@ -4,20 +4,29 @@ import { PostEditPostNewImage } from "../../Redux/Actions";
 const NewImage = (props) => {
   const [image, setNewImage] = useState();
   const addImage = () => {
-    console.log(props.match.params.id, "id");
     PostEditPostNewImage(props.match.params.id, image, (reply, errorMsg) => {
       if (reply) {
-        console.log(reply);
         props.history.push("/");
       } else {
         console.log(errorMsg);
       }
     });
   };
+  const msg = (query) => {
+    if (query) {
+      var res = query.slice(1);
+      var ress = res.split("&");
+      let message = "";
+      for (var i = 0; i < ress.length; i++) {
+        message = message + " " + ress[i];
+      }
+      return <p className="text-center text-success ">{message}</p>;
+    }
+  };
   return (
     <div className="card">
       <div className="card-header">
-        <h1>Add image</h1>
+        <h1 className="text-center">Add image</h1>
       </div>
       <div className="card-body">
         <input
@@ -31,6 +40,7 @@ const NewImage = (props) => {
           accept="image/*"
           capture="camera"
         />
+        {msg(props.location.search)}
       </div>
       <div className="card-footer d-flex justify-content-center">
         <button className="btn btn-success" onClick={addImage}>
