@@ -116,12 +116,11 @@ const PostCard = (props) => {
                     <i className="fas fa-edit"></i>
                   </Link>
                   <span className="dropdown-item text-danger" role="button">
-                    <button
+                    <i
                       data-bs-toggle="modal"
                       data-bs-target="#DeletePostModal"
-                    >
-                      d
-                    </button>
+                      className="fas fa-trash-alt"
+                    ></i>
                   </span>
                 </li>
               </ul>
