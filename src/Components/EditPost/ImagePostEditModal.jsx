@@ -75,7 +75,7 @@ const ImagePostEditModal = (props) => {
               <Carousel showThumbs={false}>
                 {image.map((img, idx) => {
                   return (
-                    <div>
+                    <div key={idx}>
                       <div className="modal-body">
                         <img key={idx} src={img.file_path} alt="postImage" />
                         <form encType="multipart/form-data">

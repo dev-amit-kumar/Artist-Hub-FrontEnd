@@ -72,10 +72,10 @@ const PostEdit = (props) => {
               onChange={(e) => {
                 setOccassion(e.target.value);
               }}
-              class="form-select"
+              className="form-select"
               aria-label="Default select example"
             >
-              <option selected>select Occassion</option>
+              <option>select Occassion</option>
               <option value="Birthday">Birthday</option>
               <option value="Wedding">Wedding</option>
               <option value="Outing">Outing</option>
