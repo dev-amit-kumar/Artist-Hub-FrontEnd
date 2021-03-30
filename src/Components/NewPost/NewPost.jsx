@@ -21,7 +21,6 @@ const PostEdit = (props) => {
 			caption: caption,
 			tags: res,
 		};
-
 		AddNewPostDetail(data, (reply, errorMsg) => {
 			if (reply) {
 				props.history.push(

@@ -6,7 +6,7 @@ const NewImage = (props) => {
   const addImage = () => {
     PostEditPostNewImage(props.match.params.id, image, (reply, errorMsg) => {
       if (reply) {
-        props.history.push("/?Image&Added");
+        props.history.push("/");
       } else {
         console.log(errorMsg);
       }
@@ -18,7 +18,6 @@ const NewImage = (props) => {
       var ress = res.split("&");
       let message = "";
       for (var i = 0; i < ress.length; i++) {
-        console.log(message, ress[i]);
         message = message + " " + ress[i];
       }
       return <p className="text-center text-success ">{message}</p>;
@@ -41,7 +40,7 @@ const NewImage = (props) => {
           accept="image/*"
           capture="camera"
         />
-        <p>{msg(props.location.search)}</p>
+        {msg(props.location.search)}
       </div>
       <div className="card-footer d-flex justify-content-center">
         <button className="btn btn-success" onClick={addImage}>
