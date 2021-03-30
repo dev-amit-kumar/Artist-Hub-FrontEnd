@@ -46,3 +46,12 @@
 	text-decoration: none;
 	background-color: var(--primary_text);
 }
+
+.loadMore {
+	color: var(--primary_text);
+	text-align-last: right;
+	font-weight: 700;
+	margin-top: 10px;
+	cursor: pointer;
+	padding-right: 20px;
+}

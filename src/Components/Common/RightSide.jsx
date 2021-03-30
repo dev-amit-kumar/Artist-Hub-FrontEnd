@@ -9,9 +9,10 @@ const RightSide = () => {
 	const [page_no, setPage] = useState(1);
 
 	const searchHandler = (e) => {
+		setPage(1);
 		e.preventDefault();
 		if (keyword !== '') {
-			findByKeyword(keyword, page_no, (err, reply) => {
+			findByKeyword(keyword, 1, (err, reply) => {
 				if (err) {
 					setError(err);
 				} else {
@@ -24,11 +25,12 @@ const RightSide = () => {
 	};
 
 	const changeHandler = (e) => {
+		setPage(1);
 		setKeyword(e.target.value);
 		if (e.target.value === '') {
 			setList([]);
 		} else {
-			findByKeyword(e.target.value, page_no, (err, reply) => {
+			findByKeyword(e.target.value, 1, (err, reply) => {
 				if (err) {
 					setError(err);
 				} else {
@@ -36,6 +38,17 @@ const RightSide = () => {
 				}
 			});
 		}
+	};
+
+	const loadMore = () => {
+		setPage(page_no + 1);
+		findByKeyword(keyword, page_no + 1, (err, reply) => {
+			if (err) {
+				setError(err);
+			} else {
+				setList(reply);
+			}
+		});
 	};
 
 	return (
@@ -87,6 +100,11 @@ const RightSide = () => {
 						<div>{error}</div>
 					)}
 				</div>
+				{searchList.length === 20 && (
+					<p className="loadMore" onClick={loadMore}>
+						Load more...
+					</p>
+				)}
 			</form>
 		</div>
 	);
