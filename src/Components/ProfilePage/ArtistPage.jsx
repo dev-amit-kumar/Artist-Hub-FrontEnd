@@ -15,6 +15,7 @@ const ArtistPage = ({
 	isLoadingArtistDetail,
 	fetchArtist,
 	followerDetail,
+	userId,
 }) => {
 	useEffect(() => {
 		fetchArtist(match.params.id);
@@ -62,6 +63,7 @@ const ArtistPage = ({
 							Desc={ArtistDetail.data.shortDesc}
 							followingDetail={followingDetail.data}
 							followerDetail={followerDetail.data}
+							userId={userId}
 						/>
 					</div>
 					<div className="ps-4 pe-4 pt-2">
@@ -87,6 +89,7 @@ const ArtistPage = ({
 };
 const mapStateToProps = (state) => {
 	return {
+		userId: state.UserAuth.user.userId,
 		ArtistDetail: state.ArtistReducer.ArtistDetail,
 		isLoadingArtistDetail: state.ArtistReducer.isLoadingArtistDetail,
 		followingDetail: state.ArtistReducer.followingDetail,
