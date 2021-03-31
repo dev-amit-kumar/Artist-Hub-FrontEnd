@@ -15,7 +15,7 @@ const PostEdit = (props) => {
         setList(reply);
       }
     });
-  });
+  }, []);
 
   const UpdateData = () => {
     if (tags) {
