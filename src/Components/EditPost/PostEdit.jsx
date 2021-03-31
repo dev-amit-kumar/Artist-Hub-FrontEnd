@@ -73,13 +73,19 @@ const PostEdit = (props) => {
     });
   };
   const addImage = () => {
-    PostEditPostNewImage(props.match.params.id, newImage, (reply, errorMsg) => {
-      if (reply) {
-        setMSucces("Image Added");
-      } else {
-        setErrorMsg(errorMsg);
-      }
-    });
+    for (let i = 0; i < newImage.length; i++) {
+      PostEditPostNewImage(
+        props.match.params.id,
+        newImage[i],
+        (reply, errorMsg) => {
+          if (reply) {
+            setMSucces("Image Added");
+          } else {
+            setErrorMsg(errorMsg);
+          }
+        }
+      );
+    }
   };
 
   if (data && !msg) {
@@ -235,7 +241,7 @@ const PostEdit = (props) => {
                   <input
                     className="form-control"
                     onChange={(e) => {
-                      setNewImage(e.target.files[0]);
+                      setNewImage(e.target.files);
                     }}
                     type="file"
                     name="Image"

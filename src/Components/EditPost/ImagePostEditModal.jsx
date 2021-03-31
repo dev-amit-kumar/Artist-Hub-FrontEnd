@@ -38,7 +38,6 @@ const ImagePostEditModal = (props) => {
       }
     });
   };
-  console.log("render", props.Clicked);
   if (image && !errMsg) {
     return (
       <div>

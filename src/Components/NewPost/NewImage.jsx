@@ -5,13 +5,19 @@ const NewImage = (props) => {
   const [image, setNewImage] = useState();
   const addImage = () => {
     setTimeout(function () {
-      PostEditPostNewImage(props.match.params.id, image, (reply, errorMsg) => {
-        if (reply) {
-          console.log(reply);
-        } else {
-          console.log(errorMsg);
-        }
-      });
+      for (let i = 0; i < image.length; i++) {
+        PostEditPostNewImage(
+          props.match.params.id,
+          image[i],
+          (reply, errorMsg) => {
+            if (reply) {
+              console.log(reply);
+            } else {
+              console.log(errorMsg);
+            }
+          }
+        );
+      }
     }, 0);
 
     props.history.push("/");
@@ -36,7 +42,7 @@ const NewImage = (props) => {
         <input
           className="form-control"
           onChange={(e) => {
-            setNewImage(e.target.files[0]);
+            setNewImage(e.target.files);
           }}
           type="file"
           name="Image"
