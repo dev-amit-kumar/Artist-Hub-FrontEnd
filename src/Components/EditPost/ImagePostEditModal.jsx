@@ -1,6 +1,7 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import { useEffect, useState } from "react";
+import Loading from "../Common/Loading";
 import {
   fetchEditPostImage,
   PostEditPostDeleteImage,
@@ -43,7 +44,7 @@ const ImagePostEditModal = (props) => {
         onMouseDown={() =>
           setTimeout(function () {
             props.ModalClicked(false);
-          }, 1000)
+          }, 300)
         }
       >
         <div
@@ -112,6 +113,8 @@ const ImagePostEditModal = (props) => {
         </div>
       </div>
     );
+  } else {
+    return <Loading />;
   }
 };
 
