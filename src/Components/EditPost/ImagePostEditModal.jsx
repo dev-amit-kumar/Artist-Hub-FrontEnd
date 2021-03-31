@@ -21,6 +21,9 @@ const ImagePostEditModal = (props) => {
     });
   }, [props.Id]);
   const deleteImage = (e) => {
+    setTimeout(function () {
+      props.ModalClicked(false);
+    }, 5000);
     PostEditPostDeleteImage(e.target.value, (reply, errorMsg) => {
       if (reply) {
         props.message("Image Deleted");
