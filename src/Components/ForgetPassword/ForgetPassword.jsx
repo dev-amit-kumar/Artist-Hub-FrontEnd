@@ -42,6 +42,11 @@ const ForgetPassword = (props) => {
               </div>
               <form className="card mt-4">
                 <div className="card-body">
+                  <div>
+                    <h4 className="text-success text-center">
+                      {msg ? msg : ""}
+                    </h4>
+                  </div>
                   <div className="form-group">
                     <label>Enter your email address</label>
                     <input
@@ -56,20 +61,23 @@ const ForgetPassword = (props) => {
                   </div>
                 </div>
                 <div className="card-footer d-flex flex-row">
-                  <button
-                    type="button"
-                    onClick={emailVerify}
-                    className="btn btn-success me-5"
-                  >
-                    Get New Password
-                  </button>
-                  <button
-                    onClick={() => props.history.push("/auth/login")}
-                    className="btn btn-danger me-5"
-                  >
-                    Back to Login
-                  </button>
-                  <h4 className="text-success text-center">{msg ? msg : ""}</h4>
+                  <div>
+                    <button
+                      type="button"
+                      onClick={emailVerify}
+                      className="btn btn-success me-5"
+                    >
+                      Get New Password
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      onClick={() => props.history.push("/auth/login")}
+                      className="btn btn-danger me-5"
+                    >
+                      Back to Login
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>

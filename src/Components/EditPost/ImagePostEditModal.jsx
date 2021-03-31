@@ -1,7 +1,6 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import { useEffect, useState } from "react";
-import Loading from "../Common/Loading";
 import {
   fetchEditPostImage,
   PostEditPostDeleteImage,
@@ -21,9 +20,6 @@ const ImagePostEditModal = (props) => {
     });
   }, [props.Id]);
   const deleteImage = (e) => {
-    setTimeout(function () {
-      props.ModalClicked(false);
-    }, 5000);
     PostEditPostDeleteImage(e.target.value, (reply, errorMsg) => {
       if (reply) {
         props.message("Image Deleted");
@@ -43,7 +39,13 @@ const ImagePostEditModal = (props) => {
   };
   if (image && !errMsg) {
     return (
-      <div>
+      <div
+        onMouseDown={() =>
+          setTimeout(function () {
+            props.ModalClicked(false);
+          }, 1000)
+        }
+      >
         <div
           className="modal fade"
           id="EditPostModalImage"
@@ -62,7 +64,6 @@ const ImagePostEditModal = (props) => {
                   className="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
-                  onClick={() => props.ModalClicked(false)}
                 ></button>
               </div>
               <Carousel showThumbs={false}>
@@ -111,8 +112,6 @@ const ImagePostEditModal = (props) => {
         </div>
       </div>
     );
-  } else {
-    return <Loading />;
   }
 };
 

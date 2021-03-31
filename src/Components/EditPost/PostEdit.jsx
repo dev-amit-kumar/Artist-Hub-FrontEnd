@@ -21,7 +21,7 @@ const PostEdit = (props) => {
   const [occasionList, setList] = useState([]);
   const [succes, setSuccess] = useState();
   const [newImage, setNewImage] = useState();
-  const [isClicked, setClicked] = useState(false);
+  const [isClicked, setClicked] = useState(true);
 
   useEffect(() => {
     fetchEditPostDetail(props.match.params.id, (reply, errorMsg) => {
@@ -73,24 +73,27 @@ const PostEdit = (props) => {
     });
   };
   const addImage = () => {
-    for (let i = 0; i < newImage.length; i++) {
-      PostEditPostNewImage(
-        props.match.params.id,
-        newImage[i],
-        (reply, errorMsg) => {
-          if (reply) {
-            setMSucces("Image Added");
-          } else {
-            setErrorMsg(errorMsg);
+    setTimeout(function () {
+      for (let i = 0; i < newImage.length; i++) {
+        PostEditPostNewImage(
+          props.match.params.id,
+          newImage[i],
+          (reply, errorMsg) => {
+            if (reply) {
+              setMSucces("Image Added");
+            } else {
+              setErrorMsg(errorMsg);
+            }
           }
-        }
-      );
-    }
+        );
+      }
+    }, 0);
+    setClicked(false);
   };
 
   if (data && !msg) {
     return (
-      <div>
+      <div onMouseEnter={() => setClicked(true)}>
         <div className="newPost">
           <div className="card-header">
             <h3 className="text-center">Edit Post</h3>
@@ -192,7 +195,6 @@ const PostEdit = (props) => {
                 data-bs-toggle="modal"
                 data-bs-target="#NewPostModalImage"
                 className="btn btn-success"
-                onMouseEnter={() => setClicked(false)}
               >
                 Add Image
               </button>
@@ -201,7 +203,6 @@ const PostEdit = (props) => {
                 data-bs-toggle="modal"
                 data-bs-target="#EditPostModalImage"
                 className="ms-4 btn btn-primary"
-                onMouseEnter={() => setClicked(true)}
               >
                 Edit Image
               </button>
