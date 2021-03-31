@@ -345,3 +345,24 @@ export const PostDelete = (id, callback) => {
     callback(false);
   }
 };
+export const fetchEmail = (query, callback) => {
+  try {
+    axios
+      .get(`${base_url}/auth/emailExist?email=${query}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("auth-token"),
+        },
+      })
+      .then((reply) => {
+        if (reply.data.status === 200) {
+          callback(reply.data);
+        } else {
+          callback(reply.data);
+        }
+      })
+      .catch(() => callback(false));
+  } catch (error) {
+    callback(false);
+  }
+};
